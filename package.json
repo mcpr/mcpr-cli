@@ -1,0 +1,26 @@
+{
+  "name": "mc-cli",
+  "version": "0.0.1",
+  "description": "A CLI for setting up and controlling Minecraft servers.",
+  "main": "cli.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/HexagonMinecraft/mc-cli.git"
+  },
+  "keywords": [
+    "mc",
+    "minecraft",
+    "cli",
+    "command line interface",
+    "server"
+  ],
+  "author": "Hexagon MC <admin@hexagonminecraft.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/HexagonMinecraft/mc-cli/issues"
+  },
+  "homepage": "https://github.com/HexagonMinecraft/mc-cli#readme"
+}
