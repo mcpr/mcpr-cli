@@ -10,6 +10,9 @@
     "type": "git",
     "url": "git+ssh://git@github.com/HexagonMinecraft/mc-cli.git"
   },
+  "bin": {
+    "mc": "./cli.js"
+  },
   "keywords": [
     "mc",
     "minecraft",
@@ -22,5 +25,11 @@
   "bugs": {
     "url": "https://github.com/HexagonMinecraft/mc-cli/issues"
   },
-  "homepage": "https://github.com/HexagonMinecraft/mc-cli#readme"
+  "homepage": "https://github.com/HexagonMinecraft/mc-cli#readme",
+  "dependencies": {
+    "cli-color": "^1.1.0",
+    "commander": "^2.9.0",
+    "download-file": "^0.1.5",
+    "shelljs": "^0.7.6"
+  }
 }
