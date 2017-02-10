@@ -1,5 +1,5 @@
 {
-  "name": "mc-cli",
+  "name": "minecraft-cli",
   "version": "0.0.2-0",
   "description": "A CLI for setting up and controlling Minecraft servers.",
   "main": "cli.js",
