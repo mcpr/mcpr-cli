@@ -47,7 +47,7 @@ var spigotSetup = function (version) {
             if (code != 0) throw stderr;
             sh.cd('..');
             sh.cp('tmp/spigot-' + version + '.jar', 'server.jar')
-            sh.rm('-rF', 'tmp')
+            sh.rm('-rf', 'tmp')
         });
     });
 
