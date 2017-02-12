@@ -15,14 +15,42 @@ var sh = require('shelljs');
 var download = require('download-file')
 var spawn = require('child_process').spawn;
 var platform = os.platform();
+var del = require('del');
 
 var spigotSetup = function (version) {
     // SpigotConfig
     var spigotUrl = "https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar"
-    var winBash = '"C:\\Program Files\\Git\\bin\\bash.exe"';
+
     var spigotOpts = {
         directory: ".",
         filename: "BuildTools.jar"
+    }
+
+    var bashOnUbuntuOnWindows = 'C:\\Windows\\System32\\bash.exe';
+    var winBash64 = 'C:\\Program Files\\Git\\bin\\bash.exe';
+    var winBash86 = 'C:\\Program Files (x86)\\Git\\bin\\bash.exe';
+    var winBash;
+
+    if (platform === "win32") {
+        // Look for Bash.exe
+        fs.stat(bashOnUbuntuOnWindows, function (err, stats) {
+            if (err) {
+                fs.stat(winBash64, function (err, stats) {
+                    if (err) {
+                        fs.stat(winBash64, function (err, stats) {
+                            // If no Bash.exe could be found, throw an error.  
+                            if (err) console.error('Bash.exe could not be found. Please install Git Bash from https://git-scm.com/')
+                            // If 32bit Bash exists, use it. 
+                            else winBash = '"' + winBash86 + '"';
+                        });
+                    }
+                    // If 64bit Bash exists, use it. 
+                    else winBash = '"' + winBash64 + '"';
+                });
+            }
+            // If Bash on Ubuntu On Windows Exists, use it. 
+            else winBash = '"' + bashOnUbuntuOnWindows + '"';
+        });
     }
 
     sh.mkdir('tmp');
@@ -37,6 +65,8 @@ var spigotSetup = function (version) {
 
         if (platform === "win32") {
             // build on Windows properly
+
+            console.log('Using Bash.exe found at:', winBash);
             cmd = winBash + ' --login -i -c "' + javaCmd + '"';
         } else {
             // build on all other platforms
@@ -47,7 +77,10 @@ var spigotSetup = function (version) {
             if (code != 0) throw stderr;
             sh.cd('..');
             sh.cp('tmp/spigot-' + version + '.jar', 'server.jar')
-            sh.rm('-rf', 'tmp')
+
+            del('tmp').then(paths => {
+                console.log('Removed', paths, 'folder');
+            });
         });
     });
 
