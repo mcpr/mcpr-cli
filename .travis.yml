@@ -18,5 +18,6 @@ deploy:
   local-dir: "deb"
   upload-dir: mc-cli
   acl: public_read
+  skip_cleanup: true
   on:
     repo: HexagonMinecraft/mc-cli
