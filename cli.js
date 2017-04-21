@@ -22,8 +22,8 @@ program
 program
     .command('setup [server]')
     .description('Setup a MC server.')
-    .option("-v, --verbose", "Output full log.")
-    .option("-m, --minecraft_version <version>", "Minecraft version.")
+    .option('-v, --verbose', 'Output full log.')
+    .option('-m, --minecraft_version <version>', 'Minecraft version.')
     .action(function (server, options) {
         var verbose = options.verbose || 'false';
         version = options.minecraft_version || 'latest';

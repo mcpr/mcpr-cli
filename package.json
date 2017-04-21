@@ -4,7 +4,8 @@
   "description": "A CLI for setting up and controlling Minecraft servers.",
   "main": "cli.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-deb": "node-deb -- cli.js bin/ lib/"
   },
   "repository": {
     "type": "git",
@@ -40,7 +41,8 @@
     "shelljs": "^0.7.6"
   },
   "devDependencies": {
-    "request": "^2.81.0"
+    "request": "^2.81.0",
+    "node-deb": "0.8.0"
   },
   "node_deb": {
     "init": "none",

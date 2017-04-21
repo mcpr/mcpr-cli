@@ -6,7 +6,7 @@ node_js:
 before_install:
 - npm i -g node-deb
 script:
-- node-deb -- cli.js bin/ lib/
+- npm run build-deb
 - mkdir deb
 - mv *.deb deb
 deploy:
