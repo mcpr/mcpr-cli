@@ -45,6 +45,8 @@
   "node_deb": {
     "init": "none",
     "dependencies": "nodejs",
-    "start_command": "/user/bin/env node bin/minecraft-cli.js"
+    "start_command": "/usr/bin/env node bin/minecraft-cli.js",
+    "description": "A CLI for setting up and controlling Minecraft servers.",
+    "executable_name": "mc"
   }
 }
