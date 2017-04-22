@@ -52,7 +52,8 @@
     "executable_name": "mc",
     "package_name": "mc-cli",
     "templates": {
-      "executable": "scripts/deb-run.sh"
+      "executable": "scripts/deb-run.sh",
+      "postinst": "scripts/deb-postinstall.sh"
     }
   }
 }
