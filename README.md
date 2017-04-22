@@ -1,4 +1,5 @@
 # MC-CLI
+[![Build Status](https://travis-ci.org/HexagonMinecraft/mc-cli.svg?branch=master)](https://travis-ci.org/HexagonMinecraft/mc-cli)
 
 A CLI for setting up and controlling Minecraft servers.
 
