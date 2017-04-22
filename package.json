@@ -50,6 +50,9 @@
     "start_command": "/usr/bin/env node bin/minecraft-cli.js",
     "description": "A CLI for setting up and controlling Minecraft servers.",
     "executable_name": "mc",
-    "package_name": "mc-cli"
+    "package_name": "mc-cli",
+    "templates": {
+      "executable": "scripts/deb-run.sh"
+    }
   }
 }
