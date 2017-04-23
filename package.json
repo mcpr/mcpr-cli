@@ -47,13 +47,13 @@
   "node_deb": {
     "init": "none",
     "dependencies": "nodejs",
-    "start_command": "/usr/bin/env node bin/minecraft-cli.js",
+    "cli": "bin/minecraft-cli.js",
     "description": "A CLI for setting up and controlling Minecraft servers.",
     "executable_name": "mc",
-    "package_name": "mc-cli",
-    "templates": {
-      "executable": "scripts/deb-run.sh",
-      "postinst": "scripts/deb-postinstall.sh"
-    }
+    "package_name": "mc-cli"
+    //"templates": {
+    //  "executable": "scripts/deb-run.sh",
+    //  "postinst": "scripts/deb-postinstall.sh"
+    //}
   }
 }
