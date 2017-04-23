@@ -48,7 +48,7 @@
     "init": "none",
     "dependencies": "nodejs",
     "entrypoints": {
-      "cli": "bin/minecraft-cli.js",
+      "cli": "bin/minecraft-cli.js"
     },
     "description": "A CLI for setting up and controlling Minecraft servers.",
     "executable_name": "mc",
