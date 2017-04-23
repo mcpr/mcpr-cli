@@ -50,6 +50,9 @@
     "entrypoints": {
       "cli": "bin/minecraft-cli.js"
     },
+    "templates": {
+      "postinst": "scripts/deb-postinstall.sh"
+    },
     "description": "A CLI for setting up and controlling Minecraft servers.",
     "executable_name": "mc",
     "package_name": "mc-cli"
