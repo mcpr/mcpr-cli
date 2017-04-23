@@ -47,7 +47,9 @@
   "node_deb": {
     "init": "none",
     "dependencies": "nodejs",
-    "cli": "bin/minecraft-cli.js",
+    "entrypoints": {
+      "cli": "bin/minecraft-cli.js",
+    },
     "description": "A CLI for setting up and controlling Minecraft servers.",
     "executable_name": "mc",
     "package_name": "mc-cli"
