@@ -4,7 +4,7 @@
   "description": "A CLI for setting up and controlling Minecraft servers.",
   "main": "cli.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "dpkg -i *.deb && mc --help",
     "build-deb": "node-deb -- cli.js bin/ lib/"
   },
   "repository": {
