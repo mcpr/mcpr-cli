@@ -42,7 +42,7 @@
   },
   "devDependencies": {
     "request": "^2.81.0",
-    "node-deb": "0.8.0"
+    "node-deb": "0.9.0"
   },
   "node_deb": {
     "init": "none",
