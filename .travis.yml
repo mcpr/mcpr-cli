@@ -5,14 +5,13 @@ node_js:
 - '6'
 before_install:
   - gem install package_cloud
+  - sudo apt-get install jq
 script:
+- $VERSION_NUMBER=cat package.json | jq '.version'
 - npm run build-deb
 - mkdir deb
-- mv *.deb deb
-- package_cloud push nprail/mc-cli/ubuntu/xenial deb/*.deb
-- package_cloud push nprail/mc-cli/ubuntu/yakkety deb/*.deb
-- package_cloud push nprail/mc-cli/ubuntu/zesty deb/*.deb
-- package_cloud push nprail/mc-cli/ubuntu/trusty deb/*.deb
+- mv mc-cli_${VERSION_NUMBER}_all.deb.deb deb/mc-cli_${VERSION_NUMBER}-${TRAVIS_BUILD_NUMBER}_all.deb
+- package_cloud push nprail/mc-cli deb/*.deb
 deploy:
   provider: s3
   access_key_id: AKIAJJENKP3U6XBQVGLA
