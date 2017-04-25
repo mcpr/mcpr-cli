@@ -38,11 +38,11 @@ _Node.js must be installed_
 npm install -g minecraft-cli
 ```
 
-#### Ubuntu Install (Node.js not required) - [Details](https://packagecloud.io/nprail/mc-cli/install)
+#### Ubuntu Install (Node.js not required) - [Details](https://packagecloud.io/hexagonminecraft/mc-cli/install)
 To install `mc-cli` on Ubuntu without Node.js preinstalled, run the following.
 ```
 # Add the PackageCloud repository
-curl -s https://packagecloud.io/install/repositories/nprail/mc-cli/script.deb.sh | sudo bash
+curl -s https://packagecloud.io/install/repositories/hexagonminecraft/mc-cli/script.deb.sh | sudo bash
 
 # Install mc-cli!
 sudo apt-get install mc-cli
