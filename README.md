@@ -35,9 +35,24 @@ You will need a few prerequisites installed to start.
 * Docker (Recommended but Optional)
 
 ### Installing
-
+_Node.js must be installed_
 ```
 npm install -g minecraft-cli
+```
+
+#### Ubuntu Install (Node.js not required) - [Details](https://packagecloud.io/hexagonminecraft/mc-cli/install)
+To install `mc-cli` on Ubuntu without Node.js preinstalled, run the following.
+```
+# Add the PackageCloud repository
+curl -s https://packagecloud.io/install/repositories/hexagonminecraft/mc-cli/script.deb.sh | sudo bash
+
+# Install mc-cli!
+sudo apt-get install mc-cli
+```
+#### Verify Installation
+To verify your installation, run the following.
+```
+mc --version
 ```
 
 ## Contributing
