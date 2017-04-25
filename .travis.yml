@@ -5,6 +5,7 @@ dist: trusty
 before_install:
   - gem install package_cloud
   - gem install fpm
+  - apt-get install rpm -y
 script:
 - VERSION_NUMBER=$(cat package.json | jq -r '.version')
 - npm run build-deb
