@@ -8,6 +8,7 @@ script:
 - VERSION_NUMBER=$(cat package.json | jq '.version')
 - npm run build-deb
 - mkdir deb
+- ls && echo $VERSION_NUMBER
 - mv mc-cli_${VERSION_NUMBER}_all.deb.deb deb/mc-cli_${VERSION_NUMBER}-${TRAVIS_BUILD_NUMBER}_all.deb
 - package_cloud push nprail/mc-cli deb/*.deb
 deploy:
