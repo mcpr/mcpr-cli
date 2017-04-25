@@ -4,11 +4,13 @@ node_js:
 dist: trusty
 before_install:
   - gem install package_cloud
+  - gem install fpm
 script:
 - VERSION_NUMBER=$(cat package.json | jq -r '.version')
 - npm run build-deb
 - mkdir deb
 - mv mc-cli_${VERSION_NUMBER}_all.deb deb/mc-cli_${VERSION_NUMBER}-${TRAVIS_BUILD_NUMBER}_all.deb
+- fpm -s npm -t rpm minecraft-cli && ls
 deploy:
 - provider: s3
   access_key_id: AKIAJJENKP3U6XBQVGLA
