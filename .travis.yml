@@ -3,10 +3,16 @@ node_js:
 - node
 - '7'
 - '6'
+before_install:
+  - gem install package_cloud
 script:
 - npm run build-deb
 - mkdir deb
 - mv *.deb deb
+- package_cloud push nprail/mc-cli/ubuntu/xenial deb/*.deb
+- package_cloud push nprail/mc-cli/ubuntu/yakkety deb/*.deb
+- package_cloud push nprail/mc-cli/ubuntu/zesty deb/*.deb
+- package_cloud push nprail/mc-cli/ubuntu/trusty deb/*.deb
 deploy:
   provider: s3
   access_key_id: AKIAJJENKP3U6XBQVGLA
