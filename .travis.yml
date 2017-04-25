@@ -2,10 +2,13 @@ language: node_js
 node_js:
 - node
 dist: trusty
+addons:
+  apt:
+    packages:
+    - rpm
 before_install:
   - gem install package_cloud
   - gem install fpm
-  - apt-get install rpm -y
 script:
 - VERSION_NUMBER=$(cat package.json | jq -r '.version')
 - npm run build-deb
