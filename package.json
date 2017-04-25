@@ -5,7 +5,8 @@
   "main": "cli.js",
   "scripts": {
     "test": "dpkg -i *.deb && mc --help",
-    "build-deb": "node-deb -- cli.js bin/ lib/"
+    "build-deb": "node-deb -- cli.js bin/ lib/",
+    "start": "bin/minecraft-cli.js"
   },
   "repository": {
     "type": "git",
