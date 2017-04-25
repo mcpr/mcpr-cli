@@ -9,11 +9,6 @@ script:
 - npm run build-deb
 - mkdir deb
 - mv mc-cli_${VERSION_NUMBER}_all.deb deb/mc-cli_${VERSION_NUMBER}-${TRAVIS_BUILD_NUMBER}_all.deb
-- 'if [ -n "TRAVIS_TAG" ]; then package_cloud push nprail/mc-cli/ubuntu/xenial deb/mc-cli_${VERSION_NUMBER}-${TRAVIS_BUILD_NUMBER}_all.deb; fi;'
-- 'if [ -n "TRAVIS_TAG" ]; then package_cloud push nprail/mc-cli/ubuntu/trusty deb/mc-cli_${VERSION_NUMBER}-${TRAVIS_BUILD_NUMBER}_all.deb; fi;'
-- 'if [ -n "TRAVIS_TAG" ]; then package_cloud push nprail/mc-cli/ubuntu/zesty deb/mc-cli_${VERSION_NUMBER}-${TRAVIS_BUILD_NUMBER}_all.deb; fi;'
-- 'if [ -n "TRAVIS_TAG" ]; then package_cloud push nprail/mc-cli/ubuntu/yakkety deb/mc-cli_${VERSION_NUMBER}-${TRAVIS_BUILD_NUMBER}_all.deb; fi;'
-- 'if [ -n "TRAVIS_TAG" ]; then package_cloud push nprail/mc-cli/ubuntu/wily deb/mc-cli_${VERSION_NUMBER}-${TRAVIS_BUILD_NUMBER}_all.deb; fi;'
 deploy:
 - provider: s3
   access_key_id: AKIAJJENKP3U6XBQVGLA

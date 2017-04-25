@@ -48,7 +48,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## Authors
 
-* **Noah Prail** - *Initial work* - [nprail](https://github.com/nprail)
+* **Noah Prail** - *Maintainer* - [nprail](https://github.com/nprail)
 
 See also the list of [contributors](https://github.com/HexagonMinecraft/mc-cli/contributors) who participated in this project.
 
