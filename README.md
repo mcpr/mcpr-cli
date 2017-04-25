@@ -1,7 +1,9 @@
 # MC-CLI
 
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/HexagonMinecraft/mc-cli/master/LICENSE)
 [![Greenkeeper badge](https://badges.greenkeeper.io/HexagonMinecraft/mc-cli.svg)](https://greenkeeper.io/)
 [![Build Status](https://travis-ci.org/HexagonMinecraft/mc-cli.svg?branch=master)](https://travis-ci.org/HexagonMinecraft/mc-cli)
+[![GitHub issues](https://img.shields.io/github/issues/HexagonMinecraft/mc-cli.svg)](https://github.com/HexagonMinecraft/mc-cli/issues)
 
 A CLI for setting up and controlling Minecraft servers.
 
