@@ -7,7 +7,7 @@ before_install:
   - gem install package_cloud
   - sudo apt-get install jq
 script:
-- $VERSION_NUMBER=cat package.json | jq '.version'
+- VERSION_NUMBER=$(cat package.json | jq '.version')
 - npm run build-deb
 - mkdir deb
 - mv mc-cli_${VERSION_NUMBER}_all.deb.deb deb/mc-cli_${VERSION_NUMBER}-${TRAVIS_BUILD_NUMBER}_all.deb
