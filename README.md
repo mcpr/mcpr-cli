@@ -13,7 +13,8 @@ This project is in heavy development still! Most features are either non-existen
 
 ## Features
 - Setup Minecraft Server (**In Progress** #1)
-- Manage Minecraft Server (**In Progress** #2)
+- Install Plugins (**In Progress** #2)
+- Manage Minecraft Server (**Not started**)
 
 ## Usage
 
@@ -37,9 +38,28 @@ You will need a few prerequisites installed to start.
 
 * Java JDK
 * Bash (Git Bash or Bash on Ubuntu on Windows work on Windows)
-* Docker (Recommended but Optional)
 
-### Installing
+### Install
+To install `mc-cli` on Ubuntu without Go preinstalled, download the latest dev build below.
+
+Then move `mc` (or `mc.exe` on Windows) to your path.
+
+```
+$ curl -sSL https://git.io/v9PVI | sudo bash
+```
+
+#### Downloads
+- [Linux](https://artifacts.filiosoft.com/mc-cli/linux/mc)
+- [Darwin](https://artifacts.filiosoft.com/mc-cli/darwin/mc)
+- [Windows](https://artifacts.filiosoft.com/mc-cli/windows/mc.exe)
+
+#### Verify Installation
+To verify your installation, run the following.
+```
+$ mc --version
+```
+
+### Build from Source
 _Go must be installed_
 ```
 # Clone the repo
@@ -51,28 +71,7 @@ cd mc-cli
 go build
 ```
 Then move `mc` (or `mc.exe` on Windows) to your path.
-#### Install (Go not required)
-To install `mc-cli` on Ubuntu without Go preinstalled, download the latest dev build below.
 
-Then move `mc` (or `mc.exe` on Windows) to your path.
-
-```
-$ [sudo] mv mc-cli /usr/local/bin/mc
-```
-Lastly, make the file executable. 
-```
-$ [sudo] chmod +x /usr/local/bin/mc
-```
-#### Downloads
-- [Linux](https://artifacts.filiosoft.com/mc-cli/linux/mc)
-- [Darwin](https://artifacts.filiosoft.com/mc-cli/darwin/mc)
-- [Windows](https://artifacts.filiosoft.com/mc-cli/windows/mc.exe)
-
-#### Verify Installation
-To verify your installation, run the following.
-```
-$ mc --version
-```
 
 ## Contributing
 
