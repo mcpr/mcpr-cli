@@ -9,8 +9,8 @@ A CLI for setting up and controlling Minecraft servers.
 This project is in heavy development still! Most features are either non-existent or don't fully work. 
 
 ## Features
-* Setup Minecraft Server (**In Progress**)
-* Manage Minecraft Server (**Not Started**)
+- Setup Minecraft Server (**In Progress** #1)
+- Manage Minecraft Server (**In Progress** #2)
 
 ## Usage
 
@@ -55,13 +55,17 @@ To install `mc-cli` on Ubuntu without Go preinstalled, download the latest dev b
 Then move `mc-cli` (or `mc-cli.exe` on Windows) to your path.
 
 ```
-$ [sudo] mv mc-cli /usr/local/bin
+$ [sudo] mv mc-cli /usr/local/bin/mc
+```
+Lastly, make the file executable. 
+```
+$ [sudo] chmod +x /usr/local/bin/mc
 ```
 
 #### Verify Installation
 To verify your installation, run the following.
 ```
-$ mc-cli --version
+$ mc --version
 ```
 
 ## Contributing
