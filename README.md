@@ -40,7 +40,7 @@ _Node.js must be installed_
 npm install -g minecraft-cli
 ```
 
-#### Ubuntu Install (Node.js not required) - [Details](https://packagecloud.io/hexagonminecraft/mc-cli/install)
+#### Install on Debian Based OS (Node.js not required) - [Details](https://packagecloud.io/hexagonminecraft/mc-cli/install)
 To install `mc-cli` on Ubuntu without Node.js preinstalled, run the following.
 ```
 # Add the PackageCloud repository
@@ -49,6 +49,22 @@ curl -s https://packagecloud.io/install/repositories/hexagonminecraft/mc-cli/scr
 # Install mc-cli!
 sudo apt-get install mc-cli
 ```
+#### Install on Windows (Node.js not required)
+Requirements
+- PowerShell 3
+- PowerShell must be enabled for your user account e.g. set-executionpolicy remotesigned -s cu
+
+To install `mc-cli`:
+
+```
+iex (new-object net.webclient).downloadstring('https://git.io/v9sLj')
+```
+
+This script will install all the tools you need including:
+- [Node.js](https://nodejs.org) (Required to Run MC-CLI)
+- [OpenJDK](http://openjdk.java.net) (Required for Building and Running Servers)
+- [Scoop](http://scoop.sh) (For Command Line Installation of Node and Java)
+
 #### Verify Installation
 To verify your installation, run the following.
 ```
@@ -65,7 +81,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## Authors
 
-* **Noah Prail** - *Maintainer* - [nprail](https://github.com/nprail)
+* **Noah Prail** - *Maintainer* - [@nprail](https://github.com/nprail)
 
 See also the list of [contributors](https://github.com/HexagonMinecraft/mc-cli/contributors) who participated in this project.
 
