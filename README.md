@@ -1,8 +1,6 @@
-# MC-CLI
+# MC-CLI (Go Version)
 
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/HexagonMinecraft/mc-cli/master/LICENSE)
-[![Greenkeeper badge](https://badges.greenkeeper.io/HexagonMinecraft/mc-cli.svg)](https://greenkeeper.io/)
-[![Build Status](https://travis-ci.org/HexagonMinecraft/mc-cli.svg?branch=master)](https://travis-ci.org/HexagonMinecraft/mc-cli)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/HexagonMinecraft/mc-cli/go/LICENSE)
 [![GitHub issues](https://img.shields.io/github/issues/HexagonMinecraft/mc-cli.svg)](https://github.com/HexagonMinecraft/mc-cli/issues)
 
 A CLI for setting up and controlling Minecraft servers.
@@ -17,10 +15,10 @@ This project is in heavy development still! Most features are either non-existen
 ## Usage
 
 #### Setup Server
-`mc setup [servertype] -m [version]`
+`mc setup [servertype] [version]`
 
 ##### Example
-`mc setup spigot -m 1.11.2`
+`mc setup spigot 1.11.2`
 
 ## Getting Started
 
@@ -31,44 +29,29 @@ These instructions will get you up and running with `MC-CLI`.
 You will need a few prerequisites installed to start. 
 
 * Java JDK
-* Git Bash or Bash on Ubuntu on Windows (Optional)
+* Bash (Git Bash or Bash on Ubuntu on Windows work on Windows)
 * Docker (Recommended but Optional)
 
 ### Installing
-_Node.js must be installed_
+_Go must be installed_
 ```
-npm install -g minecraft-cli
-```
+git clone -b go github.com/HexagonMinecraft/mc-cli.go
 
-#### Install on Debian Based OS (Node.js not required) - [Details](https://packagecloud.io/hexagonminecraft/mc-cli/install)
-To install `mc-cli` on Ubuntu without Node.js preinstalled, run the following.
-```
-# Add the PackageCloud repository
-curl -s https://packagecloud.io/install/repositories/hexagonminecraft/mc-cli/script.deb.sh | sudo bash
+cd mc-cli
 
-# Install mc-cli!
-sudo apt-get install mc-cli
+go build
 ```
-#### Install on Windows (Node.js not required)
-Requirements
-- PowerShell 3
-- PowerShell must be enabled for your user account e.g. set-executionpolicy remotesigned -s cu
+Then move `mc-cli` (or `mc-cli.exe` on Windows) to your path.
 
-To install `mc-cli`:
+#### Install (Go not required)
+To install `mc-cli` on Ubuntu without Go preinstalled, download the latest release.
 
-```
-iex (new-object net.webclient).downloadstring('https://git.io/v9sLj')
-```
-
-This script will install all the tools you need including:
-- [Node.js](https://nodejs.org) (Required to Run MC-CLI)
-- [OpenJDK](http://openjdk.java.net) (Required for Building and Running Servers)
-- [Scoop](http://scoop.sh) (For Command Line Installation of Node and Java)
+Then move `mc-cli` (or `mc-cli.exe` on Windows) to your path.
 
 #### Verify Installation
 To verify your installation, run the following.
 ```
-mc --version
+mc-cli --version
 ```
 
 ## Contributing
