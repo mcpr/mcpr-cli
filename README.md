@@ -1,15 +1,11 @@
-# MC-CLI
-
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/HexagonMinecraft/mc-cli/go/LICENSE)
-[![GitHub issues](https://img.shields.io/github/issues/HexagonMinecraft/mc-cli.svg)](https://github.com/HexagonMinecraft/mc-cli/issues)
-[![GitHub (pre-)release](https://img.shields.io/github/release/HexagonMinecraft/mc-cli/all.svg)](https://github.com/HexagonMinecraft/mc-cli)
+# MC-CLI [![Build Status](https://travis-ci.org/HexagonMinecraft/mc-cli.svg?branch=master)](https://travis-ci.org/HexagonMinecraft/mc-cli) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/HexagonMinecraft/mc-cli/go/LICENSE) [![GitHub issues](https://img.shields.io/github/issues/HexagonMinecraft/mc-cli.svg)](https://github.com/HexagonMinecraft/mc-cli/issues) [![GitHub (pre-)release](https://img.shields.io/github/release/HexagonMinecraft/mc-cli/all.svg)](https://github.com/HexagonMinecraft/mc-cli)
 
 A CLI for setting up and controlling Minecraft servers.
 
-## DISCLAIMER
-This project is in heavy development still! Most features are either non-existent or don't fully work. 
-
 [![asciicast](https://asciinema.org/a/3hfvoqmm9jr1erycj48hmpdoa.png)](https://asciinema.org/a/3hfvoqmm9jr1erycj48hmpdoa)
+
+## DISCLAIMER
+This project is in alpha! Most features are either non-existent or don't fully work. 
 
 ## Features
 - Setup Minecraft Server (**In Progress** #1)
@@ -35,7 +31,7 @@ $ mc search [pluginName]
 
 ##### Example
 ```
-$ mc install 274
+$ mc search dynmap
 ```
 ### Install Plugin
 ```
