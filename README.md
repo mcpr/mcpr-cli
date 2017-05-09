@@ -1,4 +1,4 @@
-# MC-CLI (Go Version)
+# MC-CLI
 
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/HexagonMinecraft/mc-cli/go/LICENSE)
 [![GitHub issues](https://img.shields.io/github/issues/HexagonMinecraft/mc-cli.svg)](https://github.com/HexagonMinecraft/mc-cli/issues)
@@ -40,13 +40,13 @@ You will need a few prerequisites installed to start.
 * Bash (Git Bash or Bash on Ubuntu on Windows work on Windows)
 
 ### Install
-To install `mc-cli` on Ubuntu without Go preinstalled, download the latest dev build below.
-
-Then move `mc` (or `mc.exe` on Windows) to your path.
+To install `MC-CLI`, run the following command.
 
 ```
 $ curl -sSL https://git.io/v9PVI | sudo bash
 ```
+
+If you are on Windows, download the Windows `.exe` from below and put that in your path. 
 
 #### Downloads
 - [Linux](https://artifacts.filiosoft.com/mc-cli/linux/mc)
@@ -63,15 +63,14 @@ $ mc --version
 _Go must be installed_
 ```
 # Clone the repo
-git clone -b go github.com/HexagonMinecraft/mc-cli.go
+git clone -b go github.com/HexagonMinecraft/mc-cli
 
 cd mc-cli
 
 # Build the CLI
+go get
 go build
 ```
-Then move `mc` (or `mc.exe` on Windows) to your path.
-
 
 ## Contributing
 
