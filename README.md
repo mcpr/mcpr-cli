@@ -18,7 +18,7 @@ This project is in heavy development still! Most features are either non-existen
 
 ## Usage
 
-#### Setup Server
+### Setup Server
 ```
 $ mc setup [servertype] [version]
 ```
@@ -28,6 +28,24 @@ $ mc setup [servertype] [version]
 $ mc setup spigot 1.11.2
 ```
 
+### Search Plugins
+```
+$ mc search [pluginName]
+```
+
+##### Example
+```
+$ mc install 274
+```
+### Install Plugin
+```
+$ mc install [pluginID]
+```
+
+##### Example
+```
+$ mc install 274
+```
 ## Getting Started
 
 These instructions will get you up and running with `MC-CLI`.
@@ -37,7 +55,7 @@ These instructions will get you up and running with `MC-CLI`.
 You will need a few prerequisites installed to start. 
 
 * Java JDK
-* Bash (Git Bash or Bash on Ubuntu on Windows work on Windows)
+* Bash (Git Bash or Bash on Ubuntu on Windows will work on Windows)
 
 ### Install
 To install `MC-CLI`, run the following command.
