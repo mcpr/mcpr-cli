@@ -50,7 +50,7 @@ go build
 Then move `mc-cli` (or `mc-cli.exe` on Windows) to your path.
 
 #### Install (Go not required)
-To install `mc-cli` on Ubuntu without Go preinstalled, download the latest release form [here](https://s3.amazonaws.com/artifacts.filiosoft.com/mc-cli/go/mc-cli).
+To install `mc-cli` on Ubuntu without Go preinstalled, download the latest dev build from [here](https://s3.amazonaws.com/artifacts.filiosoft.com/mc-cli/go/mc-cli) for Linux and [here](https://s3.amazonaws.com/artifacts.filiosoft.com/mc-cli/go/mc-cli.exe) for Windows.
 
 Then move `mc-cli` (or `mc-cli.exe` on Windows) to your path.
 
