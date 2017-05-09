@@ -1,28 +1,9 @@
 language: go
 go:
-  - 1.8.x
+- 1.8.x
 dist: trusty
-install:
- - go get github.com/Masterminds/semver
- - go get github.com/briandowns/spinner
- - go get github.com/urfave/cli
- - mkdir -p packages/linux
- - mkdir -p packages/darwin
- - mkdir -p packages/windows
- - VERSION=$(cat version.txt)
 script:
-- echo "Building Linux"
-- go build
-- cp mc-cli packages/linux/mc-${VERSION}_${TRAVIS_BUILD_NUMBER}
-- mv mc-cli packages/linux/mc
-- echo "Building Darwin"
-- GOOS=darwin go build
-- cp mc-cli packages/darwin/mc-${VERSION}_${TRAVIS_BUILD_NUMBER}
-- mv mc-cli packages/darwin/mc
-- echo "Building Windows"
-- GOOS=windows go build
-- cp mc-cli.exe packages/windows/mc-${VERSION}_${TRAVIS_BUILD_NUMBER}.exe
-- mv mc-cli.exe packages/windows/mc.exe
+- bash scripts/build.sh
 deploy:
 - provider: s3
   access_key_id: AKIAJJENKP3U6XBQVGLA
@@ -35,4 +16,12 @@ deploy:
   skip_cleanup: true
   on:
     branch: go
+    repo: HexagonMinecraft/mc-cli
+- provider: releases
+  api_key:
+    secure: fCkR5bKDQTfo1iUWE0PMh+8z265U83kSSihMSgj1x/9gcAXWK6InVekdkc2PIuJHceGQMKRwhJP4PV50GNofGk3QxO8/aYAGn7+efjZ2KgEXgZ1Tlq7uEom1zbkUu0yQj9Q1DmrMMTrQXBlXS74CKylPM42zgLb6qg+McSF6gcGYDYBHOYguh1wvDOlJAjafhaMy4J/mnVp1ca1QS1SVevSHG/VCV0OLIDSxysxFVgj9ZHrMnPzs9FAcuIqfGeSjaqXAVXygYRhJntGPSwResq313C8bDKgGbJo6GOWIBBbVgjQhKDLu3AIqnCxhUkl86WF2vPXnsWqdqPOmne2W32VD6gxvWnxb7/gfjK6zOPqhZO30ky6Dhh/Yi1QSuRhNOMalIRjLxKkl06VC9QED39TkJKZXeHLIZb/LYC9ICSJ5eEFgd2oj1tpWrbo1DDG99S4JhWstHDrqY4QzbQOvFM57L6QypFMsdDjF+jIT3jICcfCN9ObhOcgx4JRWKZ6L/5IsI3G/G+Cvc40inyawxKJq84jbUD/8pQrerR2vzxizAG8RcuFFpZN+xlYReFXkT/qzmMLBVBcue/YGdz5qaTjp51MEXvf+gWB+TsD6ocho41k8Hgwy6XkGSv7lJ8CmqpQXjLpwmSEWpdW7VREQqLBJfnjv1A68Yo+zDfcp7v4=
+  file_glob: true
+  file: packages/**/mc*
+  skip_cleanup: true
+  on:
     repo: HexagonMinecraft/mc-cli
