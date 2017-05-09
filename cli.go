@@ -16,8 +16,20 @@ import (
 	"github.com/urfave/cli"
 )
 
-func downloadFile(filepath string, url string) (err error) {
+func moveFile(in, out string) {
+	err := os.Rename(in, out)
 
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+}
+
+func downloadFile(filepath string, url string) (err error) {
+	fmt.Println("Downloading...")
+
+	s := spinner.New(spinner.CharSets[9], 100*time.Millisecond)
+	s.Start()
 	// Create the file
 	out, err := os.Create(filepath)
 	if err != nil {
@@ -38,6 +50,9 @@ func downloadFile(filepath string, url string) (err error) {
 		return err
 	}
 
+	s.Stop()
+	fmt.Println("Download complete!")
+
 	return nil
 }
 
@@ -46,11 +61,13 @@ func createTmp(path string) {
 		os.Mkdir(path, os.ModePerm)
 	}
 }
-func buildJava() {
-	fmt.Println("Building... This may take a while.")
+
+func buildJava(serverVersion string) {
+	fmt.Println("Building... This will take a while.")
+	fmt.Println("Go grab a cup of coffee while you wait!")
 	s := spinner.New(spinner.CharSets[9], 100*time.Millisecond)
 	s.Start()
-	cmdPrep := "cd tmp && /usr/bin/java -jar BuildTools.jar"
+	cmdPrep := "cd tmp && /usr/bin/java -jar BuildTools.jar --rev " + serverVersion
 	cmd := exec.Command("bash", "-c", cmdPrep)
 	err := cmd.Run()
 	if err != nil {
@@ -59,11 +76,14 @@ func buildJava() {
 	s.Stop()
 	fmt.Println("Build complete.")
 }
-func setupSpigot() {
-	fmt.Println("Downloading build tools...")
+
+func setupBuildTools(serverType, serverVersion string) {
 	createTmp("tmp")
 	downloadFile("tmp/BuildTools.jar", "https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar")
-	buildJava()
+	buildJava(serverVersion)
+	moveFile("tmp/"+serverType+"-"+serverVersion+".jar", "server.jar")
+
+	os.RemoveAll("tmp")
 }
 
 func main() {
@@ -96,10 +116,19 @@ func main() {
 				fmt.Println("Starting setup...")
 				fmt.Println("Server Type:", serverType)
 				fmt.Println("Minecraft Version:", v)
-				if serverType == "spigot" {
-					setupSpigot()
+
+				switch {
+				case serverType == "spigot":
+					setupBuildTools(serverType, ver)
+				case serverType == "craftbukkit":
+					setupBuildTools(serverType, ver)
+				case serverType == "vanilla":
+					downloadFile("server.jar", "https://s3.amazonaws.com/Minecraft.Download/versions/"+ver+"/minecraft_server."+ver+".jar")
+				default:
+					fmt.Println("The server type", serverType, " is not supported.")
 				}
 
+				fmt.Println("All done! Run java -jar server.jar to start your server!")
 				return nil
 			},
 		},

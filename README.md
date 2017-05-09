@@ -15,10 +15,14 @@ This project is in heavy development still! Most features are either non-existen
 ## Usage
 
 #### Setup Server
-`mc setup [servertype] [version]`
+```
+$ mc setup [servertype] [version]
+```
 
 ##### Example
-`mc setup spigot 1.11.2`
+```
+$ mc setup spigot 1.11.2
+```
 
 ## Getting Started
 
@@ -35,23 +39,29 @@ You will need a few prerequisites installed to start.
 ### Installing
 _Go must be installed_
 ```
+# Clone the repo
 git clone -b go github.com/HexagonMinecraft/mc-cli.go
 
 cd mc-cli
 
+# Build the CLI
 go build
 ```
 Then move `mc-cli` (or `mc-cli.exe` on Windows) to your path.
 
 #### Install (Go not required)
-To install `mc-cli` on Ubuntu without Go preinstalled, download the latest release.
+To install `mc-cli` on Ubuntu without Go preinstalled, download the latest release form [here](https://s3.amazonaws.com/artifacts.filiosoft.com/mc-cli/go/mc-cli).
 
 Then move `mc-cli` (or `mc-cli.exe` on Windows) to your path.
+
+```
+$ [sudo] mv mc-cli /usr/local/bin
+```
 
 #### Verify Installation
 To verify your installation, run the following.
 ```
-mc-cli --version
+$ mc-cli --version
 ```
 
 ## Contributing
