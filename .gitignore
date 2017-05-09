@@ -39,3 +39,4 @@ tmp/
 *.jar
 out/
 *.exe
+bin/

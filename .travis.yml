@@ -10,7 +10,7 @@ deploy:
   secret_access_key:
     secure: mqdIq9lise/jvNLGTB3+W+bN2KJkRGMEGPeMu2N01wsa3vkdcEEiMMX/Yegkr2iZB+KhZDCrD8XE/yqiiM0xELhWwrWfUB4O4BfmRgcbpQo046X34uGhthnYeZqo9jhqcvLBpvlAQrlWJ0IOM6HsBkicJ0GZ8hnu162do3//H5rWLXFK+htryD8UitHp0N5AyHYrgPUdkeZog930yGmOxZ/kTeF+snstkFwXSuoj/m9yWPiP8HE1vnvFTHw8APfVt4OqX25iDeZVyXw0rI3rDrmtj1Acrx+20NN5wIltjxmm+76LKP8xCbmkvH3JSTOCjRSwY/7tDxB3jZ7WUJBGQPgstUg92oQFxVY6xQlD953UtO/zrocm67cDkYD9Z4wsCcDk15ElNItygK4+HKdw0fshM7WJTNtuLJaaH/X86sqUUJP6yL9b5l9EHQojZ0DfMywU/vuujkkV5OCynhdUNU4GgvZjARk0sA1rD1kNX/A9hsu+fFhu1WsnKi57Eh89e9gGmXERBXE2O9gwQXEEXkMv15WRTmmbC2PPLM1wtrQ8RETGyc+6WJzD5nyvUUHlwyBl/eIbT7qPxFvf7vOW0HyfQGzKfJMqD7PJEbsx7M9vF0IeyjubPi/QJw3bYE6ze73f6fhZQW211RlEN9xi5PuiMujQ9u6HJVMZFkpcMMM=
   bucket: artifacts.filiosoft.com
-  local-dir: "packages"
+  local-dir: "bin"
   upload-dir: mc-cli
   acl: public_read
   skip_cleanup: true
@@ -20,7 +20,7 @@ deploy:
   api_key:
     secure: fCkR5bKDQTfo1iUWE0PMh+8z265U83kSSihMSgj1x/9gcAXWK6InVekdkc2PIuJHceGQMKRwhJP4PV50GNofGk3QxO8/aYAGn7+efjZ2KgEXgZ1Tlq7uEom1zbkUu0yQj9Q1DmrMMTrQXBlXS74CKylPM42zgLb6qg+McSF6gcGYDYBHOYguh1wvDOlJAjafhaMy4J/mnVp1ca1QS1SVevSHG/VCV0OLIDSxysxFVgj9ZHrMnPzs9FAcuIqfGeSjaqXAVXygYRhJntGPSwResq313C8bDKgGbJo6GOWIBBbVgjQhKDLu3AIqnCxhUkl86WF2vPXnsWqdqPOmne2W32VD6gxvWnxb7/gfjK6zOPqhZO30ky6Dhh/Yi1QSuRhNOMalIRjLxKkl06VC9QED39TkJKZXeHLIZb/LYC9ICSJ5eEFgd2oj1tpWrbo1DDG99S4JhWstHDrqY4QzbQOvFM57L6QypFMsdDjF+jIT3jICcfCN9ObhOcgx4JRWKZ6L/5IsI3G/G+Cvc40inyawxKJq84jbUD/8pQrerR2vzxizAG8RcuFFpZN+xlYReFXkT/qzmMLBVBcue/YGdz5qaTjp51MEXvf+gWB+TsD6ocho41k8Hgwy6XkGSv7lJ8CmqpQXjLpwmSEWpdW7VREQqLBJfnjv1A68Yo+zDfcp7v4=
   file_glob: true
-  file: packages/**/mc*
+  file: bin/**/mc-v*
   skip_cleanup: true
   on:
     repo: HexagonMinecraft/mc-cli
