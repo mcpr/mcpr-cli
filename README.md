@@ -2,6 +2,7 @@
 
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/HexagonMinecraft/mc-cli/go/LICENSE)
 [![GitHub issues](https://img.shields.io/github/issues/HexagonMinecraft/mc-cli.svg)](https://github.com/HexagonMinecraft/mc-cli/issues)
+[![GitHub (pre-)release](https://img.shields.io/github/release/HexagonMinecraft/mc-cli/all.svg)](https://github.com/HexagonMinecraft/mc-cli)
 
 A CLI for setting up and controlling Minecraft servers.
 
