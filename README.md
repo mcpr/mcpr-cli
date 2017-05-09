@@ -8,6 +8,8 @@ A CLI for setting up and controlling Minecraft servers.
 ## DISCLAIMER
 This project is in heavy development still! Most features are either non-existent or don't fully work. 
 
+[![asciicast](https://asciinema.org/a/3hfvoqmm9jr1erycj48hmpdoa.png)](https://asciinema.org/a/3hfvoqmm9jr1erycj48hmpdoa)
+
 ## Features
 - Setup Minecraft Server (**In Progress** #1)
 - Manage Minecraft Server (**In Progress** #2)
