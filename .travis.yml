@@ -15,7 +15,7 @@ script:
 - mkdir -p packages/deb
 - mkdir -p packages/rpm
 - mv mc-cli_${VERSION_NUMBER}_all.deb packages/deb/mc-cli_${VERSION_NUMBER}-${TRAVIS_BUILD_NUMBER}_all.deb
-- fpm -s npm -t rpm minecraft-cli
+- fpm -n mc -s npm -t rpm minecraft-cli
 - mv node-minecraft-cli-*.rpm packages/rpm/
 deploy:
 - provider: s3

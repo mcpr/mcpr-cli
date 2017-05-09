@@ -57,5 +57,8 @@
     "description": "A CLI for setting up and controlling Minecraft servers.",
     "executable_name": "mc",
     "package_name": "mc-cli"
+  },
+  "pkg": {
+    "scripts": "lib/**/*.js"
   }
 }
