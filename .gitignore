@@ -38,4 +38,4 @@ jspm_packages
 tmp/
 *.jar
 out/
-mc.exe
+*.exe

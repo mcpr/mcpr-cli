@@ -1,22 +1,28 @@
-language: node_js
-node_js:
-- node
+language: go
+go:
+  - 1.8.x
 dist: trusty
-addons:
-  apt:
-    packages:
-    - rpm
-before_install:
-  - gem install package_cloud
-  - gem install fpm
+install:
+ - go get github.com/Masterminds/semver
+ - go get github.com/briandowns/spinner
+ - go get github.com/urfave/cli
+ - mkdir -p packages/linux
+ - mkdir -p packages/darwin
+ - mkdir -p packages/windows
+ - VERSION=$(cat version.txt)
 script:
-- VERSION_NUMBER=$(cat package.json | jq -r '.version')
-- npm run build-deb
-- mkdir -p packages/deb
-- mkdir -p packages/rpm
-- mv mc-cli_${VERSION_NUMBER}_all.deb packages/deb/mc-cli_${VERSION_NUMBER}-${TRAVIS_BUILD_NUMBER}_all.deb
-- fpm -n mc -s npm -t rpm minecraft-cli
-- mv node-minecraft-cli-*.rpm packages/rpm/
+- echo "Building Linux"
+- go build
+- cp mc-cli packages/linux/mc-${VERSION}_${TRAVIS_BUILD_NUMBER}
+- mv mc-cli packages/linux/mc
+- echo "Building Darwin"
+- GOOS=darwin go build
+- cp mc-cli packages/darwin/mc-${VERSION}_${TRAVIS_BUILD_NUMBER}
+- mv mc-cli packages/darwin/mc
+- echo "Building Windows"
+- GOOS=windows go build
+- cp mc-cli.exe packages/windows/mc-${VERSION}_${TRAVIS_BUILD_NUMBER}.exe
+- mv mc-cli.exe packages/windows/mc.exe
 deploy:
 - provider: s3
   access_key_id: AKIAJJENKP3U6XBQVGLA
@@ -28,9 +34,5 @@ deploy:
   acl: public_read
   skip_cleanup: true
   on:
+    branch: go
     repo: HexagonMinecraft/mc-cli
-- provider: script
-  script: bash scripts/packagecloud-deploy.sh
-  on:
-    tags: true
-    all_branches: false
