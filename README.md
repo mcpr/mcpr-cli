@@ -50,12 +50,11 @@ cd mc-cli
 # Build the CLI
 go build
 ```
-Then move `mc-cli` (or `mc-cli.exe` on Windows) to your path.
-
+Then move `mc` (or `mc.exe` on Windows) to your path.
 #### Install (Go not required)
-To install `mc-cli` on Ubuntu without Go preinstalled, download the latest dev build from [here](https://s3.amazonaws.com/artifacts.filiosoft.com/mc-cli/go/mc-cli) for Linux and [here](https://s3.amazonaws.com/artifacts.filiosoft.com/mc-cli/go/mc-cli.exe) for Windows.
+To install `mc-cli` on Ubuntu without Go preinstalled, download the latest dev build below.
 
-Then move `mc-cli` (or `mc-cli.exe` on Windows) to your path.
+Then move `mc` (or `mc.exe` on Windows) to your path.
 
 ```
 $ [sudo] mv mc-cli /usr/local/bin/mc
@@ -64,6 +63,10 @@ Lastly, make the file executable.
 ```
 $ [sudo] chmod +x /usr/local/bin/mc
 ```
+#### Downloads
+- [Linux](https://artifacts.filiosoft.com/mc-cli/linux/mc)
+- [Darwin](https://artifacts.filiosoft.com/mc-cli/darwin/mc)
+- [Windows](https://artifacts.filiosoft.com/mc-cli/windows/mc.exe)
 
 #### Verify Installation
 To verify your installation, run the following.

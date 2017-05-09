@@ -9,18 +9,19 @@ install:
  - mkdir -p packages/linux
  - mkdir -p packages/darwin
  - mkdir -p packages/windows
+ - VERSION=$(cat version.txt)
 script:
 - echo "Building Linux"
 - go build
-- cp mc-cli packages/linux/mc-$TRAVIS_BUILD_NUMBER
+- cp mc-cli packages/linux/mc-${VERSION}_${TRAVIS_BUILD_NUMBER}
 - mv mc-cli packages/linux/mc
 - echo "Building Darwin"
 - GOOS=darwin go build
-- cp mc-cli packages/darwin/mc-$TRAVIS_BUILD_NUMBER
+- cp mc-cli packages/darwin/mc-${VERSION}_${TRAVIS_BUILD_NUMBER}
 - mv mc-cli packages/darwin/mc
 - echo "Building Windows"
 - GOOS=windows go build
-- cp mc-cli.exe packages/windows/mc-$TRAVIS_BUILD_NUMBER.exe
+- cp mc-cli.exe packages/windows/mc-${VERSION}_${TRAVIS_BUILD_NUMBER}.exe
 - mv mc-cli.exe packages/windows/mc.exe
 deploy:
 - provider: s3

@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"io/ioutil"
 	"log"
 	"os"
 
@@ -243,13 +244,18 @@ func searchPlugins(name string) {
 }
 
 func main() {
+	vb, err := ioutil.ReadFile("version.txt")
+	if err != nil {
+		fmt.Print(err)
+	}
+	version := string(vb)
 	app := cli.NewApp()
 
 	serverType := "vanilla"
 	ver := "1.11.2"
 	app.Name = "mc"
 	app.Description = "A CLI for setting up and controlling Minecraft servers."
-	app.Version = "0.0.1"
+	app.Version = version
 	app.Commands = []cli.Command{
 		{
 			Name:    "setup",
