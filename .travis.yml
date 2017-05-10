@@ -22,3 +22,7 @@ deploy:
   file_glob: true
   file: bin/**/mc-v*
   skip_cleanup: true
+  on:
+    tags: true
+    repo: HexagonMinecraft/mc-cli
+
