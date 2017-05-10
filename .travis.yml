@@ -15,6 +15,7 @@ deploy:
   acl: public_read
   skip_cleanup: true
   on:
+    branch: master
     repo: HexagonMinecraft/mc-cli
 - provider: releases
   api_key:
