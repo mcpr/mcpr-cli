@@ -1,10 +1,15 @@
-go get
+go get github.com/Masterminds/semver
+go get github.com/briandowns/spinner
+go get github.com/urfave/cli
 
-if [ -v "$TRAVIS_TAG" ];
+if [ -z "$TRAVIS_TAG" ]
 then
+  echo ""
+else
   echo "Release Version"
   echo $TRAVIS_TAG > version.txt
 fi
+
 VERSION=$(cat version.txt)
 
 declare -a OS=(
@@ -15,13 +20,15 @@ declare -a OS=(
 
 LAST_VER=$(cat version.txt)
 
-if [ -v "$TRAVIS_TAG" ];
+if [ -z "$TRAVIS_TAG" ]
 then
-  VERSION_NAME=v${TRAVIS_TAG}
-  sed -i -e "s/${LAST_VER}/${TRAVIS_TAG}/g" cli.go
-  echo ${TRAVIS_TAG} > version.txt
-else
+  echo "Not a tag."
   VERSION_NAME=v${VERSION}_${TRAVIS_BUILD_NUMBER}
+else
+  echo "Building tag."
+  VERSION_NAME=v${TRAVIS_TAG}
+  #sed -i -e "s/${LAST_VER}/${TRAVIS_TAG}/g" cli.go
+  #echo ${TRAVIS_TAG} > version.txt
 fi
 
 echo "Building $VERSION_NAME"
@@ -31,11 +38,11 @@ for i in "${OS[@]}"
 do
   if [ "$i" == "windows" ]; then
     FILENAME=mc-cli.exe
-    OUT_FN=mc-${VERSION_NAME}.exe
+    OUT_FN=mc-${VERSION_NAME}-$i.exe
     LATEST_FN=mc.exe
   else
     FILENAME=mc-cli
-    OUT_FN=mc-${VERSION_NAME}
+    OUT_FN=mc-${VERSION_NAME}-$i
     LATEST_FN=mc
   fi
   echo 'Building '${i}''
