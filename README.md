@@ -2,7 +2,8 @@
 
 A CLI for setting up and controlling Minecraft servers.
 
-[![asciicast](https://asciinema.org/a/3hfvoqmm9jr1erycj48hmpdoa.png)](https://asciinema.org/a/3hfvoqmm9jr1erycj48hmpdoa)
+[![asciicast](https://asciinema.org/a/99aybb8tez0pnvkh339ti9z41.png)](https://asciinema.org/a/99aybb8tez0pnvkh339ti9z41)
+<script type="text/javascript" src="https://asciinema.org/a/99aybb8tez0pnvkh339ti9z41.js" id="asciicast-99aybb8tez0pnvkh339ti9z41" async></script>
 
 ## DISCLAIMER
 This project is in alpha! Most features are either non-existent or don't fully work. 

@@ -53,7 +53,7 @@ do_install (){
   }
 
   COMMAND=mc
-  if hash mc 2>/dev/null;
+  if [ -x "$(command -v mc)" ];
   then
     echo "${YELLOW}The command mc already exists on your system. If you already have MC-CLI installed, please run \"curl -sSL http://fsft.us/mc-cli-update | sudo bash\" ${COLOREND}"
     echo "${RED}Install canceled.${COLOREND}"
