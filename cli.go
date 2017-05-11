@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
-	"io/ioutil"
 	"log"
 	"os"
+	"path/filepath"
 
 	"io"
 	"net/http"
@@ -25,13 +25,13 @@ func moveFile(in, out string) {
 	err := os.Rename(in, out)
 
 	if err != nil {
-		fmt.Println(err)
+		os.Exit(1)
 		return
 	}
 }
 
 func downloadFile(filepath string, url string) (err error) {
-	fmt.Println("Downloading...")
+	fmt.Println("\nDownloading...")
 
 	s := spinner.New(spinner.CharSets[9], 100*time.Millisecond)
 	s.Start()
@@ -66,28 +66,57 @@ func createTmp(path string) {
 	}
 }
 
-func buildJava(serverVersion string) {
-	fmt.Println("Building... This will take a while.")
-	fmt.Println("Go grab a cup of coffee while you wait!")
-	s := spinner.New(spinner.CharSets[9], 100*time.Millisecond)
-	s.Start()
-	cmdPrep := "cd tmp && /usr/bin/java -jar BuildTools.jar --rev " + serverVersion
+// RemoveContents removes directory (relative path only)
+func RemoveContents(dir string) {
+	cmdPrep := "if [ -e " + dir + " ]; then rm -r " + dir + "; fi"
 	cmd := exec.Command("bash", "-c", cmdPrep)
 	err := cmd.Run()
 	if err != nil {
 		fmt.Println(err)
 	}
+}
+
+var tmpName = "mc-cli-tmp"
+
+func buildJava(serverVersion string) {
+	fmt.Println("Building... This will take a while.")
+	fmt.Println("\nGo grab a cup of coffee while you wait!")
+	fmt.Println("Or play some Minecraft...")
+
+	s := spinner.New(spinner.CharSets[9], 100*time.Millisecond)
+	s.Start()
+
+	cmdPrep := "cd " + tmpName + " && /usr/bin/java -jar BuildTools.jar --rev " + serverVersion
+	cmd := exec.Command("bash", "-c", cmdPrep)
+	/*stdoutStderr, err := cmd.CombinedOutput()
+	if err != nil {
+		log.Fatal(err)
+		os.Exit(1)
+	}
+	fmt.Printf("%s\n", stdoutStderr)*/
+	err := cmd.Run()
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+
 	s.Stop()
-	fmt.Println("Build complete.")
+	fmt.Println("\nBuild complete.")
 }
 
 func setupBuildTools(serverType, serverVersion string) {
-	createTmp("tmp")
-	downloadFile("tmp/BuildTools.jar", "https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar")
-	buildJava(serverVersion)
-	moveFile("tmp/"+serverType+"-"+serverVersion+".jar", "server.jar")
+	tmpPath, _ := filepath.Abs(tmpName)
 
-	os.RemoveAll("tmp")
+	RemoveContents(tmpName)
+	createTmp(tmpPath)
+
+	downloadFile(tmpName+"/BuildTools.jar", "https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar")
+	buildJava(serverVersion)
+
+	jarPath := tmpPath + "/" + serverType + "-" + serverVersion + ".jar"
+	moveFile(jarPath, "server.jar")
+
+	RemoveContents(tmpName)
 }
 
 func setup(ver, serverType string) {
@@ -98,7 +127,7 @@ func setup(ver, serverType string) {
 	}
 
 	fmt.Println("Starting setup...")
-	fmt.Println("Server Type:", serverType)
+	fmt.Println("\nServer Type:", serverType)
 	fmt.Println("Minecraft Version:", v)
 
 	switch {
@@ -112,15 +141,17 @@ func setup(ver, serverType string) {
 		fmt.Println("The server type", serverType, " is not supported.")
 	}
 
-	fmt.Println("All done! Run java -jar server.jar to start your server!")
+	fmt.Println("\n\n\nAll done! Run \"java -jar server.jar\" to start your server!")
 }
 
+// ResourceArray Spigot resources array
 type ResourceArray []struct {
 	Name string `json:"name"`
 	Tag  string `json:"tag"`
 	ID   int    `json:"id"`
 }
 
+// Resource Spigot resource
 type Resource struct {
 	External bool `json:"external"`
 	File     struct {
@@ -244,18 +275,15 @@ func searchPlugins(name string) {
 }
 
 func main() {
-	vb, err := ioutil.ReadFile("version.txt")
-	if err != nil {
-		fmt.Print(err)
-	}
-	version := string(vb)
+	cliVersion := "0.0.3"
+
 	app := cli.NewApp()
 
 	serverType := "vanilla"
 	ver := "1.11.2"
 	app.Name = "mc"
 	app.Description = "A CLI for setting up and controlling Minecraft servers."
-	app.Version = version
+	app.Version = cliVersion
 	app.Commands = []cli.Command{
 		{
 			Name:    "setup",

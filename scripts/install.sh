@@ -6,16 +6,38 @@ fi
 
 BASE_URL=https://artifacts.filiosoft.com/mc-cli
 
-if [ "$(uname)" == "Darwin" ]; then
-    echo "Darwin"
-    curl -sO $BASE_URL/darwin/mc
-    mv mc /usr/local/bin
-    chmod +x /usr/local/bin/mc
-elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
-    echo "Linux"
-    curl -sO $BASE_URL/linux/mc
-    mv mc /usr/local/bin
-    chmod +x /usr/local/bin/mc
-fi
+USR_BIN=/usr/local/bin/mc
 
-echo "MC-CLI has been installed!"
+echo "You are running $(uname)"
+
+function installMc {
+  if [ "$(uname)" == "Darwin" ]; then
+    URL=$BASE_URL/darwin/mc
+    echo "Downloading binaries from $URL"
+    curl -sO $URL
+  elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+    URL=$BASE_URL/linux/mc
+    echo "Downloading binary from $URL"
+    curl -sO $URL
+  fi
+  mv mc $USR_BIN
+  chmod +x $USR_BIN
+
+  VERSION=$(mc --version)
+  echo "$VERSION has been installed!"
+  echo "Run mc --help for usage information."
+}
+
+if [ -e "$USR_BIN" ]
+then
+  echo "A file at $USR_BIN already exists."
+  echo -n "Do you want to overwrite it? (y/n)? "
+  read answer
+  if echo "$answer" | grep -iq "^y" ;then
+    installMc
+  else
+    exit
+  fi
+else
+  installMc
+fi

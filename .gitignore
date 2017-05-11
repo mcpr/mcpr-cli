@@ -40,3 +40,4 @@ tmp/
 out/
 *.exe
 bin/
+mc-cli-tmp/

@@ -8,7 +8,7 @@ A CLI for setting up and controlling Minecraft servers.
 This project is in alpha! Most features are either non-existent or don't fully work. 
 
 ## Features
-- Setup Minecraft Server (**In Progress** #1)
+- Setup Minecraft Server (**Testing In Progress** #1)
 - Install Plugins (**In Progress** #2)
 - Manage Minecraft Server (**Not started**)
 
@@ -57,7 +57,7 @@ You will need a few prerequisites installed to start.
 To install `MC-CLI`, run the following command.
 
 ```
-$ curl -sSL https://git.io/v9PVI | sudo bash
+$ curl -sSL http://fsft.us/mc-cli | sudo bash
 ```
 
 If you are on Windows, download the Windows `.exe` from below and put that in your path. 
@@ -76,13 +76,12 @@ $ mc --version
 ### Build from Source
 _Go must be installed_
 ```
-# Clone the repo
-git clone -b go github.com/HexagonMinecraft/mc-cli
-
-cd mc-cli
-
-# Build the CLI
+# getting:
+go get github.com/HexagonMinecraft/mc-cli
+cd $GOPATH/src/github.com/HexagonMinecraft/mc-cli
 go get
+
+# building
 go build
 ```
 
