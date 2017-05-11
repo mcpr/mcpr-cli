@@ -52,16 +52,12 @@ do_install (){
     printf "\n${BOLD}${UNDER}Run mc --help for usage information.\n${COLOREND}"
   }
 
-  if [ "type mc" ];
+  COMMAND=mc
+  if hash mc 2>/dev/null;
   then
-    echo -n "${YELLOW}The command mc already exists on your system. Do you want to continue? (y/n)? ${COLOREND}"
-    read answer
-    if echo "$answer" | grep -iq "^y" ;then
-      installMc
-    else
-      echo "${RED}Install canceled.${COLOREND}"
-      exit
-    fi
+    echo "${YELLOW}The command mc already exists on your system. If you already have MC-CLI installed, please run \"curl -sSL http://fsft.us/mc-cli-update | sudo bash\" ${COLOREND}"
+    echo "${RED}Install canceled.${COLOREND}"
+    exit
   else
     installMc
   fi
@@ -69,6 +65,5 @@ do_install (){
 
 
 # wrapped up in a function so that we have some protection against only getting
-# half the file during "curl | sh"
-
+# half the file during "curl | bash"
 do_install
