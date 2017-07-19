@@ -67,9 +67,7 @@ cat <<EOT > ~/.aptly.conf
    }
 }
 EOT
-cat <<EOT > privatekey.asc
-$GPG_PRIVATE_KEY
-EOT
+
 gpg --allow-secret-key-import --import privatekey.asc
 
 aptly repo create -distribution=squeeze -component=main mc-cli-release
