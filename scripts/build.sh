@@ -67,8 +67,12 @@ cat <<EOT > ~/.aptly.conf
    }
 }
 EOT
+cat <<EOT > privatekey.asc
+$GPG_PRIVATE_KEY
+EOT
+gpg --allow-secret-key-import --import privatekey.asc
 
 aptly repo create -distribution=squeeze -component=main mc-cli-release
 aptly repo add mc-cli-release bin/linux/
 aptly snapshot create mc-cli-$VERSION_NAME from repo mc-cli-release
-aptly publish snapshot -architectures="i386,amd64" mc-cli-$VERSION_NAME s3:apt.filiosoft.com:
+aptly publish snapshot -passphrase="$GPG_KEY_PWD" -architectures="i386,amd64,all" mc-cli-$VERSION_NAME s3:apt.filiosoft.com:
