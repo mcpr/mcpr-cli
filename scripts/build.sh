@@ -51,3 +51,6 @@ do
   cp ${FILENAME} bin/${i}/${OUT_FN}
   mv ${FILENAME} bin/${i}/${LATEST_FN}
 done
+
+equivs-build control
+mv mc*.deb bin/linux
