@@ -71,4 +71,4 @@ EOT
 aptly repo create -distribution=squeeze -component=main mc-cli-release
 aptly repo add mc-cli-release bin/linux/
 aptly snapshot create mc-cli-$VERSION_NAME from repo mc-cli-release
-aptly -architectures=i386,amd64 publish napshot mc-cli-$VERSION_NAME s3:apt.filiosoft.com:
+aptly publish snapshot -architectures="i386,amd64" mc-cli-$VERSION_NAME s3:apt.filiosoft.com:
