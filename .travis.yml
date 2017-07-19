@@ -4,8 +4,11 @@ go:
 dist: trusty
 sudo: required
 before_script:
+- sudo echo "deb http://repo.aptly.info/ squeeze main" >> /etc/apt/sources.list
+- sudo apt-key adv --keyserver keys.gnupg.net --recv-keys 9E3E53F19C7DE460
+- wget -qO - https://www.aptly.info/pubkey.txt | sudo apt-key add -
 - sudo apt-get -qq update
-- sudo apt-get install equivs
+- sudo apt-get install equivs aptly
 script:
 - bash scripts/build.sh
 deploy:

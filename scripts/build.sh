@@ -52,5 +52,23 @@ do
   mv ${FILENAME} bin/${i}/${LATEST_FN}
 done
 
+cp bin/linux/mc .
 equivs-build control
 mv mc*.deb bin/linux
+
+cat <<EOT > ~/.aptly.conf
+{
+   "S3PublishEndpoints":{
+      "apt.filiosoft.com":{
+         "region":"us-east-1",
+         "bucket":"apt.filiosoft.com",
+         "acl":"public-read"
+      }
+   }
+}
+EOT
+
+aptly repo create -distribution=squeeze -component=main mc-cli-release
+aptly repo add mc-cli-release bin/linux/
+aptly snapshot create mc-cli-$VERSION_NAME from repo mc-cli-release
+aptly publish snapshot mc-cli-$VERSION_NAME s3:apt.filiosoft.com:
