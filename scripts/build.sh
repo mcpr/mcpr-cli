@@ -52,6 +52,8 @@ do
   mv ${FILENAME} bin/${i}/${LATEST_FN}
 done
 
+sed -i 's/^Version:.*$/Version: ${VERSION_NAME}/g' control
+
 cp bin/linux/mc .
 equivs-build control
 mv mc*.deb bin/linux
