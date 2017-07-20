@@ -52,7 +52,7 @@ do
   mv ${FILENAME} bin/${i}/${LATEST_FN}
 done
 
-sed -i 's/^Version:.*$/Version: ${VERSION_NAME}/g' control
+sed -i 's/^Version:.*$/Version: '"${VERSION_NAME}"'/g' control
 cat control
 
 cp bin/linux/mc .
