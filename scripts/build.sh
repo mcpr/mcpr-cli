@@ -70,7 +70,9 @@ cat <<EOT > ~/.aptly.conf
 }
 EOT
 
+wget -qO - https://apt.filiosoft.com/archive.key
 gpg --allow-secret-key-import --import private.key
+gpg --import archive.key
 gpg --list-secret-keys
 
 aptly repo create -distribution=squeeze -component=main mc-cli-release
