@@ -38,14 +38,22 @@ do_install (){
       URL=$BASE_URL/darwin/mc
       echo "${BLUE}Downloading binaries from $URL${COLOREND}"
       curl -sO $URL
+    elif [ "$(lsb_release -is)" == "Ubuntu" ]; then
+      curl -sL https://apt.filiosoft.com/setup | sudo -E bash -
+      sudo apt-get install mc-cli -y
     elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
       URL=$BASE_URL/linux/mc
       echo "${BLUE}Downloading binaries from $URL${COLOREND}"
       curl -sO $URL
     fi
-    echo "${BLUE}Moving binary to $USR_BIN${COLOREND}"
-    mv mc $USR_BIN
-    chmod +x $USR_BIN
+
+    if [ "$(lsb_release -is)" == "Ubuntu" ]; then
+      echo "Setup complete..."
+    else
+      echo "${BLUE}Moving binary to $USR_BIN${COLOREND}"
+      mv mc $USR_BIN
+      chmod +x $USR_BIN
+    fi
 
     VERSION=$(mc --version)
     printf  "${GREEN}\n$VERSION has been installed!${COLOREND}"
