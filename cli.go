@@ -280,7 +280,7 @@ func main() {
 	app := cli.NewApp()
 
 	serverType := "vanilla"
-	ver := "1.11.2"
+	ver := "1.12"
 	app.Name = "mc"
 	app.Description = "A CLI for setting up and controlling Minecraft servers."
 	app.Version = cliVersion
