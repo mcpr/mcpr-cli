@@ -76,4 +76,4 @@ gpg --allow-secret-key-import --import private.key
 aptly repo create -distribution=squeeze -component=main mc-cli-release
 aptly repo add mc-cli-release bin/linux/
 aptly snapshot create mc-cli-$VERSION_NAME from repo mc-cli-release
-aptly publish snapshot -batch -gpg-key="D235F87C" -passphrase="$GPG_KEY_PWD" -architectures="i386,amd64,all" mc-cli-$VERSION_NAME s3:apt.filiosoft.com:
+aptly publish snapshot -batch -gpg-key="C4B1ED8C" -passphrase="$GPG_KEY_PWD" -architectures="i386,amd64,all" mc-cli-$VERSION_NAME s3:apt.filiosoft.com:
