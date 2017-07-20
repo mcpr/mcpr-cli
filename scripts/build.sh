@@ -23,10 +23,10 @@ LAST_VER=$(cat version.txt)
 if [ -z "$TRAVIS_TAG" ]
 then
   echo "Not a tag."
-  VERSION_NAME=v${VERSION}-${TRAVIS_BUILD_NUMBER}
+  VERSION_NAME=${VERSION}-${TRAVIS_BUILD_NUMBER}
 else
   echo "Building tag."
-  VERSION_NAME=v${TRAVIS_TAG}
+  VERSION_NAME=${TRAVIS_TAG}
   #sed -i -e "s/${LAST_VER}/${TRAVIS_TAG}/g" cli.go
   #echo ${TRAVIS_TAG} > version.txt
 fi
