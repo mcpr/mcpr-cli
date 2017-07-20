@@ -275,7 +275,7 @@ func searchPlugins(name string) {
 }
 
 func main() {
-	cliVersion := "0.0.3"
+	cliVersion := "0.0.4"
 
 	app := cli.NewApp()
 
