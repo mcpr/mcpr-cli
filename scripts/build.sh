@@ -53,6 +53,7 @@ do
 done
 
 sed -i 's/^Version:.*$/Version: ${VERSION_NAME}/g' control
+cat control
 
 cp bin/linux/mc .
 equivs-build control
@@ -70,7 +71,7 @@ cat <<EOT > ~/.aptly.conf
 }
 EOT
 
-gpg --allow-secret-key-import --import privatekey.asc
+gpg --allow-secret-key-import --import private.key
 
 aptly repo create -distribution=squeeze -component=main mc-cli-release
 aptly repo add mc-cli-release bin/linux/
