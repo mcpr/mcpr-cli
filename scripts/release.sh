@@ -7,7 +7,7 @@ set -e
 
 [[ -z $VERSION ]] && echo "Please specify a version. (e.g. scripts/release.sh <VERSION>)" && exit 1
 [[ -z $CURRENT_VERSION ]] && echo "Current version not found. Please check your versions.txt file." && exit 1
-[[ -z $(git diff-index --quiet HEAD --) ]] && echo "Please commit your current changes before releasing." && exit 1
+git diff-index --quiet HEAD -- || echo "Please commit your current changes before releasing." && exit 1
 
 echo "Old Version: ${CURRENT_VERSION}"
 
