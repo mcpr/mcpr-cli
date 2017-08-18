@@ -7,13 +7,12 @@ MESSAGE=$2
 [[ -z $VERSION ]] && echo "Please specify a version. (e.g. scripts/release.sh <VERSION>)" && exit 1
 [[ -z $CURRENT_VERSION ]] && echo "Current version not found. Please check your versions.txt file." && exit 1
 
-git diff-index --quiet HEAD --
-if [ $? -eq 0 ]; then
-    echo OK
-else
-    echo "Please commit your changes before running."
-    exit 1
+if [ -z "$(git status --porcelain)" ]; then 
+  echo "Working directory clean"
+else 
+  echo "Uncommitted changes"
 fi
+
 echo "Old Version: ${CURRENT_VERSION}"
 exit 1
 #set -e
