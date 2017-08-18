@@ -28,6 +28,7 @@ sed -i 's/'"${CURRENT_VERSION}"'/'"${VERSION}"'/g' cli.go
 echo "Setting version in version.txt..."
 echo $VERSION > version.txt
 
+sleep 10
 git add .
 git commit -s -m "Version ${VERSION}"
 
