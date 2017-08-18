@@ -4,7 +4,7 @@ go:
 dist: trusty
 sudo: required
 before_install:
-- openssl aes-256-cbc -K $encrypted_6e849d71586b_key -iv $encrypted_6e849d71586b_iv - in private.key.enc -out private.key -d
+- openssl aes-256-cbc -K $encrypted_6e849d71586b_key -iv $encrypted_6e849d71586b_iv -in private.key.enc -out private.key -d
 before_script:
 - sudo sh -c 'echo "deb http://repo.aptly.info/ squeeze main" >> /etc/apt/sources.list'
 - sudo apt-key adv --keyserver keys.gnupg.net --recv-keys 9E3E53F19C7DE460
