@@ -26,11 +26,12 @@ deploy:
     skip_cleanup: true
     on:
       branch: master
+      tags: true
   - provider: releases
     api_key:
       secure: fCkR5bKDQTfo1iUWE0PMh+8z265U83kSSihMSgj1x/9gcAXWK6InVekdkc2PIuJHceGQMKRwhJP4PV50GNofGk3QxO8/aYAGn7+efjZ2KgEXgZ1Tlq7uEom1zbkUu0yQj9Q1DmrMMTrQXBlXS74CKylPM42zgLb6qg+McSF6gcGYDYBHOYguh1wvDOlJAjafhaMy4J/mnVp1ca1QS1SVevSHG/VCV0OLIDSxysxFVgj9ZHrMnPzs9FAcuIqfGeSjaqXAVXygYRhJntGPSwResq313C8bDKgGbJo6GOWIBBbVgjQhKDLu3AIqnCxhUkl86WF2vPXnsWqdqPOmne2W32VD6gxvWnxb7/gfjK6zOPqhZO30ky6Dhh/Yi1QSuRhNOMalIRjLxKkl06VC9QED39TkJKZXeHLIZb/LYC9ICSJ5eEFgd2oj1tpWrbo1DDG99S4JhWstHDrqY4QzbQOvFM57L6QypFMsdDjF+jIT3jICcfCN9ObhOcgx4JRWKZ6L/5IsI3G/G+Cvc40inyawxKJq84jbUD/8pQrerR2vzxizAG8RcuFFpZN+xlYReFXkT/qzmMLBVBcue/YGdz5qaTjp51MEXvf+gWB+TsD6ocho41k8Hgwy6XkGSv7lJ8CmqpQXjLpwmSEWpdW7VREQqLBJfnjv1A68Yo+zDfcp7v4=
     file_glob: true
-    file: bin/**/mcpr-v*
+    file: bin/**/mcpr-*
     skip_cleanup: true
     on:
       tags: true
