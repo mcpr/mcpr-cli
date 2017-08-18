@@ -3,14 +3,20 @@ VERSION=$1
 CURRENT_VERSION=$(cat version.txt)
 MESSAGE=$2
 
-set -e
 
 [[ -z $VERSION ]] && echo "Please specify a version. (e.g. scripts/release.sh <VERSION>)" && exit 1
 [[ -z $CURRENT_VERSION ]] && echo "Current version not found. Please check your versions.txt file." && exit 1
-git diff-index --quiet HEAD -- || echo "Please commit your current changes before releasing." && exit 1
 
+git diff-index --quiet HEAD --
+if [ $? -eq 0 ]; then
+    echo OK
+else
+    echo "Please commit your changes before running."
+    exit 1
+fi
 echo "Old Version: ${CURRENT_VERSION}"
-
+exit 1
+#set -e
 echo -e "New Version: ${VERSION}\n"
 
 echo "Setting version in control file..."
