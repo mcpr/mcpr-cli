@@ -39,13 +39,13 @@ echo "Building $VERSION_NAME"
 for i in "${OS[@]}"
 do
   if [ "$i" == "windows" ]; then
-    FILENAME=mc-cli.exe
-    OUT_FN=mc-${VERSION_NAME}-$i.exe
-    LATEST_FN=mc.exe
+    FILENAME=mcpr-cli.exe
+    OUT_FN=mcpr-${VERSION_NAME}-$i.exe
+    LATEST_FN=mcpr.exe
   else
-    FILENAME=mc-cli
-    OUT_FN=mc-${VERSION_NAME}-$i
-    LATEST_FN=mc
+    FILENAME=mcpr-cli
+    OUT_FN=mcpr-${VERSION_NAME}-$i
+    LATEST_FN=mcpr
   fi
   echo 'Building '${i}''
   mkdir -p bin/${i}
@@ -56,8 +56,8 @@ done
 
 sed -i 's/^Version:.*$/Version: '"${VERSION_NAME}"'/g' control
 
-cp bin/linux/mc .
+cp bin/linux/mcpr .
 equivs-build control
-mv mc*.deb bin/linux
+mv mcpr*.deb bin/linux
 
-bash scripts/publish.sh $VERSION_NAME
+#bash scripts/publish.sh $VERSION_NAME

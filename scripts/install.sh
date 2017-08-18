@@ -4,8 +4,8 @@ if [ "$(id -u)" != "0" ]; then
    exit 1
 fi
 
-BASE_URL=https://artifacts.filiosoft.com/mc-cli
-USR_BIN=/usr/local/bin/mc
+BASE_URL=https://artifacts.filiosoft.com/mcpr-cli
+USR_BIN=/usr/local/bin/mcpr
 
 # Colors
 COLOREND=$(tput sgr0)
@@ -35,14 +35,14 @@ do_install (){
 
   installMc () {
     if [ "$(uname)" == "Darwin" ]; then
-      URL=$BASE_URL/darwin/mc
+      URL=$BASE_URL/darwin/mcpr
       echo "${BLUE}Downloading binaries from $URL${COLOREND}"
       curl -sO $URL
     elif [ "$(lsb_release -is)" == "Ubuntu" ]; then
       curl -sL https://apt.filiosoft.com/setup | sudo -E bash -
-      sudo apt-get install mc-cli -y
+      sudo apt-get install mcpr-cli -y
     elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
-      URL=$BASE_URL/linux/mc
+      URL=$BASE_URL/linux/mcpr
       echo "${BLUE}Downloading binaries from $URL${COLOREND}"
       curl -sO $URL
     fi
@@ -51,19 +51,19 @@ do_install (){
       echo "Setup complete..."
     else
       echo "${BLUE}Moving binary to $USR_BIN${COLOREND}"
-      mv mc $USR_BIN
+      mv mcpr $USR_BIN
       chmod +x $USR_BIN
     fi
 
-    VERSION=$(mc --version)
+    VERSION=$(mcpr --version)
     printf  "${GREEN}\n$VERSION has been installed!${COLOREND}"
-    printf "\n${BOLD}${UNDER}Run mc --help for usage information.\n${COLOREND}"
+    printf "\n${BOLD}${UNDER}Run mcpr --help for usage information.\n${COLOREND}"
   }
 
-  COMMAND=mc
-  if [ -x "$(command -v mc)" ];
+  COMMAND=mcpr
+  if [ -x "$(command -v mcpr)" ];
   then
-    echo "${YELLOW}The command mc already exists on your system. If you already have MC-CLI installed, please run \"curl -sSL http://fsft.us/mc-cli-update | sudo bash\" ${COLOREND}"
+    echo "${YELLOW}The command mcpr already exists on your system. If you already have MCPR-CLI installed, please run \"curl -sSL http://fsft.us/mcpr-cli-update | sudo bash\" ${COLOREND}"
     echo "${RED}Install canceled.${COLOREND}"
     exit
   else

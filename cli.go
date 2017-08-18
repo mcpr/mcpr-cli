@@ -76,7 +76,7 @@ func RemoveContents(dir string) {
 	}
 }
 
-var tmpName = "mc-cli-tmp"
+var tmpName = "mcpr-cli-tmp"
 
 func buildJava(serverVersion string) {
 	fmt.Println("Building... This will take a while.")
@@ -270,7 +270,7 @@ func searchPlugins(name string) {
 
 	for i := 1; i < len(req); i += 4 {
 		v := req[i]
-		fmt.Println("\n\nName:", v.Name, "\nID:", v.ID, "\nDescription:", v.Tag, "\nInstall Command: mc install", v.ID)
+		fmt.Println("\n\nName:", v.Name, "\nID:", v.ID, "\nDescription:", v.Tag, "\nInstall Command: mcpr install", v.ID)
 	}
 }
 
@@ -281,14 +281,14 @@ func main() {
 
 	serverType := "vanilla"
 	ver := "1.12"
-	app.Name = "mc"
+	app.Name = "mcpr"
 	app.Description = "A CLI for setting up and controlling Minecraft servers."
 	app.Version = cliVersion
 	app.Commands = []cli.Command{
 		{
 			Name:    "setup",
 			Aliases: []string{"s"},
-			Usage:   "Setup a minecraft server - mc setup [servertype] [version]",
+			Usage:   "Setup a minecraft server - mcpr setup [servertype] [version]",
 			Action: func(c *cli.Context) error {
 				if c.Args().Get(0) != "" {
 					serverType = c.Args().Get(0)
@@ -304,7 +304,7 @@ func main() {
 		{
 			Name:    "install",
 			Aliases: []string{"i"},
-			Usage:   "Install a plugin or plugins - mc install [plugin]",
+			Usage:   "Install a plugin or plugins - mcpr install [plugin]",
 			Action: func(c *cli.Context) error {
 				if c.Args().Get(0) != "" {
 					pluginID := c.Args().Get(0)
@@ -319,7 +319,7 @@ func main() {
 		{
 			Name:    "search",
 			Aliases: []string{"l"},
-			Usage:   "Search plugins - mc search [plugin]",
+			Usage:   "Search plugins - mcpr search [plugin]",
 			Action: func(c *cli.Context) error {
 				if c.Args().Get(0) != "" {
 					pluginName := c.Args().Get(0)

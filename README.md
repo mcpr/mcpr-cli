@@ -1,6 +1,6 @@
-# MC-CLI [![Build Status](https://travis-ci.org/HexagonMinecraft/mc-cli.svg?branch=master)](https://travis-ci.org/HexagonMinecraft/mc-cli) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/HexagonMinecraft/mc-cli/go/LICENSE) [![GitHub issues](https://img.shields.io/github/issues/HexagonMinecraft/mc-cli.svg)](https://github.com/HexagonMinecraft/mc-cli/issues) [![GitHub (pre-)release](https://img.shields.io/github/release/HexagonMinecraft/mc-cli/all.svg)](https://github.com/HexagonMinecraft/mc-cli)
+# MCPR-CLI [![Build Status](https://travis-ci.org/mcpr/mcpr-cli.svg?branch=master)](https://travis-ci.org/mcpr/mcpr-cli) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/mcpr/mcpr-cli/go/LICENSE) [![GitHub issues](https://img.shields.io/github/issues/mcpr/mcpr-cli.svg)](https://github.com/mcpr/mcpr-cli/issues) [![GitHub (pre-)release](https://img.shields.io/github/release/mcpr/mcpr-cli/all.svg)](https://github.com/mcpr/mcpr-cli)
 
-A CLI for setting up and controlling Minecraft servers.
+The official [MCPR](https://registry.hexagonminecraft.com) CLI.
 
 [![asciicast](https://asciinema.org/a/99aybb8tez0pnvkh339ti9z41.png)](https://asciinema.org/a/99aybb8tez0pnvkh339ti9z41)
 
@@ -16,35 +16,35 @@ This project is in alpha! Most features are either non-existent or don't fully w
 
 ### Setup Server
 ```
-$ mc setup [servertype] [version]
+$ mcpr setup [servertype] [version]
 ```
 
 ##### Example
 ```
-$ mc setup spigot 1.11.2
+$ mcpr setup spigot 1.11.2
 ```
 
 ### Search Plugins
 ```
-$ mc search [pluginName]
+$ mcpr search [pluginName]
 ```
 
 ##### Example
 ```
-$ mc search dynmap
+$ mcpr search dynmap
 ```
 ### Install Plugin
 ```
-$ mc install [pluginID]
+$ mcpr install [pluginID]
 ```
 
 ##### Example
 ```
-$ mc install 274
+$ mcpr install 274
 ```
 ## Getting Started
 
-These instructions will get you up and running with `MC-CLI`.
+These instructions will get you up and running with `MCPR-CLI`.
 
 ### Prerequisites
 
@@ -54,31 +54,31 @@ You will need a few prerequisites installed to start.
 * Bash (Git Bash or Bash on Ubuntu on Windows will work on Windows)
 
 ### Install
-To install `MC-CLI`, run the following command.
+To install `MCPR-CLI`, run the following command.
 
 ```
-$ curl -sSL http://fsft.us/mc-cli | sudo bash
+$ curl -sSL http://fsft.us/mcpr-cli | sudo bash
 ```
 
 If you are on Windows, download the Windows `.exe` from below and put that in your path. 
 
 #### Downloads
-- [Linux](https://artifacts.filiosoft.com/mc-cli/linux/mc)
-- [Darwin](https://artifacts.filiosoft.com/mc-cli/darwin/mc)
-- [Windows](https://artifacts.filiosoft.com/mc-cli/windows/mc.exe)
+- [Linux](https://artifacts.filiosoft.com/mcpr-cli/linux/mcpr)
+- [Darwin](https://artifacts.filiosoft.com/mcpr-cli/darwin/mcpr)
+- [Windows](https://artifacts.filiosoft.com/mcpr-cli/windows/mcpr.exe)
 
 #### Verify Installation
 To verify your installation, run the following.
 ```
-$ mc --version
+$ mcpr --version
 ```
 
 ### Build from Source
 _Go must be installed_
 ```
 # getting:
-go get github.com/HexagonMinecraft/mc-cli
-cd $GOPATH/src/github.com/HexagonMinecraft/mc-cli
+go get github.com/mcpr/mcpr-cli
+cd $GOPATH/src/github.com/mcpr/mcpr-cli
 go get
 
 # building
@@ -91,13 +91,13 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduc
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/HexagonMinecraft/mc-cli/tags). 
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/mcpr/mcpr-cli/tags). 
 
 ## Authors
 
 * **Noah Prail** - *Maintainer* - [@nprail](https://github.com/nprail)
 
-See also the list of [contributors](https://github.com/HexagonMinecraft/mc-cli/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/mcpr/mcpr-cli/contributors) who participated in this project.
 
 ## License
 

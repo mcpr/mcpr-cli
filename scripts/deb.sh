@@ -11,7 +11,7 @@
 #
 
 export DEBIAN_FRONTEND=noninteractive
-FSPKG="mc-cli"
+FSPKG="mcpr-cli"
 
 print_status() {
     echo

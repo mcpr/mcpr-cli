@@ -2,11 +2,11 @@
 # Source: <source package name; defaults to package name>
 Section: misc
 Priority: optional
-Homepage: https://mc-cli.hexagonminecraft.com/
+Homepage: https://mcpr.github.io/mcpr-cli/
 Standards-Version: 3.9.2
 
-Package: mc-cli
-Version: 0.0.4
+Package: mcpr-cli
+Version: 0.0.4-555
 Maintainer: Noah Prail <Noah@Prail.net>
 # Pre-Depends: <comma-separated list of packages>
 # Depends: <comma-separated list of packages>
@@ -20,7 +20,7 @@ Copyright: LICENSE
 # Changelog: <changelog file; defaults to a generic changelog>
 Readme: README.md
 # Extra-Files: <comma-separated list of additional files for the doc directory>
-Files: mc /usr/local/bin/
+Files: mcpr /usr/local/bin/
 #<pair of space-separated paths; First is file to include, second is destination>
 #  <more pairs, if there's more than one file to include. Notice the starting space>
 Description: A CLI for setting up and controlling Minecraft servers.
