@@ -21,7 +21,7 @@ $ mcpr setup [servertype] [version]
 
 ##### Example
 ```
-$ mcpr setup spigot 1.11.2
+$ mcpr setup spigot 1.12.1
 ```
 
 ### Search Plugins
