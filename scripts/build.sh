@@ -39,7 +39,7 @@ echo "Building $VERSION_NAME"
 for i in "${OS[@]}"
 do
   if [ "$i" == "windows" ]; then
-    FILENAME=mcpr-cli.exe
+    FILENAME=mcpr-cli
     OUT_FN=mcpr-${VERSION_NAME}-$i.exe
     LATEST_FN=mcpr.exe
   else
@@ -49,7 +49,7 @@ do
   fi
   echo 'Building '${i}''
   mkdir -p bin/${i}
-  GOOS=${i} go build
+  GOOS=${i} go build -o ${FILENAME}
   cp ${FILENAME} bin/${i}/${OUT_FN}
   mv ${FILENAME} bin/${i}/${LATEST_FN}
 done
@@ -60,4 +60,4 @@ cp bin/linux/mcpr .
 equivs-build control
 mv mcpr*.deb bin/linux
 
-#bash scripts/publish.sh $VERSION_NAME
+bash scripts/publish.sh $VERSION_NAME

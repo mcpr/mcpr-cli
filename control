@@ -2,11 +2,11 @@
 # Source: <source package name; defaults to package name>
 Section: misc
 Priority: optional
-Homepage: https://mcpr.github.io/mcpr-cli/
+Homepage: https://mcpr.github.io/cli/
 Standards-Version: 3.9.2
 
 Package: mcpr-cli
-Version: 0.0.4-555
+Version: 0.0.4
 Maintainer: Noah Prail <Noah@Prail.net>
 # Pre-Depends: <comma-separated list of packages>
 # Depends: <comma-separated list of packages>

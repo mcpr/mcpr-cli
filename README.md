@@ -1,4 +1,4 @@
-# MCPR-CLI [![Build Status](https://travis-ci.org/mcpr/mcpr-cli.svg?branch=master)](https://travis-ci.org/mcpr/mcpr-cli) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/mcpr/mcpr-cli/go/LICENSE) [![GitHub issues](https://img.shields.io/github/issues/mcpr/mcpr-cli.svg)](https://github.com/mcpr/mcpr-cli/issues) [![GitHub (pre-)release](https://img.shields.io/github/release/mcpr/mcpr-cli/all.svg)](https://github.com/mcpr/mcpr-cli)
+# MCPR-CLI [![Build Status](https://travis-ci.org/mcpr/cli.svg?branch=master)](https://travis-ci.org/mcpr/cli) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/mcpr/cli/blob/master/LICENSE) [![GitHub issues](https://img.shields.io/github/issues/mcpr/cli.svg)](https://github.com/mcpr/cli/issues) [![GitHub (pre-)release](https://img.shields.io/github/release/mcpr/cli/all.svg)](https://github.com/mcpr/cli)
 
 The official [MCPR](https://registry.hexagonminecraft.com) CLI.
 
@@ -77,8 +77,8 @@ $ mcpr --version
 _Go must be installed_
 ```
 # getting:
-go get github.com/mcpr/mcpr-cli
-cd $GOPATH/src/github.com/mcpr/mcpr-cli
+go get github.com/mcpr/cli
+cd $GOPATH/src/github.com/mcpr/cli
 go get
 
 # building
@@ -91,13 +91,13 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduc
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/mcpr/mcpr-cli/tags). 
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/mcpr/cli/tags). 
 
 ## Authors
 
 * **Noah Prail** - *Maintainer* - [@nprail](https://github.com/nprail)
 
-See also the list of [contributors](https://github.com/mcpr/mcpr-cli/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/mcpr/cli/contributors) who participated in this project.
 
 ## License
 
