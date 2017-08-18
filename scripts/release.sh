@@ -29,12 +29,12 @@ echo "Setting version in version.txt..."
 echo $VERSION > version.txt
 
 git add .
-git commit -m "Version ${VERSION}"
+git commit -s -m "Version ${VERSION}"
 
 echo "Creating git tag!"
 if [[ -z $MESSAGE ]];
 then 
-    git tag ${VERSION}
+    git tag -s ${VERSION}
 else
-    git tag ${VERSION} -m "${MESSAGE}"
+    git tag -s ${VERSION} -m "${MESSAGE}"
 fi
