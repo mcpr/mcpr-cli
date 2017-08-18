@@ -13,9 +13,10 @@ else
   echo "Uncommitted changes"
 fi
 
+set -e
+
 echo "Old Version: ${CURRENT_VERSION}"
-exit 1
-#set -e
+
 echo -e "New Version: ${VERSION}\n"
 
 echo "Setting version in control file..."
