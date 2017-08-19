@@ -41,3 +41,4 @@ out/
 *.exe
 bin/
 mcpr-cli-tmp/
+mcpr

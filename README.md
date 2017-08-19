@@ -79,10 +79,10 @@ _Go must be installed_
 # getting:
 go get github.com/mcpr/cli
 cd $GOPATH/src/github.com/mcpr/cli
-go get
+gdm restore
 
 # building
-go build
+go build -o mcpr
 ```
 
 ## Contributing

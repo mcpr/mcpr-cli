@@ -1,8 +1,6 @@
 #!/bin/bash
 
-go get github.com/Masterminds/semver
-go get github.com/briandowns/spinner
-go get github.com/urfave/cli
+gdm restore
 
 if [ -z "$TRAVIS_TAG" ]
 then

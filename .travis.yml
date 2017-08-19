@@ -12,6 +12,7 @@ before_script:
 - wget -qO - https://www.aptly.info/pubkey.txt | sudo apt-key add -
 - sudo apt-get -qq update
 - sudo apt-get install equivs aptly
+- go get github.com/sparrc/gdm
 script:
 - bash scripts/build.sh
 deploy:
