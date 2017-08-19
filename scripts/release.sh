@@ -22,8 +22,8 @@ echo -e "New Version: ${VERSION}\n"
 echo "Setting version in control file..."
 sed -i 's/^Version:.*$/Version: '"${VERSION}"'/g' control
 
-echo "Setting version in cli.go..."
-sed -i 's/'"${CURRENT_VERSION}"'/'"${VERSION}"'/g' cli.go
+echo "Setting version in main.go..."
+sed -i 's/'"${CURRENT_VERSION}"'/'"${VERSION}"'/g' main.go
 
 echo "Setting version in version.txt..."
 echo $VERSION > version.txt

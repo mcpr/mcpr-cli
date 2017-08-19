@@ -27,7 +27,7 @@ then
 else
   echo "Building tag."
   VERSION_NAME=${TRAVIS_TAG}
-  #sed -i -e "s/${LAST_VER}/${TRAVIS_TAG}/g" cli.go
+  #sed -i -e "s/${LAST_VER}/${TRAVIS_TAG}/g" main.go
   #echo ${TRAVIS_TAG} > version.txt
 fi
 
