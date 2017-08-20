@@ -2,7 +2,7 @@
 # Source: <source package name; defaults to package name>
 Section: misc
 Priority: optional
-Homepage: https://mcpr.github.io/cli/
+Homepage: https://mcpr.github.io/mcpr-cli/
 Standards-Version: 3.9.2
 
 Package: mcpr-cli
