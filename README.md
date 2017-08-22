@@ -2,7 +2,7 @@
 
 The official [MCPR](https://registry.hexagonminecraft.com) CLI.
 
-[![asciicast](https://asciinema.org/a/99aybb8tez0pnvkh339ti9z41.png)](https://asciinema.org/a/99aybb8tez0pnvkh339ti9z41)
+[![asciicast](https://asciinema.org/a/134462.png)](https://asciinema.org/a/134462)
 
 ## DISCLAIMER
 This project is in alpha! Most features are either non-existent or don't fully work. 
