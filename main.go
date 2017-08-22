@@ -5,6 +5,8 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	"strings"
+	"io/ioutil"
 
 	"io"
 	"net/http"
@@ -119,6 +121,31 @@ func setupBuildTools(serverType, serverVersion string) {
 	RemoveContents(tmpName)
 }
 
+func Ask4confirm() bool {
+	var s string
+
+	fmt.Printf("\nDo you agree to the Mojang EULA? (https://account.mojang.com/documents/minecraft_eula) (y/N): ")
+	_, err := fmt.Scan(&s)
+	if err != nil {
+		panic(err)
+	}
+
+	s = strings.TrimSpace(s)
+	s = strings.ToLower(s)
+
+	if s == "y" || s == "yes" {
+		return true
+	}
+	return false
+}
+
+func acceptEula() {
+	err := ioutil.WriteFile("eula.txt", []byte("eula=true"), 0644)
+	if err != nil {
+			log.Fatalln(err)
+	}
+}
+
 func setup(ver, serverType string) {
 	v, err := semver.NewVersion(ver)
 	if err != nil {
@@ -140,7 +167,13 @@ func setup(ver, serverType string) {
 	default:
 		fmt.Println("The server type", serverType, " is not supported.")
 	}
-
+	
+	isConfirmed := Ask4confirm()
+	if isConfirmed {
+		fmt.Println("Yes")
+		acceptEula()
+	} 
+	
 	fmt.Println("\n\n\nAll done! Run \"java -jar server.jar\" to start your server!")
 }
 
