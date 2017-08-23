@@ -22,9 +22,12 @@ import (
 	"github.com/briandowns/spinner"
 	"github.com/urfave/cli"
 	"github.com/fatih/color"
+	"os/user"
 )
 
-var mcprAPIBaseUrl = "https://registry.hexagonminecraft.com/api/v1"
+var (
+    mcprAPIBaseUrl	string
+)
 
 func moveFile(in, out string) {
 	err := os.Rename(in, out)
@@ -268,23 +271,35 @@ func mcprAPIClient(endpoint string) Resource {
 }
 
 func installPlugin(id string) {
-	color.Set(color.FgCyan)
-
-	safeID := url.QueryEscape(id)
+	var safeID = url.QueryEscape(id)
+	var version = ""
+	var downloadUrl = ""
+	
+	fmt.Println()
+	if (strings.ContainsAny(id, "@")){
+		idAndVer := strings.Split(id, "@")
+		safeID = url.QueryEscape(idAndVer[0])
+		version = url.QueryEscape(idAndVer[1])
+	}
 	endpoint := "/plugins/" + safeID
 	
 	req := mcprAPIClient(endpoint)
-	url := mcprAPIBaseUrl + "/versions/" + id + "/"+ req.Version + "/download"
+	var downloadVersion = ""
 	
-	fmt.Println("Installing plugin", req.ID + "@" + req.Version + "...")
-
-	//size := strconv.Itoa(req.File.Size)
-	//fmt.Println("Download Size:", size+req.File.SizeUnit)
-
+	if (len(version) > 0) {
+		downloadVersion = version
+	} else {
+		downloadVersion = req.Version
+	}
+	downloadUrl = mcprAPIBaseUrl + "/versions/" + safeID + "/" + downloadVersion + "/download"
+	
+	color.Set(color.FgCyan)
+	fmt.Println("Installing plugin", req.ID + "@" + downloadVersion + "...")
 	color.Unset()
-	downloadLocation := "plugins/" + req.ID + ".jar"
+	
+	downloadLocation := "plugins/" + req.ID + "-" + downloadVersion + ".jar"
 	createTmp("plugins")
-	downloadFile(downloadLocation, url)
+	downloadFile(downloadLocation, downloadUrl)
 
 	color.Set(color.FgCyan)
 	fmt.Println("Installation complete! Restart your Minecraft server now!")
@@ -313,10 +328,54 @@ func searchPlugins(name string) {
 	}
 	color.Unset()
 }
+type Config struct {
+    BaseUrl  string `json:"base_url"`
+}
 
+func config(){	
+	usr, err := user.Current()
+    if err != nil {
+        log.Fatal(err)
+    }
+	configFile := usr.HomeDir + "/.mcprconfig.json"
+
+	// create config file if it doesn't already exist
+	if _, err := os.Stat(configFile); os.IsNotExist(err) {
+		var jsonBlob = []byte(`{"base_url":"https://registry.hexagonminecraft.com/api/v1"}`)
+		config := Config{}
+		err := json.Unmarshal(jsonBlob, &config)
+		if err != nil {
+			log.Fatal("opening config file", err.Error())
+		}
+		configJson, _ := json.Marshal(config)
+		
+		err = ioutil.WriteFile(configFile, configJson, 0644)
+		if err != nil {
+			panic(err)
+		}
+	} else {
+		// if config exists, load it
+		raw, err := ioutil.ReadFile(configFile)
+		if (err != nil){
+			panic(err)
+		}
+		
+		var config Config
+
+		json.Unmarshal(raw, &config)
+		mcprAPIBaseUrl = config.BaseUrl
+	}
+}
+
+
+func setConfig(option string, value string) {
+	fmt.Println("This command hasn't been implemented yet...")
+	fmt.Println(option + "=" + value)
+}
 func main() {
+	config()
 	cliVersion := "0.0.5"
-
+	
 	app := cli.NewApp()
 
 	serverType := "vanilla"
@@ -367,6 +426,22 @@ func main() {
 					searchPlugins(pluginName)
 				} else {
 					fmt.Println("Please specify a plugin.")
+				}
+
+				return nil
+			},
+		},
+		{
+			Name:    "config",
+			Aliases: []string{"c"},
+			Usage:   "Set config - mcpr config [key] [value]",
+			Action: func(c *cli.Context) error {
+				if c.Args().Get(0) != "" && c.Args().Get(1) != ""  {
+					key := c.Args().Get(0)
+					value := c.Args().Get(1)
+					setConfig(key, value)
+				} else {
+					fmt.Println("\nConfig Options:\nMCPR Base API URL - base_url=" + mcprAPIBaseUrl)
 				}
 
 				return nil
