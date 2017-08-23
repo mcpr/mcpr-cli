@@ -28,6 +28,16 @@ deploy:
     skip_cleanup: true
     on:
       branch: master
+  - provider: s3
+    access_key_id: AKIAIJT6AK44UZASIF3Q
+    secret_access_key: 
+      secure: C2Gr1XfpVdMscoBydXCg6PZDY6TBqFLvdSd/NnZCqhRlpBN9qMbT2xs69ucsxc/lAfappZCPrTM2RQj0ORBWzZjrLOZsczH4TZra4MmJ0PXPxGds72/zI1WjcRGYchlFR8aTmHNqls7eI6xmM6KHgWNMhFw4zE5Bf/8DxtMwzlN2do+RBdbOIYd0tPPksjlA2zi/wjEkj0ZKo/fQB5qCdIJSevrOzZhkQt/zUwJ6bMXfwp6/DvQpMEvH4J4lkXQtzYBBm0dJFBXxfKG9cqO5xfkfpxPSXQJT/oNu8hj/AYZHjdp6klYJnqpB+HJHj8lNiFSwh2OccL64I6igTataDEvrDNa7+WzPfqizL/ZsPlhWqYNW4myhIsi8IUXhj3hJGf8L2qZgclxYOEprWFe3whFpwjXGkcVMwQ67fuf6isjYrKnH2d5+XeIN9OUyPl8WFNv04jWJPN4P3Ky+Vlx3jltyU50A+wvzAyuERXzoCBrf9ezm0WjpbFFlVvJlCTiOw89qD9mtVCAVBaFX//suTKo+kIirXYGpYQboHIIt713YGVAj2pHft4WocyGD2IlvI9ZPzPKlDHfZW3hotyqnl9wTEjTUasmpGOHBN6j6DPcX1XPzr/kpL/+os12A40ASKNaKBuKx4y/CdvFvNTRFVdViaRg9od5atwpPDmyfZI0=
+    bucket: artifacts.filiosoft.com
+    local-dir: bin
+    upload-dir: mcpr-cli
+    acl: public_read
+    skip_cleanup: true
+    on:
       tags: true
   - provider: releases
     api_key:
