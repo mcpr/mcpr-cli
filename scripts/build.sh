@@ -59,9 +59,9 @@ cp bin/linux/${VERSION_NAME}/mcpr .
 # build deb
 equivs-build control
 # build rpm
-fpm -s dir -t rpm -v ${VERSION_NAME} -n mcpr-cli ./mcpr=/usr/bin
+fpm -s dir -t rpm -v ${VERSION_NAME} -n mcpr-cli ./mcpr=/usr/local/bin/mcpr
 
-mv mcpr bin/linux/mcpr
+rm bin/linux/mcpr
 # copy deb and rpm to latest
 cp mcpr*.deb bin/linux/mcpr-cli_latest_all.deb
 cp mcpr*.rpm bin/linux/mcpr-cli-latest.x86_64.rpm
