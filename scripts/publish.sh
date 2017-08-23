@@ -21,7 +21,7 @@ if [ -z "$TRAVIS_TAG" ]
 then
     COMPONENT=snapshot
 else
-    COMPONENT=stable,snapshot,main
+    COMPONENT=stable
 fi
 
 aptly repo create -distribution=squeeze -component=${COMPONENT} mcpr-cli-release
