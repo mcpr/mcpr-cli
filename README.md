@@ -64,6 +64,8 @@ If you are on Windows, download the Windows `.exe` from below and put that in yo
 
 #### Downloads
 - [Linux](https://artifacts.filiosoft.com/mcpr-cli/linux/mcpr)
+    - [RPM](https://artifacts.filiosoft.com/mcpr-cli/linux/mcpr-cli-latest.x86_64.rpm)
+    - [DEB](https://artifacts.filiosoft.com/mcpr-cli/linux/mcpr-cli_latest_all.deb)
 - [Darwin](https://artifacts.filiosoft.com/mcpr-cli/darwin/mcpr)
 - [Windows](https://artifacts.filiosoft.com/mcpr-cli/windows/mcpr.exe)
 
