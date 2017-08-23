@@ -163,7 +163,7 @@ fi
 
 print_status "Creating apt sources list file for the Filiosoft repo..."
 
-exec_cmd "echo 'deb https://apt.filiosoft.com/ squeeze main' > /etc/apt/sources.list.d/filiosoft.list"
+exec_cmd "echo 'deb https://apt.filiosoft.com/ squeeze stable' > /etc/apt/sources.list.d/filiosoft.list"
 
 print_status 'Running `apt-get update` for you...'
 

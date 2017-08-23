@@ -8,8 +8,8 @@ The official [MCPR](https://registry.hexagonminecraft.com) CLI.
 This project is in alpha! Most features are either non-existent or don't fully work. 
 
 ## Features
-- Setup Minecraft Server (**Testing In Progress** #1)
-- Install Plugins (**In Progress** #2)
+- Setup Minecraft Server (**Testing In Progress** [#1](https://github.com/mcpr/mcpr-cli/issues/1))
+- Install Plugins (**Testing In Progress** [#2](https://github.com/mcpr/mcpr-cli/issues/2))
 - Manage Minecraft Server (**Not started**)
 
 ## Usage
@@ -40,7 +40,7 @@ $ mcpr install [pluginID]
 
 ##### Example
 ```
-$ mcpr install 274
+$ mcpr install dynmap
 ```
 ## Getting Started
 
