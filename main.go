@@ -12,7 +12,7 @@ import (
 	"net/http"
 	"net/url"
 	"os/exec"
-	"strconv"
+	//"strconv"
 
 	"time"
 
@@ -21,7 +21,10 @@ import (
 	"github.com/Masterminds/semver"
 	"github.com/briandowns/spinner"
 	"github.com/urfave/cli"
+	"github.com/fatih/color"
 )
+
+var mcprAPIBaseUrl = "https://registry.hexagonminecraft.com/api/v1"
 
 func moveFile(in, out string) {
 	err := os.Rename(in, out)
@@ -47,7 +50,18 @@ func downloadFile(filepath string, url string) (err error) {
 	// Get the data
 	resp, err := http.Get(url)
 	if err != nil {
+		color.Set(color.FgRed)
+		fmt.Println(err)
+		color.Unset()
 		return err
+	}
+	if resp.StatusCode == http.StatusNotFound {
+		color.Set(color.FgRed)
+		fmt.Println(resp.StatusCode)
+		fmt.Println("The file you requested could not be found...")
+		color.Unset()
+		os.Exit(1)
+		
 	}
 	defer resp.Body.Close()
 
@@ -77,6 +91,10 @@ func RemoveContents(dir string) {
 		fmt.Println(err)
 	}
 }
+
+/**
+* Setup Minecraft Server
+*/
 
 var tmpName = "mcpr-cli-tmp"
 
@@ -177,46 +195,32 @@ func setup(ver, serverType string) {
 	fmt.Println("\n\n\nAll done! Run \"java -jar server.jar\" to start your server!")
 }
 
+
+/**
+* Install Plugins
+*/
+
 // ResourceArray Spigot resources array
 type ResourceArray []struct {
-	Name string `json:"name"`
-	Tag  string `json:"tag"`
-	ID   int    `json:"id"`
+	Description  string `json:"short_description"`
+	ID   string    `json:"_id"`
 }
 
 // Resource Spigot resource
 type Resource struct {
-	External bool `json:"external"`
-	File     struct {
-		Type     string `json:"type"`
-		Size     int    `json:"size"`
-		SizeUnit string `json:"sizeUnit"`
-		URL      string `json:"url"`
-	} `json:"file"`
 	Versions []struct {
 		ID int `json:"id"`
 	} `json:"versions"`
-	Updates []struct {
-		ID int `json:"id"`
-	} `json:"updates"`
-	Name    string `json:"name"`
-	Tag     string `json:"tag"`
-	Version struct {
-		ID int `json:"id"`
-	} `json:"version"`
-	Author struct {
-		ID int `json:"id"`
-	} `json:"author"`
-	Category struct {
-		ID int `json:"id"`
-	} `json:"category"`
-	ID int `json:"id"`
+	Title    string `json:"title"`
+	Description  string `json:"short_description"`
+	Version string `json:"latest_version"`
+	VersionDate string `json:"latest_version_date"`
+	Author  string  `json:"author"`
+	ID string `json:"_id"`
 }
 
-func spigotAPIClientArray(endpoint string) ResourceArray {
-	spigotAPI := "https://api.spiget.org/v2"
-
-	url := fmt.Sprintf(spigotAPI + endpoint)
+func mcprAPIClientArray(endpoint string) ResourceArray {
+	url := fmt.Sprintf(mcprAPIBaseUrl + endpoint)
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
 		log.Fatal("NewRequest: ", err)
@@ -239,10 +243,9 @@ func spigotAPIClientArray(endpoint string) ResourceArray {
 	return recordArray
 }
 
-func spigotAPIClient(endpoint string) Resource {
-	spigotAPI := "https://api.spiget.org/v2"
-
-	url := fmt.Sprintf(spigotAPI + endpoint)
+func mcprAPIClient(endpoint string) Resource {
+	url := fmt.Sprintf(mcprAPIBaseUrl + endpoint)
+	
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
 		log.Fatal("NewRequest: ", err)
@@ -265,46 +268,50 @@ func spigotAPIClient(endpoint string) Resource {
 }
 
 func installPlugin(id string) {
-	spigotBaseURL := "https://www.spigotmc.org/"
+	color.Set(color.FgCyan)
 
 	safeID := url.QueryEscape(id)
-	endpoint := "/resources/" + safeID
+	endpoint := "/plugins/" + safeID
+	
+	req := mcprAPIClient(endpoint)
+	url := mcprAPIBaseUrl + "/versions/" + id + "/"+ req.Version + "/download"
+	
+	fmt.Println("Installing plugin", req.ID + "@" + req.Version + "...")
 
-	req := spigotAPIClient(endpoint)
-	url := spigotBaseURL + req.File.URL
-	if req.File.Type == "external" {
-		fmt.Println("This plugin seems to be from an external source. Please visit the following site to download it:", url)
-		os.Exit(1)
-	}
-	if req.File.Type != ".jar" {
-		fmt.Println("This resouce is not a .jar file. Are you sure it is actually a plugin?")
-		os.Exit(1)
-	}
-	fmt.Println("Installing plugin", req.Name+"...")
+	//size := strconv.Itoa(req.File.Size)
+	//fmt.Println("Download Size:", size+req.File.SizeUnit)
 
-	size := strconv.Itoa(req.File.Size)
-	fmt.Println("Download Size:", size+req.File.SizeUnit)
-
-	downloadLocation := "plugins/" + req.Name + ".jar"
+	color.Unset()
+	downloadLocation := "plugins/" + req.ID + ".jar"
 	createTmp("plugins")
 	downloadFile(downloadLocation, url)
 
+	color.Set(color.FgCyan)
 	fmt.Println("Installation complete! Restart your Minecraft server now!")
+	color.Unset()
 }
 
 func searchPlugins(name string) {
-	fmt.Println("Searching for plugin", name+"...")
+	color.Set(color.FgCyan)
+	fmt.Println("Searching for plugin", name + "...")
 
 	safeName := url.QueryEscape(name)
-	endpoint := "/search/resources/" + safeName
+	endpoint := "/plugins/search?q=" + safeName
+	req := mcprAPIClientArray(endpoint)
 
-	req := spigotAPIClientArray(endpoint)
-	fmt.Println(req)
-
-	for i := 1; i < len(req); i += 4 {
+	for i := 0; i < len(req); i += 1 {
+		color.Set(color.FgGreen)
 		v := req[i]
-		fmt.Println("\n\nName:", v.Name, "\nID:", v.ID, "\nDescription:", v.Tag, "\nInstall Command: mcpr install", v.ID)
+		fmt.Println("\nID:", v.ID, "\nDescription:", v.Description, "\nInstall Command: mcpr install", v.ID)
+		color.Unset()
 	}
+
+	if (len(req)==0){
+		color.Red("\nNo plugins found!")
+	} else {
+		color.Cyan("\nSearch complete!")
+	}
+	color.Unset()
 }
 
 func main() {
