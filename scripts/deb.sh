@@ -13,6 +13,12 @@
 export DEBIAN_FRONTEND=noninteractive
 FSPKG="mcpr-cli"
 
+if [ "$1" = '--nightly' ]; then
+    DIST=nightly
+else
+    DIST=stable
+fi
+
 print_status() {
     echo
     echo "## $1"
@@ -163,7 +169,7 @@ fi
 
 print_status "Creating apt sources list file for the Filiosoft repo..."
 
-exec_cmd "echo 'deb https://apt.filiosoft.com/debian/ stable main' > /etc/apt/sources.list.d/filiosoft.list"
+exec_cmd "echo 'deb https://apt.filiosoft.com/debian/ ${DIST} main' > /etc/apt/sources.list.d/filiosoft.list"
 
 print_status 'Running `apt-get update` for you...'
 
