@@ -56,6 +56,8 @@ sed -i 's/^Version:.*$/Version: '"${VERSION_NAME}"'/g' control
 
 cp bin/linux/mcpr .
 equivs-build control
+fpm -s dir -t rpm -v ${VERSION_NAME} -n mcpr-cli ./bin/linux=/usr/bin
 mv mcpr*.deb bin/linux
+mv mcpr*.rpm bin/linux
 
 bash scripts/publish.sh $VERSION_NAME

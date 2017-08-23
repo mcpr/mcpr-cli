@@ -11,7 +11,8 @@ before_script:
 - sudo apt-key adv --keyserver keys.gnupg.net --recv-keys 9E3E53F19C7DE460
 - wget -qO - https://www.aptly.info/pubkey.txt | sudo apt-key add -
 - sudo apt-get -qq update
-- sudo apt-get install equivs aptly
+- sudo apt-get install equivs aptly ruby ruby-dev rubygems build-essential
+- gem install --no-ri --no-rdoc fpm
 - go get github.com/sparrc/gdm
 script:
 - bash scripts/build.sh
