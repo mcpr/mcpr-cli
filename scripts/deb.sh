@@ -156,14 +156,14 @@ fi
 print_status 'Adding the Filiosoft signing key to your keyring...'
 
 if [ -x /usr/bin/curl ]; then
-    exec_cmd 'curl -s https://apt.filiosoft.com/archive.key | apt-key add -'
+    exec_cmd 'curl -s https://apt.filiosoft.com/debian/pubkey.gpg | apt-key add -'
 else
-    exec_cmd 'wget -qO- https://apt.filiosoft.com/archive.key | apt-key add -'
+    exec_cmd 'wget -qO- https://apt.filiosoft.com/debian/pubkey.gpg | apt-key add -'
 fi
 
 print_status "Creating apt sources list file for the Filiosoft repo..."
 
-exec_cmd "echo 'deb https://apt.filiosoft.com/ stable main' > /etc/apt/sources.list.d/filiosoft.list"
+exec_cmd "echo 'deb https://apt.filiosoft.com/debian/ stable main' > /etc/apt/sources.list.d/filiosoft.list"
 
 print_status 'Running `apt-get update` for you...'
 
