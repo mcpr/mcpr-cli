@@ -6,7 +6,7 @@ Homepage: https://mcpr.github.io/mcpr-cli/
 Standards-Version: 3.9.2
 
 Package: mcpr-cli
-Version: 0.0.6
+Version: 0.0.7
 Maintainer: Noah Prail <Noah@Prail.net>
 # Pre-Depends: <comma-separated list of packages>
 # Depends: <comma-separated list of packages>
