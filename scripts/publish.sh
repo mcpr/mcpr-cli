@@ -20,11 +20,13 @@ gpg --list-secret-keys
 if [ -z "$TRAVIS_TAG" ]
 then
     DISTRIBUTION=nightly
+    COMMENT="Nightly builds"
 else
     DISTRIBUTION=stable
+    COMMENT="Stable builds"
 fi
 
-aptly repo create -distribution=${DISTRIBUTION} -component=main mcpr-cli-release
+aptly repo create -distribution=${DISTRIBUTION} -comment="${COMMENT}" -component=main mcpr-cli-release
 aptly repo add mcpr-cli-release bin/linux/
 aptly snapshot create mcpr-cli-$1 from repo mcpr-cli-release
 aptly publish snapshot -batch=true -gpg-key="F2EF7271" -architectures="i386,amd64,all" mcpr-cli-${1} s3:apt.filiosoft.com:
