@@ -54,7 +54,7 @@ done
 
 sed -i 's/^Version:.*$/Version: '"${VERSION_NAME}"'/g' control
 
-cp bin/linux/${VERSION_NAME}/mcpr bin/linux/mcpr
+mv bin/linux/${VERSION_NAME}/mcpr bin/linux/mcpr
 
 # build deb
 equivs-build control
