@@ -38,9 +38,12 @@ do_install (){
       URL=$BASE_URL/darwin/mcpr
       echo "${BLUE}Downloading binaries from $URL${COLOREND}"
       curl -sO $URL
-    elif [ "$(lsb_release -is)" == "Ubuntu" ]; then
-      curl -sL https://apt.filiosoft.com/setup | sudo -E bash -
+    elif [ -n "$(command -v apt-get)" ]; then
+      curl -o- -sL https://apt.filiosoft.com/debian/setup | sudo bash -s
       sudo apt-get install mcpr-cli -y
+    #elif [ -n "$(command -v yum)" ]; then
+    #  sudo wget https://apt.filiosoft.com/rpm/filiosoft.repo -O /etc/yum.repos.d/filiosoft.repo
+    #  sudo yum install mcpr-cli -y
     elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
       URL=$BASE_URL/linux/mcpr
       echo "${BLUE}Downloading binaries from $URL${COLOREND}"

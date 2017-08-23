@@ -169,7 +169,7 @@ fi
 
 print_status "Creating apt sources list file for the Filiosoft repo..."
 
-exec_cmd "echo 'deb https://apt.filiosoft.com/debian/ ${DIST} main' > /etc/apt/sources.list.d/filiosoft.list"
+exec_cmd "echo 'deb https://apt.filiosoft.com/debian/ ${DIST} main' > /etc/apt/sources.list.d/filiosoft-${DIST}.list"
 
 print_status 'Running `apt-get update` for you...'
 
