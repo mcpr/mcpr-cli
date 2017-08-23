@@ -55,13 +55,13 @@ done
 sed -i 's/^Version:.*$/Version: '"${VERSION_NAME}"'/g' control
 
 cp bin/linux/${VERSION_NAME}/mcpr .
-mv mcpr bin/linux/mcpr
 
 # build deb
 equivs-build control
 # build rpm
 fpm -s dir -t rpm -v ${VERSION_NAME} -n mcpr-cli ./mcpr=/usr/bin
 
+mv mcpr bin/linux/mcpr
 # copy deb and rpm to latest
 cp mcpr*.deb bin/linux/mcpr-cli_latest_all.deb
 cp mcpr*.rpm bin/linux/mcpr-cli-latest.x86_64.rpm
