@@ -50,24 +50,25 @@ These instructions will get you up and running with `MCPR-CLI`.
 
 You will need a few prerequisites installed to start. 
 
-* Java JDK
-* Bash (Git Bash or Bash on Ubuntu on Windows will work on Windows)
+* [Java JDK](https://docs.oracle.com/javase/8/docs/technotes/guides/install/install_overview.html)
+* Bash ([Git Bash](https://git-scm.com/) or [Windows Subsystem for Linux](https://msdn.microsoft.com/en-us/commandline/wsl/install_guide) will work on Windows)
 
 ### Install
+#### Linux & macOS
 To install `MCPR-CLI`, run the following command.
 
 ```
 $ curl -sSL http://fsft.us/mcpr-cli | sudo bash
 ```
-
-If you are on Windows, download and run the Windows Installer from below. 
+#### Windows
+To install `MCPR-CLI` on Windows, download and run the [Windows Installer](https://artifacts.filiosoft.com/mcpr-cli/windows/mcpr-windows-setup.exe). 
 
 #### Downloads
-- [Linux](https://artifacts.filiosoft.com/mcpr-cli/linux/mcpr)
+- [Linux Binary](https://artifacts.filiosoft.com/mcpr-cli/linux/mcpr)
     - [RPM](https://artifacts.filiosoft.com/mcpr-cli/linux/mcpr-cli-latest.x86_64.rpm)
     - [DEB](https://artifacts.filiosoft.com/mcpr-cli/linux/mcpr-cli_latest_all.deb)
-- [Darwin](https://artifacts.filiosoft.com/mcpr-cli/darwin/mcpr)
-- [Windows](https://artifacts.filiosoft.com/mcpr-cli/windows/mcpr.exe)
+- [Darwin Binary](https://artifacts.filiosoft.com/mcpr-cli/darwin/mcpr)
+- [Windows Binary](https://artifacts.filiosoft.com/mcpr-cli/windows/mcpr.exe)
     - [Installer](https://artifacts.filiosoft.com/mcpr-cli/windows/mcpr-windows-setup.exe)
 
 #### Verify Installation
