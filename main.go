@@ -374,7 +374,7 @@ func setConfig(option string, value string) {
 }
 func main() {
 	config()
-	cliVersion := "0.0.8"
+	cliVersion := "0.0.9"
 	
 	app := cli.NewApp()
 

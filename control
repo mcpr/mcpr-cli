@@ -5,7 +5,7 @@ Standards-Version: 3.9.2
 Bugs: https://github.com/mcpr/mcpr-cli/issues
 Vcs-Browser: https://github.com/mcpr/mcpr-cli
 Package: mcpr-cli
-Version: 0.0.8
+Version: 0.0.9
 Maintainer: Filiosoft Open Source <opensource@filiosoft.com>
 Recommends: default-jdk,git
 Architecture: all
