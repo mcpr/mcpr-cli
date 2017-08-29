@@ -30,11 +30,12 @@ then
   else
     echo "Not a tag"
     VERSION_NAME=${VERSION}-${TRAVIS_BUILD_NUMBER}
-    LATEST_PREFIX="stable"
+    LATEST_PREFIX="nightly"
   fi
 else
   echo "Building tag."
   VERSION_NAME=${TRAVIS_TAG}-${TRAVIS_BUILD_NUMBER}
+  LATEST_PREFIX="stable"
   #sed -i -e "s/${LAST_VER}/${TRAVIS_TAG}/g" main.go
   #echo ${TRAVIS_TAG} > version.txt
 fi
