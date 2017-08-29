@@ -58,14 +58,13 @@ do
   mv ${FILENAME} bin/${i}/${LATEST_FN}
 done
 
-sed -i 's/^Version:.*$/Version: '"${VERSION_NAME}"'/g' control
-
 cp bin/linux/mcpr .
 
 # build deb
 if [ -x "$(command -v equivs-build)" ];
 then
   echo "Building DEB..."
+  sed -i 's/^Version:.*$/Version: '"${VERSION_NAME}"'/g' control
   equivs-build control
   cp mcpr*.deb bin/linux/mcpr-cli_latest_all.deb
   mv mcpr*.deb bin/linux/${VERSION_NAME}
@@ -77,6 +76,14 @@ then
   fpm -s dir -t rpm -v ${VERSION_NAME} -n mcpr-cli ./mcpr=/usr/local/bin/mcpr
   cp mcpr*.rpm bin/linux/mcpr-cli-latest.x86_64.rpm
   mv mcpr*.rpm bin/linux/${VERSION_NAME}
+fi
+# build pkg
+if [ -x "$(command -v pkgbuild)" ];
+then
+  echo "Building PKG..."
+  fpm -s dir -t osxpkg -v ${VERSION_NAME} -n mcpr-cli ./mcpr=/usr/local/bin/mcpr
+  cp mcpr*.pkg bin/darwin/mcpr-cli-latest.pkg
+  mv mcpr*.pkg bin/darwin/${VERSION_NAME}
 fi
 # build windows setup exe
 if [ -x "$(command -v wine)" ];
