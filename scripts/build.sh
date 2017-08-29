@@ -22,8 +22,14 @@ LAST_VER=$(cat version.txt)
 
 if [ -z "$TRAVIS_TAG" ]
 then
-  echo "Not a tag."
-  VERSION_NAME=${VERSION}-${TRAVIS_BUILD_NUMBER}
+  if [ -z "$TRAVIS_BUILD_NUMBER" ]
+  then
+    echo "Not Travis"
+    VERSION_NAME=$VERSION
+  else
+    echo "Not a tag."
+    VERSION_NAME=${VERSION}-${TRAVIS_BUILD_NUMBER}
+  fi
 else
   echo "Building tag."
   VERSION_NAME=${TRAVIS_TAG}-${TRAVIS_BUILD_NUMBER}
@@ -49,25 +55,44 @@ do
   mkdir -p bin/${i}/${VERSION_NAME}
   GOOS=${i} go build -o ${FILENAME}
   cp ${FILENAME} bin/${i}/${VERSION_NAME}/${OUT_FN}
-  mv ${FILENAME} bin/${i}/${VERSION_NAME}/${LATEST_FN}
+  mv ${FILENAME} bin/${i}/${LATEST_FN}
 done
 
 sed -i 's/^Version:.*$/Version: '"${VERSION_NAME}"'/g' control
 
-cp bin/linux/${VERSION_NAME}/mcpr .
+cp bin/linux/mcpr .
 
 # build deb
-equivs-build control
+if [ -x "$(command -v equivs-build)" ];
+then
+  echo "Building DEB..."
+  equivs-build control
+  cp mcpr*.deb bin/linux/mcpr-cli_latest_all.deb
+  mv mcpr*.deb bin/linux/${VERSION_NAME}
+fi
 # build rpm
-fpm -s dir -t rpm -v ${VERSION_NAME} -n mcpr-cli ./mcpr=/usr/local/bin/mcpr
+if [ -x "$(command -v fpm)" ];
+then
+  echo "Building RPM..."
+  fpm -s dir -t rpm -v ${VERSION_NAME} -n mcpr-cli ./mcpr=/usr/local/bin/mcpr
+  cp mcpr*.rpm bin/linux/mcpr-cli-latest.x86_64.rpm
+  mv mcpr*.rpm bin/linux/${VERSION_NAME}
+fi
+# build windows setup exe
+if [ -x "$(command -v wine)" ];
+then
+  echo "Building Windows Setup..."
+  unset DISPLAY
+  wine "C:\inno\ISCC.exe" "scripts/setup.iss"
+  cp bin/mcpr-windows-setup.exe bin/windows/${VERSION_NAME}/mcpr-${VERSION_NAME}-windows-setup.exe
+  mv bin/mcpr-windows-setup.exe bin/windows/mcpr-windows-setup.exe
+fi
 
-rm bin/linux/mcpr
-# copy deb and rpm to latest
-cp mcpr*.deb bin/linux/mcpr-cli_latest_all.deb
-cp mcpr*.rpm bin/linux/mcpr-cli-latest.x86_64.rpm
+#rm bin/linux/mcpr
 
-# move deb and rpm to version folder
-mv mcpr*.deb bin/linux/${VERSION_NAME}
-mv mcpr*.rpm bin/linux/${VERSION_NAME}
-
-bash scripts/publish.sh $VERSION_NAME
+if [ -z "$TRAVIS_BUILD_NUMBER" ]
+then
+  echo "No publish"
+else
+  bash scripts/publish.sh $VERSION_NAME
+fi
