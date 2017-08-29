@@ -16,7 +16,7 @@ install:
 script: 
 - export GOPATH=$(pwd)/go
 - export PATH=$PATH:$GOPATH/bin
-- cd go/src/github.com/mcpr/mcpr-cli
+- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then cd go/src/github.com/mcpr/mcpr-cli; fi
 - ls
 - bash scripts/build.sh
 deploy:
