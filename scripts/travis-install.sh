@@ -1,7 +1,10 @@
 #!/bin/bash
 
 if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
+    brew update
     brew install go
+    mkdir go
+    export GOPATH=$(pwd)/go
     gem install --no-ri --no-rdoc fpm
     go get github.com/sparrc/gdm
 else
