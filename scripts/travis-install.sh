@@ -1,9 +1,9 @@
 #!/bin/bash
 
 if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
-    brew update
-    brew install go
-    mkdir go
+    mkdir -p .go/src/github.com/mcpr/mcpr-cli
+    cp -r * .go/src/github.com/mcpr/mcpr-cli
+    mv .go go
     export GOPATH=$(pwd)/go
     gem install --no-ri --no-rdoc fpm
     go get github.com/sparrc/gdm
