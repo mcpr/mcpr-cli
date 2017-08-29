@@ -73,7 +73,7 @@ fi
 if [ -x "$(command -v rpmbuild)" ] && [ -x "$(command -v fpm)" ];
 then
   echo "Building RPM..."
-  fpm -s dir -t rpm -v ${VERSION_NAME} -n mcpr-cli ./mcpr=/usr/local/bin/mcpr
+  fpm -s dir -t rpm -v ${VERSION_NAME} -n mcpr-cli ./bin/linux/mcpr=/usr/local/bin/mcpr
   cp mcpr*.rpm bin/linux/mcpr-cli-latest.x86_64.rpm
   mv mcpr*.rpm bin/linux/${VERSION_NAME}
 fi
@@ -81,7 +81,7 @@ fi
 if [ -x "$(command -v pkgbuild)" ];
 then
   echo "Building PKG..."
-  fpm -s dir -t osxpkg -v ${VERSION_NAME} -n mcpr-cli ./mcpr=/usr/local/bin/mcpr
+  fpm -s dir -t osxpkg -v ${VERSION_NAME} -n mcpr-cli ./bin/darwin/mcpr=/usr/local/bin/mcpr
   cp mcpr*.pkg bin/darwin/mcpr-cli-latest.pkg
   mv mcpr*.pkg bin/darwin/${VERSION_NAME}
 fi
