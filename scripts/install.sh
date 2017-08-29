@@ -50,7 +50,7 @@ do_install (){
       curl -sO $URL
     fi
 
-    if [ "$(lsb_release -is)" == "Ubuntu" ]; then
+    if [ -n "$(command -v apt-get)" ]; then
       echo "Setup complete..."
     else
       echo "${BLUE}Moving binary to $USR_BIN${COLOREND}"
