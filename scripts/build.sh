@@ -70,7 +70,7 @@ then
   mv mcpr*.deb bin/linux/${VERSION_NAME}
 fi
 # build rpm
-if [ -x "$(command -v fpm)" ];
+if [ -x "$(command -v rpmbuild)" ] && [ -x "$(command -v fpm)" ];
 then
   echo "Building RPM..."
   fpm -s dir -t rpm -v ${VERSION_NAME} -n mcpr-cli ./mcpr=/usr/local/bin/mcpr
