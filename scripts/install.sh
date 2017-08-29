@@ -39,15 +39,18 @@ do_install (){
       echo "${BLUE}Downloading binaries from $URL${COLOREND}"
       curl -sO $URL
     elif [ -n "$(command -v apt-get)" ]; then
-      curl -o- -sL https://apt.filiosoft.com/debian/setup | sudo bash -s
-      sudo apt-get install mcpr-cli -y
-    #elif [ -n "$(command -v yum)" ]; then
-    #  sudo wget https://apt.filiosoft.com/rpm/filiosoft.repo -O /etc/yum.repos.d/filiosoft.repo
-    #  sudo yum install mcpr-cli -y
+      curl -o- -sL https://apt.filiosoft.com/debian/setup | bash -s
+      apt-get install mcpr-cli -y
+    #elif [ -n "$(command -v rpm)" ]; then
+    #  wget https://apt.filiosoft.com/rpm/filiosoft.repo -O /etc/yum.repos.d/filiosoft.repo
+    #  yum install mcpr-cli -y
     elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
       URL=$BASE_URL/linux/mcpr-stable
       echo "${BLUE}Downloading binaries from $URL${COLOREND}"
       curl -sO $URL
+    else 
+      echo "${RED}Your OS doesn't seem to be supported.${COLOREND}"
+      exit 1
     fi
 
     if [ -n "$(command -v apt-get)" ]; then
@@ -58,7 +61,7 @@ do_install (){
       chmod +x $USR_BIN
     fi
 
-    VERSION=$(mcpr --version)
+    VERSION=$($USR_BIN --version)
     printf  "${GREEN}\n$VERSION has been installed!${COLOREND}"
     printf "\n${BOLD}${UNDER}Run mcpr --help for usage information.\n${COLOREND}"
   }
