@@ -65,7 +65,7 @@ To install `MCPR-CLI` on Windows, download and run the [Windows Installer](https
 
 #### Downloads
 - [Linux Binary](https://artifacts.filiosoft.com/mcpr-cli/linux/mcpr)
-    - [RPM](https://artifacts.filiosoft.com/mcpr-cli/linux/mcpr-cli-latest.x86_64.rpm)
+    - [RPM](https://artifacts.filiosoft.com/mcpr-cli/linux/mcpr-cli-latest.noarch.rpm)
     - [DEB](https://artifacts.filiosoft.com/mcpr-cli/linux/mcpr-cli_latest_all.deb)
 - [Darwin Binary](https://artifacts.filiosoft.com/mcpr-cli/darwin/mcpr)
     - [Installer](https://artifacts.filiosoft.com/mcpr-cli/darwin/mcpr-cli-latest.pkg)
