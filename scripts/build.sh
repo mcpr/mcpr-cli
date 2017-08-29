@@ -88,8 +88,6 @@ then
   mv bin/mcpr-windows-setup.exe bin/windows/mcpr-windows-setup.exe
 fi
 
-#rm bin/linux/mcpr
-
 if [ -z "$TRAVIS_BUILD_NUMBER" ]
 then
   echo "No publish"
