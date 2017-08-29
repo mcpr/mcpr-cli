@@ -13,8 +13,8 @@ fi
 VERSION=$(cat version.txt)
 
 declare -a OS=(
-  "windows"
-  "darwin"
+  #"windows"
+  #"darwin"
   "linux"
 )
 
@@ -27,7 +27,7 @@ then
     echo "Not Travis"
     VERSION_NAME=$VERSION
   else
-    echo "Not a tag."
+    echo "Not a tag"
     VERSION_NAME=${VERSION}-${TRAVIS_BUILD_NUMBER}
   fi
 else
@@ -74,8 +74,11 @@ fi
 if [ -x "$(command -v rpmbuild)" ] && [ -x "$(command -v fpm)" ];
 then
   echo "Building RPM..."
-  fpm -s dir -t rpm -v ${VERSION_NAME} -n mcpr-cli -d java-1.8.0-openjdk ./bin/linux/mcpr=/usr/local/bin/mcpr
-  cp mcpr*.rpm bin/linux/mcpr-cli-latest.x86_64.rpm
+  fpm -s dir -t rpm -a all -v ${VERSION_NAME} -n mcpr-cli -d java-1.8.0-openjdk \
+   --license MIT --vendor "Filiosoft, LLC" -m "Filiosoft Open Source <opensource@filiosoft.com>" \
+   --url "https://mcpr.github.io/mcpr-cli" --description "A CLI for setting up and controlling Minecraft servers." \
+   --rpm-summary "The Official MCPR CLI!" ./bin/linux/mcpr=/usr/local/bin/mcpr
+  cp mcpr*.rpm bin/linux/mcpr-cli-latest.noarch.rpm
   mv mcpr*.rpm bin/linux/${VERSION_NAME}
 fi
 
