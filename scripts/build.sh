@@ -98,9 +98,9 @@ then
   mv bin/mcpr-windows-setup.exe bin/windows/mcpr-windows-setup.exe
 fi
 
-if [ -z "$TRAVIS_BUILD_NUMBER" ] && [[ $TRAVIS_OS_NAME == 'osx' ]]
+if [ ! -z "$TRAVIS_BUILD_NUMBER" ] && [[ $TRAVIS_OS_NAME == 'linux' ]]
 then
-  echo "No publish"
-else
   bash scripts/publish.sh $VERSION_NAME
+else
+  echo "No publish"
 fi
