@@ -1,12 +1,13 @@
-Section: misc
+Section: games
 Priority: optional
 Homepage: https://mcpr.github.io/mcpr-cli/
 Standards-Version: 3.9.2
 Bugs: https://github.com/mcpr/mcpr-cli/issues
+Vcs-Browser: https://github.com/mcpr/mcpr-cli
 Package: mcpr-cli
 Version: 0.0.8
 Maintainer: Filiosoft Open Source <opensource@filiosoft.com>
-Recommends: default-jdk
+Recommends: default-jdk,git
 Architecture: all
 Copyright: LICENSE
 # Changelog: <changelog file; defaults to a generic changelog>
