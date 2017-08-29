@@ -90,7 +90,7 @@ fi
 if [ -x "$(command -v pkgbuild)" ];
 then
   echo "Building PKG..."
-  fpm -s dir -t osxpkg -v ${VERSION_NAME} -n mcpr-cli --osxpkg-identifier-prefix com.filiosoft.mcpr-cli ./bin/darwin/mcpr-${LATEST_PREFIX}=/usr/local/bin/mcpr
+  fpm -s dir -t osxpkg -v ${VERSION_NAME} -n mcpr-cli --osxpkg-identifier-prefix com.filiosoft ./bin/darwin/mcpr-${LATEST_PREFIX}=/usr/local/bin/mcpr
   cp mcpr*.pkg bin/darwin/mcpr-cli-${LATEST_PREFIX}-latest.pkg
   mv mcpr*.pkg bin/darwin/${VERSION_NAME}
 fi
@@ -101,8 +101,8 @@ then
   echo "Building Windows Setup..."
   unset DISPLAY
   wine "C:\inno\ISCC.exe" "scripts/setup.iss"
-  cp bin/mcpr-cli-setup.exe bin/windows/${VERSION_NAME}/mcpr-${VERSION_NAME}-windows-setup.exe
-  mv bin/mcpr-cli-setup.exe bin/windows/mcpr-cli-${LATEST_PREFIX}-setup.exe
+  cp bin/mcpr-cli-setup.exe bin/windows/${VERSION_NAME}/mcpr-${VERSION_NAME}-setup.exe
+  mv bin/mcpr-cli-setup.exe bin/windows/mcpr-cli-setup-${LATEST_PREFIX}-latest.exe
 fi
 
 if [ ! -z "$TRAVIS_BUILD_NUMBER" ] && [[ $TRAVIS_OS_NAME == 'linux' ]]

@@ -22,9 +22,11 @@ if [ -z "$TRAVIS_TAG" ]
 then
     DISTRIBUTION=nightly
     COMMENT="Nightly builds"
+    echo "Nightly build"
 else
     DISTRIBUTION=stable
     COMMENT="Stable builds"
+    echo "Stable build"
 fi
 
 aptly repo create -distribution=${DISTRIBUTION} -comment="${COMMENT}" -component=main mcpr-cli-release

@@ -35,7 +35,7 @@ do_install (){
 
   installMc () {
     if [ "$(uname)" == "Darwin" ]; then
-      URL=$BASE_URL/darwin/mcpr
+      URL=$BASE_URL/darwin/mcpr-stable
       echo "${BLUE}Downloading binaries from $URL${COLOREND}"
       curl -sO $URL
     elif [ -n "$(command -v apt-get)" ]; then
@@ -45,7 +45,7 @@ do_install (){
     #  sudo wget https://apt.filiosoft.com/rpm/filiosoft.repo -O /etc/yum.repos.d/filiosoft.repo
     #  sudo yum install mcpr-cli -y
     elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
-      URL=$BASE_URL/linux/mcpr
+      URL=$BASE_URL/linux/mcpr-stable
       echo "${BLUE}Downloading binaries from $URL${COLOREND}"
       curl -sO $URL
     fi
@@ -54,7 +54,7 @@ do_install (){
       echo "Setup complete..."
     else
       echo "${BLUE}Moving binary to $USR_BIN${COLOREND}"
-      mv mcpr $USR_BIN
+      mv mcpr-stable $USR_BIN
       chmod +x $USR_BIN
     fi
 

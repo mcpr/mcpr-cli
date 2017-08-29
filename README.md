@@ -64,13 +64,13 @@ $ curl -sSL http://fsft.us/mcpr-cli | sudo bash
 To install `MCPR-CLI` on Windows, download and run the [Windows Installer](https://artifacts.filiosoft.com/mcpr-cli/windows/mcpr-windows-setup.exe). 
 
 #### Downloads
-- [Linux Binary](https://artifacts.filiosoft.com/mcpr-cli/linux/mcpr)
-    - [RPM](https://artifacts.filiosoft.com/mcpr-cli/linux/mcpr-cli-latest.noarch.rpm)
-    - [DEB](https://artifacts.filiosoft.com/mcpr-cli/linux/mcpr-cli_latest_all.deb)
-- [Darwin Binary](https://artifacts.filiosoft.com/mcpr-cli/darwin/mcpr)
-    - [Installer](https://artifacts.filiosoft.com/mcpr-cli/darwin/mcpr-cli-latest.pkg)
-- [Windows Binary](https://artifacts.filiosoft.com/mcpr-cli/windows/mcpr.exe)
-    - [Installer](https://artifacts.filiosoft.com/mcpr-cli/windows/mcpr-windows-setup.exe)
+- [Linux Binary](https://artifacts.filiosoft.com/mcpr-cli/linux/mcpr-stable)
+    - [RPM Installer](https://artifacts.filiosoft.com/mcpr-cli/linux/mcpr-cli-stable-latest.noarch.rpm)
+    - [DEB Installer](https://artifacts.filiosoft.com/mcpr-cli/linux/mcpr-cli_stable_latest_all.deb)
+- [Darwin Binary](https://artifacts.filiosoft.com/mcpr-cli/darwin/mcpr-stable)
+    - [Installer](https://artifacts.filiosoft.com/mcpr-cli/darwin/mcpr-cli-stable-latest.pkg)
+- [Windows Binary](https://artifacts.filiosoft.com/mcpr-cli/windows/mcpr-stable.exe)
+    - [Installer](https://artifacts.filiosoft.com/mcpr-cli/windows/mcpr-cli-setup-stable-latest.exe)
 
 #### Verify Installation
 To verify your installation, run the following.
