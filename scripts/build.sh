@@ -26,9 +26,11 @@ then
   then
     echo "Not Travis"
     VERSION_NAME=$VERSION
+    LATEST_PREFIX="nightly"
   else
     echo "Not a tag"
     VERSION_NAME=${VERSION}-${TRAVIS_BUILD_NUMBER}
+    LATEST_PREFIX="stable"
   fi
 else
   echo "Building tag."
@@ -45,11 +47,11 @@ do
   if [ "$i" == "windows" ]; then
     FILENAME=mcpr-cli
     OUT_FN=mcpr-${VERSION_NAME}-$i.exe
-    LATEST_FN=mcpr.exe
+    LATEST_FN=mcpr-${LATEST_PREFIX}.exe
   else
     FILENAME=mcpr-cli
     OUT_FN=mcpr-${VERSION_NAME}-$i
-    LATEST_FN=mcpr
+    LATEST_FN=mcpr-${LATEST_PREFIX}
   fi
   echo 'Building '${i}''
   mkdir -p bin/${i}/${VERSION_NAME}
@@ -58,7 +60,8 @@ do
   mv ${FILENAME} bin/${i}/${LATEST_FN}
 done
 
-cp bin/linux/mcpr .
+cp bin/linux/mcpr-${LATEST_PREFIX} mcpr
+cp bin/windows/mcpr-${LATEST_PREFIX}.exe mcpr.exe
 
 # build deb
 if [ -x "$(command -v equivs-build)" ];
@@ -66,7 +69,7 @@ then
   echo "Building DEB..."
   sed -i 's/^Version:.*$/Version: '"${VERSION_NAME}"'/g' control
   equivs-build control
-  cp mcpr*.deb bin/linux/mcpr-cli_latest_all.deb
+  cp mcpr*.deb bin/linux/mcpr-cli_${LATEST_PREFIX}_latest_all.deb
   mv mcpr*.deb bin/linux/${VERSION_NAME}
 fi
 
@@ -77,8 +80,8 @@ then
   fpm -s dir -t rpm -a all -v ${VERSION_NAME} -n mcpr-cli -d java-1.8.0-openjdk \
    --license MIT --vendor "Filiosoft, LLC" -m "Filiosoft Open Source <opensource@filiosoft.com>" \
    --url "https://mcpr.github.io/mcpr-cli" --description "A CLI for setting up and controlling Minecraft servers." \
-   --rpm-summary "The Official MCPR CLI!" ./bin/linux/mcpr=/usr/local/bin/mcpr
-  cp mcpr*.rpm bin/linux/mcpr-cli-latest.noarch.rpm
+   --rpm-summary "The Official MCPR CLI!" ./bin/linux/mcpr-${LATEST_PREFIX}=/usr/local/bin/mcpr
+  cp mcpr*.rpm bin/linux/mcpr-cli-${LATEST_PREFIX}-latest.noarch.rpm
   mv mcpr*.rpm bin/linux/${VERSION_NAME}
 fi
 
@@ -86,8 +89,8 @@ fi
 if [ -x "$(command -v pkgbuild)" ];
 then
   echo "Building PKG..."
-  fpm -s dir -t osxpkg -v ${VERSION_NAME} -n mcpr-cli ./bin/darwin/mcpr=/usr/local/bin/mcpr
-  cp mcpr*.pkg bin/darwin/mcpr-cli-latest.pkg
+  fpm -s dir -t osxpkg -v ${VERSION_NAME} -n mcpr-cli --osxpkg-identifier-prefix com.filiosoft.mcpr-cli ./bin/darwin/mcpr-${LATEST_PREFIX}=/usr/local/bin/mcpr
+  cp mcpr*.pkg bin/darwin/mcpr-cli-${LATEST_PREFIX}-latest.pkg
   mv mcpr*.pkg bin/darwin/${VERSION_NAME}
 fi
 
@@ -97,8 +100,8 @@ then
   echo "Building Windows Setup..."
   unset DISPLAY
   wine "C:\inno\ISCC.exe" "scripts/setup.iss"
-  cp bin/mcpr-windows-setup.exe bin/windows/${VERSION_NAME}/mcpr-${VERSION_NAME}-windows-setup.exe
-  mv bin/mcpr-windows-setup.exe bin/windows/mcpr-windows-setup.exe
+  cp bin/mcpr-cli-setup.exe bin/windows/${VERSION_NAME}/mcpr-${VERSION_NAME}-windows-setup.exe
+  mv bin/mcpr-cli-setup.exe bin/windows/mcpr-cli-${LATEST_PREFIX}-setup.exe
 fi
 
 if [ ! -z "$TRAVIS_BUILD_NUMBER" ] && [[ $TRAVIS_OS_NAME == 'linux' ]]

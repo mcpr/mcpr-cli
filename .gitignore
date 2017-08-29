@@ -43,3 +43,5 @@ bin/
 mcpr-cli-tmp/
 mcpr
 mcpr-cli
+*.deb
+*.rpm

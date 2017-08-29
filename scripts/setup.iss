@@ -18,7 +18,7 @@ AllowNoIcons=yes
 LicenseFile=LICENSE
 OutputDir=bin
 SourceDir=../
-OutputBaseFilename=mcpr-windows-setup
+OutputBaseFilename=mcpr-cli-setup
 SetupIconFile=art/icon.ico
 Compression=lzma
 SolidCompression=yes
@@ -31,7 +31,7 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: modifypath; Description: Set PATH to MCPR-CLI; Flags: unchecked
 
 [Files]
-Source: "bin/windows/mcpr.exe"; DestDir: "{app}"; DestName: "mcpr.exe"; Flags: ignoreversion
+Source: "mcpr.exe"; DestDir: "{app}"; DestName: "mcpr.exe"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
