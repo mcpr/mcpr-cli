@@ -14,8 +14,8 @@ matrix:
 install:
 - bash scripts/travis-install.sh
 script: 
-- export GOPATH=$(pwd)/go
-- export PATH=$PATH:$GOPATH/bin
+- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then export GOPATH=$(pwd)/go; fi
+- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then export PATH=$PATH:$GOPATH/bin; fi
 - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then cd go/src/github.com/mcpr/mcpr-cli; fi
 - bash scripts/build.sh
 deploy:

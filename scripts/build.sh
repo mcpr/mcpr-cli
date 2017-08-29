@@ -13,8 +13,8 @@ fi
 VERSION=$(cat version.txt)
 
 declare -a OS=(
-  #"windows"
-  #"darwin"
+  "windows"
+  "darwin"
   "linux"
 )
 
