@@ -35,7 +35,7 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: modifypath; Description: Set PATH to MCPR-CLI; Flags: unchecked
 
 [Files]
-Source: "mcpr-cli.exe"; DestDir: "{app}"; DestName: "mcpr.exe"; Flags: ignoreversion
+Source: "bin/windows/mcpr.exe"; DestDir: "{app}"; DestName: "mcpr.exe"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
