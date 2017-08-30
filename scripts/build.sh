@@ -12,11 +12,16 @@ fi
 
 VERSION=$(cat version.txt)
 
-declare -a OS=(
-  "windows"
-  "darwin"
-  "linux"
-)
+if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
+  declare -a OS=(
+    "darwin"
+  )
+else
+  declare -a OS=(
+    "windows"
+    "linux"
+  )
+fi
 
 LAST_VER=$(cat version.txt)
 
@@ -105,14 +110,18 @@ then
   mv bin/mcpr-cli-setup.exe bin/windows/mcpr-cli-setup-${LATEST_PREFIX}-latest.exe
 fi
 
-mkdir -p github-release
-cp -r bin/linux/${VERSION_NAME}/* github-release
-cp -r bin/darwin/${VERSION_NAME}/* github-release
-cp -r bin/windows/${VERSION_NAME}/* github-release
-ls github-release
+if [ ! -z "$TRAVIS_TAG" ]
+then
+  mkdir -p github-release
+  cp -r bin/linux/${VERSION_NAME}/* github-release || true
+  cp -r bin/darwin/${VERSION_NAME}/* github-release || true
+  cp -r bin/windows/${VERSION_NAME}/* github-release || true
+  ls github-release
+fi
 
 if [ ! -z "$TRAVIS_BUILD_NUMBER" ] && [[ $TRAVIS_OS_NAME == 'linux' ]]
 then
+
   bash scripts/publish.sh $VERSION_NAME
 else
   echo "No publish"
