@@ -7,6 +7,15 @@ if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
     export GOPATH=$(pwd)/go
     gem install --no-ri --no-rdoc fpm
     go get github.com/sparrc/gdm
+    openssl aes-256-cbc -K $encrypted_ab1f4736f273_key -iv $encrypted_ab1f4736f273_iv -in mac_installer.cer.enc -out mac_installer.cer -d
+
+    # setup keychain and import the key
+    KEY_CHAIN=travis.keychain
+    security create-keychain -p travis $KEY_CHAIN
+    security default-keychain -s $KEY_CHAIN
+    security unlock-keychain -p travis $KEY_CHAIN
+    security set-keychain-settings -t 3600 -u $KEY_CHAIN
+    security import mac_installer.cer -k $KEY_CHAIN -P travis -T /usr/bin/productsign
 else
     openssl aes-256-cbc -K $encrypted_6e849d71586b_key -iv $encrypted_6e849d71586b_iv -in private.key.enc -out private.key -d
     openssl aes-256-cbc -K $encrypted_ab1f4736f273_key -iv $encrypted_ab1f4736f273_iv -in secrets.tar.enc -out secrets.tar -d

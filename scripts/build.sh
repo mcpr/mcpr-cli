@@ -96,8 +96,10 @@ if [ -x "$(command -v pkgbuild)" ];
 then
   echo "Building PKG..."
   fpm -s dir -t osxpkg -v ${VERSION_NAME} -n mcpr-cli --osxpkg-identifier-prefix com.filiosoft ./bin/darwin/mcpr=/usr/local/bin/mcpr
-  cp mcpr*.pkg bin/darwin/mcpr-cli-latest.pkg
-  mv mcpr*.pkg bin/darwin/${VERSION_NAME}
+  ls
+  productsign --sign '3rd Party Mac Developer Installer: Filiosoft, LLC (U2PJ8B6P8N)' mcpr*.pkg mcpr-cli-signed.pkg
+  cp mcpr-cli-signed.pkg bin/darwin/mcpr-cli-latest.pkg
+  mv mcpr-cli-signed.pkg bin/darwin/${VERSION_NAME}
 fi
 
 # build windows setup exe
