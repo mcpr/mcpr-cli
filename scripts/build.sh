@@ -101,7 +101,7 @@ then
   echo "Building Windows Setup..."
   unset DISPLAY
   wine "C:\inno\ISCC.exe" "scripts/setup.iss"
-  cp bin/mcpr-cli-setup.exe bin/windows/${VERSION_NAME}/mcpr-${VERSION_NAME}-setup.exe
+  cp bin/mcpr-cli-setup.exe bin/windows/${VERSION_NAME}/mcpr-cli-setup-${VERSION_NAME}.exe
   mv bin/mcpr-cli-setup.exe bin/windows/mcpr-cli-setup-${LATEST_PREFIX}-latest.exe
 fi
 

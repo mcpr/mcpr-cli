@@ -66,7 +66,6 @@ do_install (){
     printf "\n${BOLD}${UNDER}Run mcpr --help for usage information.\n${COLOREND}"
   }
 
-  COMMAND=mcpr
   if [ -x "$(command -v mcpr)" ];
   then
     echo "${YELLOW}The command mcpr already exists on your system. If you already have MCPR-CLI installed, please run \"curl -sSL http://fsft.us/mcpr-cli-update | sudo bash\" ${COLOREND}"
