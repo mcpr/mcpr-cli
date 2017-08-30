@@ -45,3 +45,4 @@ mcpr
 mcpr-cli
 *.deb
 *.rpm
+github-release/

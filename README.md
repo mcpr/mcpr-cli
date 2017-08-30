@@ -61,7 +61,7 @@ To install `MCPR-CLI`, run the following command.
 $ curl -sSL http://fsft.us/mcpr-cli | sudo bash
 ```
 #### Windows
-To install `MCPR-CLI` on Windows, download and run the [Windows Installer](https://artifacts.filiosoft.com/mcpr-cli/windows/mcpr-windows-setup.exe). 
+To install `MCPR-CLI` on Windows, download and run the [Windows Installer](https://artifacts.filiosoft.com/mcpr-cli/windows/mcpr-cli-setup-stable-latest.exe). 
 
 #### Downloads
 - [Linux Binary](https://artifacts.filiosoft.com/mcpr-cli/linux/mcpr-stable)

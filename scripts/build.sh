@@ -105,6 +105,12 @@ then
   mv bin/mcpr-cli-setup.exe bin/windows/mcpr-cli-setup-${LATEST_PREFIX}-latest.exe
 fi
 
+mkdir -p github-release
+cp -r bin/linux/${VERSION_NAME}/* github-release
+cp -r bin/darwin/${VERSION_NAME}/* github-release
+cp -r bin/windows/${VERSION_NAME}/* github-release
+ls github-release
+
 if [ ! -z "$TRAVIS_BUILD_NUMBER" ] && [[ $TRAVIS_OS_NAME == 'linux' ]]
 then
   bash scripts/publish.sh $VERSION_NAME
