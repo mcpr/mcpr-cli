@@ -7,8 +7,11 @@ if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
     export GOPATH=$(pwd)/go
     gem install --no-ri --no-rdoc fpm
     go get github.com/sparrc/gdm
-    openssl aes-256-cbc -K $encrypted_ab1f4736f273_key -iv $encrypted_ab1f4736f273_iv -in mac_installer.cer.enc -out mac_installer.cer -d
 
+    # decrypt everything
+    openssl aes-256-cbc -K $encrypted_ab1f4736f273_key -iv $encrypted_ab1f4736f273_iv -in secrets.tar.enc -out secrets.tar -d
+    tar xvf secrets.tar
+    
     # setup keychain and import the key
     KEY_CHAIN=travis.keychain
     security create-keychain -p travis $KEY_CHAIN
@@ -19,9 +22,7 @@ if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
     security find-certificate -a KEY_CHAIN
 else
     # decrypt everything
-    openssl aes-256-cbc -K $encrypted_6e849d71586b_key -iv $encrypted_6e849d71586b_iv -in private.key.enc -out filiosoft-apt-signing-private.key -d
     openssl aes-256-cbc -K $encrypted_ab1f4736f273_key -iv $encrypted_ab1f4736f273_iv -in secrets.tar.enc -out secrets.tar -d
-    openssl aes-256-cbc -K $encrypted_ab1f4736f273_key -iv $encrypted_ab1f4736f273_iv -in filiosoft-signing-private.key.enc -out filiosoft-signing-private.key -d
     tar xvf secrets.tar
 
     # import gpg keys
