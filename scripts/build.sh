@@ -103,11 +103,27 @@ fi
 # build windows setup exe
 if [ -x "$(command -v wine)" ];
 then
-  echo "Building Windows Setup..."
   unset DISPLAY
+  cp bin/windows/mcpr.exe bin/windows/mcpr-unsigned.exe
+  echo "Signing Windows Binary..."
+  osslsigncode sign -certs authenticode.spc -key authenticode.pvk -pass "$CODESIGN_PWD" \
+  -n "MCPR-CLI" -i https://mcpr.github.io/mcpr-cli/ \
+	-t http://timestamp.verisign.com/scripts/timstamp.dll \
+  -in bin/windows/mcpr.exe -out bin/windows/mcpr.exe
+
+  echo "Building Windows Installer..."
   wine "C:\inno\ISCC.exe" "scripts/setup.iss"
+
+  echo 'Signing Windows Installer...'
+  osslsigncode sign -certs authenticode.spc -key authenticode.pvk -pass "$CODESIGN_PWD" \
+  -n "MCPR-CLI" -i https://mcpr.github.io/mcpr-cli/ \
+	-t http://timestamp.verisign.com/scripts/timstamp.dll \
+  -in bin/mcpr-cli-setup.exe -out bin/mcpr-cli-setup-signed.exe
+
   cp bin/mcpr-cli-setup.exe bin/windows/${VERSION_NAME}/mcpr-cli-setup-${VERSION_NAME}.exe
   mv bin/mcpr-cli-setup.exe bin/windows/mcpr-cli-setup-latest.exe
+  cp bin/mcpr-cli-setup-signed.exe bin/windows/${VERSION_NAME}/mcpr-cli-setup-signed-${VERSION_NAME}.exe
+  mv bin/mcpr-cli-setup-signed.exe bin/windows/mcpr-cli-setup-signed-latest.exe
 fi
 
 if [ ! -z "$TRAVIS_TAG" ]

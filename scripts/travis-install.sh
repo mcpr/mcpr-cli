@@ -9,13 +9,15 @@ if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
     go get github.com/sparrc/gdm
 else
     openssl aes-256-cbc -K $encrypted_6e849d71586b_key -iv $encrypted_6e849d71586b_iv -in private.key.enc -out private.key -d
+    openssl aes-256-cbc -K $encrypted_ab1f4736f273_key -iv $encrypted_ab1f4736f273_iv -in secrets.tar.enc -out secrets.tar -d
+    tar xvf secrets.tar
     sudo dpkg --add-architecture i386
 
     # setup aptly
     sudo sh -c 'echo "deb http://repo.aptly.info/ squeeze main" >> /etc/apt/sources.list'
     sudo apt-key adv --keyserver keys.gnupg.net --recv-keys 9E3E53F19C7DE460
     sudo apt-get -qq update
-    sudo apt-get install equivs aptly ruby ruby-dev build-essential rpm innoextract wine python-software-properties
+    sudo apt-get install equivs aptly ruby ruby-dev build-essential rpm innoextract wine python-software-properties osslsigncode
     gem install --no-ri --no-rdoc fpm
     go get github.com/sparrc/gdm
 
