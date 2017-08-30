@@ -16,13 +16,20 @@ if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
     security unlock-keychain -p travis $KEY_CHAIN
     security set-keychain-settings -t 3600 -u $KEY_CHAIN
     security import mac_installer.cer -k $KEY_CHAIN -P travis -T /usr/bin/productsign
+    security find-certificate -a KEY_CHAIN
 else
-    openssl aes-256-cbc -K $encrypted_6e849d71586b_key -iv $encrypted_6e849d71586b_iv -in private.key.enc -out private.key -d
+    # decrypt everything
+    openssl aes-256-cbc -K $encrypted_6e849d71586b_key -iv $encrypted_6e849d71586b_iv -in private.key.enc -out filiosoft-apt-signing-private.key -d
     openssl aes-256-cbc -K $encrypted_ab1f4736f273_key -iv $encrypted_ab1f4736f273_iv -in secrets.tar.enc -out secrets.tar -d
+    openssl aes-256-cbc -K $encrypted_ab1f4736f273_key -iv $encrypted_ab1f4736f273_iv -in filiosoft-signing-private.key.enc -out filiosoft-signing-private.key -d
     tar xvf secrets.tar
-    sudo dpkg --add-architecture i386
 
-    # setup aptly
+    # import gpg keys
+    gpg --allow-secret-key-import --import filiosoft-apt-signing-private.key
+    gpg --allow-secret-key-import --import filiosoft-signing-private.key
+
+    # setup aptly & install deps
+    sudo dpkg --add-architecture i386
     sudo sh -c 'echo "deb http://repo.aptly.info/ squeeze main" >> /etc/apt/sources.list'
     sudo apt-key adv --keyserver keys.gnupg.net --recv-keys 9E3E53F19C7DE460
     sudo add-apt-repository -y ppa:likemartinma/osslsigncode

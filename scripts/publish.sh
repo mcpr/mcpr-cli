@@ -13,8 +13,7 @@ cat <<EOT > ~/.aptly.conf
 }
 EOT
 
-wget -qO - https://apt.filiosoft.com/archive.key
-gpg --allow-secret-key-import --import private.key
+wget https://apt.filiosoft.com/debian/pubkey.gpg
 gpg --import archive.key
 gpg --list-secret-keys
 

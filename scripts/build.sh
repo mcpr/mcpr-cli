@@ -83,7 +83,8 @@ fi
 if [ -x "$(command -v rpmbuild)" ] && [ -x "$(command -v fpm)" ];
 then
   echo "Building RPM..."
-  fpm -s dir -t rpm -a all -v ${VERSION_NAME} -n mcpr-cli -d java-1.8.0-openjdk \
+  echo "%_gpg_name F56BD64C" > ~/.rpmmacros
+  echo "$GPG_PWD" | fpm -s dir -t rpm -a all -v ${VERSION_NAME} -n mcpr-cli -d java-1.8.0-openjdk \
    --license MIT --vendor "Filiosoft, LLC" -m "Filiosoft Open Source <opensource@filiosoft.com>" \
    --url "https://mcpr.github.io/mcpr-cli" --description "A CLI for setting up and controlling Minecraft servers." \
    --rpm-summary "The Official MCPR CLI!" ./bin/linux/mcpr=/usr/local/bin/mcpr
@@ -99,7 +100,7 @@ then
   ls
   productsign --sign '3rd Party Mac Developer Installer: Filiosoft, LLC (U2PJ8B6P8N)' mcpr*.pkg mcpr-cli-signed.pkg
   cp mcpr-cli-signed.pkg bin/darwin/mcpr-cli-latest.pkg
-  mv mcpr-cli-signed.pkg bin/darwin/${VERSION_NAME}
+  mv mcpr-cli-signed.pkg bin/darwin/${VERSION_NAME}/mcpr-cli-${VERSION_NAME}.pkg
 fi
 
 # build windows setup exe
