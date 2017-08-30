@@ -104,12 +104,12 @@ fi
 if [ -x "$(command -v wine)" ];
 then
   unset DISPLAY
-  cp bin/windows/mcpr.exe bin/windows/mcpr-unsigned.exe
   echo "Signing Windows Binary..."
+  mv bin/windows/mcpr.exe bin/windows/mcpr-unsigned.exe
   osslsigncode sign -certs authenticode.spc -key authenticode.pvk -pass "$CODESIGN_PWD" \
   -n "MCPR-CLI" -i https://mcpr.github.io/mcpr-cli/ \
 	-t http://timestamp.verisign.com/scripts/timstamp.dll \
-  -in bin/windows/mcpr.exe -out bin/windows/mcpr.exe
+  -in bin/windows/mcpr-unsigned.exe -out bin/windows/mcpr.exe
 
   echo "Building Windows Installer..."
   wine "C:\inno\ISCC.exe" "scripts/setup.iss"
