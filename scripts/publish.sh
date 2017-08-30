@@ -22,14 +22,16 @@ if [ -z "$TRAVIS_TAG" ]
 then
     DISTRIBUTION=nightly
     COMMENT="Nightly builds"
+    LATEST_PREFIX=nightly
     echo "Nightly build"
 else
     DISTRIBUTION=stable
     COMMENT="Stable builds"
+    LATEST_PREFIX=stable
     echo "Stable build"
 fi
 
 aptly repo create -distribution=${DISTRIBUTION} -comment="${COMMENT}" -component=main mcpr-cli-release
-aptly repo add mcpr-cli-release bin/linux/${1}
+aptly repo add mcpr-cli-release bin/${LATEST_PREFIX}/linux/${1}
 aptly snapshot create mcpr-cli-${1} from repo mcpr-cli-release
 aptly publish snapshot -batch=true -gpg-key="F2EF7271" -architectures="i386,amd64,all" mcpr-cli-${1} s3:apt.filiosoft.com:

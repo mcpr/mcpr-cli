@@ -53,11 +53,11 @@ do
   if [ "$i" == "windows" ]; then
     FILENAME=mcpr-cli
     OUT_FN=mcpr-${VERSION_NAME}-$i.exe
-    LATEST_FN=mcpr-${LATEST_PREFIX}.exe
+    LATEST_FN=mcpr.exe
   else
     FILENAME=mcpr-cli
     OUT_FN=mcpr-${VERSION_NAME}-$i
-    LATEST_FN=mcpr-${LATEST_PREFIX}
+    LATEST_FN=mcpr
   fi
   echo 'Building '${i}''
   mkdir -p bin/${i}/${VERSION_NAME}
@@ -66,8 +66,8 @@ do
   mv ${FILENAME} bin/${i}/${LATEST_FN}
 done
 
-cp bin/linux/mcpr-${LATEST_PREFIX} mcpr
-cp bin/windows/mcpr-${LATEST_PREFIX}.exe mcpr.exe
+cp bin/linux/mcpr mcpr
+cp bin/windows/mcpr.exe mcpr.exe
 
 # build deb
 if [ -x "$(command -v equivs-build)" ];
@@ -75,7 +75,7 @@ then
   echo "Building DEB..."
   sed -i 's/^Version:.*$/Version: '"${VERSION_NAME}"'/g' control
   equivs-build control
-  cp mcpr*.deb bin/linux/mcpr-cli_${LATEST_PREFIX}_latest_all.deb
+  cp mcpr*.deb bin/linux/mcpr-cli_latest_all.deb
   mv mcpr*.deb bin/linux/${VERSION_NAME}
 fi
 
@@ -86,8 +86,8 @@ then
   fpm -s dir -t rpm -a all -v ${VERSION_NAME} -n mcpr-cli -d java-1.8.0-openjdk \
    --license MIT --vendor "Filiosoft, LLC" -m "Filiosoft Open Source <opensource@filiosoft.com>" \
    --url "https://mcpr.github.io/mcpr-cli" --description "A CLI for setting up and controlling Minecraft servers." \
-   --rpm-summary "The Official MCPR CLI!" ./bin/linux/mcpr-${LATEST_PREFIX}=/usr/local/bin/mcpr
-  cp mcpr*.rpm bin/linux/mcpr-cli-${LATEST_PREFIX}-latest.noarch.rpm
+   --rpm-summary "The Official MCPR CLI!" ./bin/linux/mcpr=/usr/local/bin/mcpr
+  cp mcpr*.rpm bin/linux/mcpr-cli-latest.noarch.rpm
   mv mcpr*.rpm bin/linux/${VERSION_NAME}
 fi
 
@@ -95,8 +95,8 @@ fi
 if [ -x "$(command -v pkgbuild)" ];
 then
   echo "Building PKG..."
-  fpm -s dir -t osxpkg -v ${VERSION_NAME} -n mcpr-cli --osxpkg-identifier-prefix com.filiosoft ./bin/darwin/mcpr-${LATEST_PREFIX}=/usr/local/bin/mcpr
-  cp mcpr*.pkg bin/darwin/mcpr-cli-${LATEST_PREFIX}-latest.pkg
+  fpm -s dir -t osxpkg -v ${VERSION_NAME} -n mcpr-cli --osxpkg-identifier-prefix com.filiosoft ./bin/darwin/mcpr=/usr/local/bin/mcpr
+  cp mcpr*.pkg bin/darwin/mcpr-cli-latest.pkg
   mv mcpr*.pkg bin/darwin/${VERSION_NAME}
 fi
 
@@ -107,7 +107,7 @@ then
   unset DISPLAY
   wine "C:\inno\ISCC.exe" "scripts/setup.iss"
   cp bin/mcpr-cli-setup.exe bin/windows/${VERSION_NAME}/mcpr-cli-setup-${VERSION_NAME}.exe
-  mv bin/mcpr-cli-setup.exe bin/windows/mcpr-cli-setup-${LATEST_PREFIX}-latest.exe
+  mv bin/mcpr-cli-setup.exe bin/windows/mcpr-cli-setup-latest.exe
 fi
 
 if [ ! -z "$TRAVIS_TAG" ]
@@ -118,6 +118,11 @@ then
   cp -r bin/windows/${VERSION_NAME}/* github-release || true
   ls github-release
 fi
+
+# move to latest prefix (e.g. nightly) folder
+mkdir $LATEST_PREFIX
+mv bin/* $LATEST_PREFIX/
+mv $LATEST_PREFIX bin/
 
 if [ ! -z "$TRAVIS_BUILD_NUMBER" ] && [[ $TRAVIS_OS_NAME == 'linux' ]]
 then
