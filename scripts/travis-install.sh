@@ -11,7 +11,7 @@ if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
     # decrypt everything
     openssl aes-256-cbc -K $encrypted_ab1f4736f273_key -iv $encrypted_ab1f4736f273_iv -in secrets.tar.enc -out secrets.tar -d
     tar xvf secrets.tar
-    
+
     # setup keychain and import the key
     KEY_CHAIN=travis.keychain
     security create-keychain -p travis $KEY_CHAIN
@@ -35,7 +35,7 @@ else
     sudo apt-key adv --keyserver keys.gnupg.net --recv-keys 9E3E53F19C7DE460
     sudo add-apt-repository -y ppa:likemartinma/osslsigncode
     sudo apt-get -qq update
-    sudo apt-get install equivs aptly ruby ruby-dev build-essential rpm innoextract wine python-software-properties osslsigncode
+    sudo apt-get install equivs aptly ruby ruby-dev build-essential rpm innoextract wine python-software-properties osslsigncode debsigs
     gem install --no-ri --no-rdoc fpm
     go get github.com/sparrc/gdm
 

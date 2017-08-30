@@ -75,6 +75,7 @@ then
   echo "Building DEB..."
   sed -i 's/^Version:.*$/Version: '"${VERSION_NAME}"'/g' control
   equivs-build control
+  echo "$GPG_PWD" | debsigs --sign=origin -k F56BD64C mcpr*.deb
   cp mcpr*.deb bin/linux/mcpr-cli_latest_all.deb
   mv mcpr*.deb bin/linux/${VERSION_NAME}
 fi
