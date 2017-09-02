@@ -26,7 +26,6 @@ else
     tar xvf secrets.tar
 
     # import gpg keys
-    gpg --allow-secret-key-import --import filiosoft-apt-signing-private.key
     gpg --allow-secret-key-import --import filiosoft-signing-private.key
 
     # setup aptly & install deps
@@ -38,6 +37,9 @@ else
     sudo apt-get install equivs aptly ruby ruby-dev build-essential rpm innoextract wine python-software-properties osslsigncode debsigs
     gem install --no-ri --no-rdoc fpm
     go get github.com/sparrc/gdm
+
+    pip install mkdocs
+    pip install mkdocs-material
 
     # inno setup
     wget -O is.exe http://files.jrsoftware.org/is/5/isetup-5.5.5.exe

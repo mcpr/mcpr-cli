@@ -46,3 +46,5 @@ mcpr-cli
 *.deb
 *.rpm
 github-release/
+docs-site/
+docs/index.md

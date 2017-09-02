@@ -1,0 +1,15 @@
+site_name: MCPR CLI
+site_description: MCPR-CLI - The Official MCPR Command Line Interface
+theme: material
+copyright: Copyright &copy; 2017 Filiosoft, LLC
+site_author: Filiosoft, LLC
+repo_url: https://github.com/mcpr/mcpr-cli/
+site_dir: docs-site
+pages:
+    - Home: index.md
+    - Downloads: downloads.md
+markdown_extensions:
+    - admonition:
+    - footnotes:
+extra_css:
+  - https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css

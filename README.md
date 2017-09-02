@@ -1,6 +1,6 @@
 # MCPR-CLI [![Build Status](https://travis-ci.org/mcpr/mcpr-cli.svg?branch=master)](https://travis-ci.org/mcpr/mcpr-cli) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/mcpr/mcpr-cli/blob/master/LICENSE) [![GitHub issues](https://img.shields.io/github/issues/mcpr/mcpr-cli.svg)](https://github.com/mcpr/mcpr-cli/issues) [![GitHub (pre-)release](https://img.shields.io/github/release/mcpr/mcpr-cli/all.svg)](https://github.com/mcpr/mcpr-cli)
 
-The official [MCPR](https://registry.hexagonminecraft.com) CLI.
+The Official [MCPR](https://registry.hexagonminecraft.com) Command Line Interface.
 
 [![asciicast](https://asciinema.org/a/134462.png)](https://asciinema.org/a/134462)
 
@@ -19,7 +19,7 @@ This project is in alpha! Most features are either non-existent or don't fully w
 $ mcpr setup [servertype] [version]
 ```
 
-##### Example
+**Example**
 ```
 $ mcpr setup spigot 1.12.1
 ```
@@ -29,7 +29,7 @@ $ mcpr setup spigot 1.12.1
 $ mcpr search [pluginName]
 ```
 
-##### Example
+**Example**
 ```
 $ mcpr search dynmap
 ```
@@ -38,7 +38,7 @@ $ mcpr search dynmap
 $ mcpr install [pluginID]
 ```
 
-##### Example
+**Example**
 ```
 $ mcpr install dynmap
 ```
@@ -64,12 +64,15 @@ $ curl -sSL http://fsft.us/mcpr-cli | sudo bash
 To install `MCPR-CLI` on Windows, download and run the [Windows Installer](https://artifacts.filiosoft.com/mcpr-cli/windows/mcpr-cli-setup-stable-latest.exe). 
 
 #### Downloads
-- [Linux Binary](https://artifacts.filiosoft.com/mcpr-cli/linux/mcpr-stable)
+- Linux 
+    - [Binary](https://artifacts.filiosoft.com/mcpr-cli/linux/mcpr-stable)
     - [RPM Installer](https://artifacts.filiosoft.com/mcpr-cli/linux/mcpr-cli-stable-latest.noarch.rpm)
     - [DEB Installer](https://artifacts.filiosoft.com/mcpr-cli/linux/mcpr-cli_stable_latest_all.deb)
-- [Darwin Binary](https://artifacts.filiosoft.com/mcpr-cli/darwin/mcpr-stable)
+- macOS
+    - [Binary](https://artifacts.filiosoft.com/mcpr-cli/darwin/mcpr-stable)
     - [Installer](https://artifacts.filiosoft.com/mcpr-cli/darwin/mcpr-cli-stable-latest.pkg)
-- [Windows Binary](https://artifacts.filiosoft.com/mcpr-cli/windows/mcpr-stable.exe)
+- Windows
+    - [Binary](https://artifacts.filiosoft.com/mcpr-cli/windows/mcpr-stable.exe)
     - [Installer](https://artifacts.filiosoft.com/mcpr-cli/windows/mcpr-cli-setup-stable-latest.exe)
 
 #### Verify Installation
@@ -92,7 +95,7 @@ go build -o mcpr
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
+Please read [CONTRIBUTING.md](https://github.com/mcpr/mcpr/blob/master/CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
 
 ## Versioning
 
@@ -106,7 +109,7 @@ See also the list of [contributors](https://github.com/mcpr/mcpr-cli/contributor
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/mcpr/mcpr-cli/blob/master/LICENSE) file for details
 
 ## Acknowledgments
 

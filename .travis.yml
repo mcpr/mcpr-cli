@@ -18,7 +18,15 @@ script:
 - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then export PATH=$PATH:$GOPATH/bin; fi
 - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then cd go/src/github.com/mcpr/mcpr-cli; fi
 - bash scripts/build.sh
+- if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then bash scripts/build-docs.sh; fi
 deploy:
+  - provider: pages
+    skip_cleanup: true
+    local_dir: docs-site
+    github_token: "$GITHUB_TOKEN"
+    on:
+      branch: master
+      condition: $TRAVIS_OS_NAME = linux
   - provider: s3
     access_key_id: AKIAIJT6AK44UZASIF3Q
     secret_access_key: 
