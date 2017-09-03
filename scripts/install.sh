@@ -39,7 +39,7 @@ do_install (){
       echo "${BLUE}Downloading binaries from $URL${COLOREND}"
       curl -sO $URL
     elif [ -n "$(command -v apt-get)" ]; then
-      curl -o- -sL https://apt.filiosoft.com/debian/setup | bash -s
+      curl -o- -sL https://apt.filiosoft.com/debian/setup | bash -s -- --nightly
       apt-get install mcpr-cli -y
     #elif [ -n "$(command -v rpm)" ]; then
     #  wget https://apt.filiosoft.com/rpm/filiosoft.repo -O /etc/yum.repos.d/filiosoft.repo
