@@ -13,7 +13,6 @@ import (
 	"net/url"
 	"os/exec"
 	//"strconv"
-
 	"time"
 
 	"encoding/json"
@@ -101,7 +100,7 @@ func RemoveContents(dir string) {
 
 var tmpName = "mcpr-cli-tmp"
 
-func buildJava(serverVersion string) {
+func buildJava(serverVersion string, verbose bool) {
 	fmt.Println("Building... This will take a while.")
 	fmt.Println("\nGo grab a cup of coffee while you wait!")
 	fmt.Println("Or play some Minecraft...")
@@ -109,17 +108,20 @@ func buildJava(serverVersion string) {
 	s := spinner.New(spinner.CharSets[9], 100*time.Millisecond)
 	s.Start()
 
-	cmdPrep := "cd " + tmpName + " && /usr/bin/java -jar BuildTools.jar --rev " + serverVersion
-	cmd := exec.Command("bash", "-c", cmdPrep)
-	/*stdoutStderr, err := cmd.CombinedOutput()
-	if err != nil {
-		log.Fatal(err)
-		os.Exit(1)
+	cmdArgs := "cd " + tmpName + " && /usr/bin/java -jar BuildTools.jar --rev " + serverVersion
+	cmd := exec.Command("bash", "-c", cmdArgs)
+	
+	if (verbose) {
+		cmd.Stdout = os.Stdout
+		cmd.Stdin = os.Stdin
+		cmd.Stderr = os.Stderr
 	}
-	fmt.Printf("%s\n", stdoutStderr)*/
+	cmd.Run()
+	
 	err := cmd.Run()
 	if err != nil {
 		fmt.Println(err)
+		fmt.Println("Try runing with --verbose for more details.")
 		os.Exit(1)
 	}
 
@@ -127,14 +129,14 @@ func buildJava(serverVersion string) {
 	fmt.Println("\nBuild complete.")
 }
 
-func setupBuildTools(serverType, serverVersion string) {
+func setupBuildTools(serverType, serverVersion string, verbose bool) {
 	tmpPath, _ := filepath.Abs(tmpName)
 
 	RemoveContents(tmpName)
 	createTmp(tmpPath)
 
 	downloadFile(tmpName+"/BuildTools.jar", "https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar")
-	buildJava(serverVersion)
+	buildJava(serverVersion, verbose)
 
 	jarPath := tmpPath + "/" + serverType + "-" + serverVersion + ".jar"
 	moveFile(jarPath, "server.jar")
@@ -167,7 +169,7 @@ func acceptEula() {
 	}
 }
 
-func setup(ver, serverType string) {
+func setup(ver, serverType string, verbose, accept bool) {
 	v, err := semver.NewVersion(ver)
 	if err != nil {
 		fmt.Println("The version", ver, "doesn't seem to be valid. Are you sure that you specified a valid version?")
@@ -179,21 +181,23 @@ func setup(ver, serverType string) {
 	fmt.Println("Minecraft Version:", v)
 
 	switch {
-	case serverType == "spigot":
-		setupBuildTools(serverType, ver)
-	case serverType == "craftbukkit":
-		setupBuildTools(serverType, ver)
+	case serverType == "spigot" || serverType ==  "craftbukkit":
+		setupBuildTools(serverType, ver, verbose)
 	case serverType == "vanilla":
 		downloadFile("server.jar", "https://s3.amazonaws.com/Minecraft.Download/versions/"+ver+"/minecraft_server."+ver+".jar")
 	default:
 		fmt.Println("The server type", serverType, " is not supported.")
 	}
 	
-	isConfirmed := Ask4confirm()
-	if isConfirmed {
-		fmt.Println("Yes")
+	if (accept){
 		acceptEula()
-	} 
+	} else {
+		isConfirmed := Ask4confirm()
+		if isConfirmed {
+			fmt.Println("Yes")
+			acceptEula()
+		} 
+	}
 	
 	fmt.Println("\n\n\nAll done! Run \"java -jar server.jar\" to start your server!")
 }
@@ -376,6 +380,8 @@ func main() {
 	config()
 	cliVersion := "0.0.9"
 	
+	
+	
 	app := cli.NewApp()
 
 	serverType := "vanilla"
@@ -389,15 +395,21 @@ func main() {
 			Name:    "setup",
 			Aliases: []string{"s"},
 			Usage:   "Setup a minecraft server - mcpr setup [servertype] [version]",
-			Action: func(c *cli.Context) error {
+            Flags: []cli.Flag{
+                cli.BoolFlag{Name: "verbose, v", Usage: "Show more output"},
+                cli.BoolFlag{Name: "accept, a", Usage: "Accept Mojangs EULA"},
+            },
+			Action: func(c *cli.Context) error {				
 				if c.Args().Get(0) != "" {
 					serverType = c.Args().Get(0)
 				}
 				if c.Args().Get(1) != "" {
 					ver = c.Args().Get(1)
 				}
-
-				setup(ver, serverType)
+				verbose := c.Bool("verbose")
+				accept := c.Bool("accept")
+				fmt.Println("Verbose:", verbose)
+				setup(ver, serverType, verbose, accept)
 				return nil
 			},
 		},
@@ -444,6 +456,18 @@ func main() {
 					fmt.Println("\nConfig Options:\nMCPR Base API URL - base_url=" + mcprAPIBaseUrl)
 				}
 
+				return nil
+			},
+		},
+		{
+			Name:    "start",
+			Usage:   "Start Minecraft server - mcpr start",
+			Action: func(c *cli.Context) error {
+				cmd := exec.Command("java", "-jar", "server.jar", "nogui")
+				cmd.Stdout = os.Stdout
+				cmd.Stdin = os.Stdin
+				cmd.Stderr = os.Stderr
+				cmd.Run()
 				return nil
 			},
 		},
