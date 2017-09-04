@@ -2,7 +2,7 @@
 
 The Official [MCPR](https://registry.hexagonminecraft.com) Command Line Interface.
 
-[![asciicast](https://asciinema.org/a/134462.png)](https://asciinema.org/a/134462)
+[![asciicast](https://asciinema.org/a/136232.png)](https://asciinema.org/a/136232)
 
 ## DISCLAIMER
 This project is in alpha! Most features are either non-existent or don't fully work. 
