@@ -4,7 +4,7 @@ if [ "$(id -u)" != "0" ]; then
    exit 1
 fi
 
-BASE_URL=https://artifacts.filiosoft.com/mcpr-cli
+BASE_URL=https://get.mcpr.io/artifacts
 USR_BIN=/usr/local/bin/mcpr
 
 # Colors
@@ -39,10 +39,10 @@ do_install (){
       echo "${BLUE}Downloading binaries from $URL${COLOREND}"
       curl -sO $URL
     elif [ -n "$(command -v apt-get)" ]; then
-      curl -o- -sL https://apt.filiosoft.com/debian/setup | bash -s -- --nightly
+      curl -o- -sL https://get.mcpr.io/debian/setup | bash -s -- --nightly
       apt-get install mcpr-cli -y
     #elif [ -n "$(command -v rpm)" ]; then
-    #  wget https://apt.filiosoft.com/rpm/filiosoft.repo -O /etc/yum.repos.d/filiosoft.repo
+    #  wget https://get.mcpr.io/rpm/mcpr.repo -O /etc/yum.repos.d/mcpr.repo
     #  yum install mcpr-cli -y
     elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
       URL=$BASE_URL/linux/mcpr-stable

@@ -19,7 +19,7 @@ if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
     security unlock-keychain -p travis $KEY_CHAIN
     security set-keychain-settings -t 3600 -u $KEY_CHAIN
     security import mac_installer.cer -k $KEY_CHAIN -P travis -T /usr/bin/productsign
-    security find-certificate -a KEY_CHAIN
+    security find-certificate -a $KEY_CHAIN
 else
     # decrypt everything
     openssl aes-256-cbc -K $encrypted_ab1f4736f273_key -iv $encrypted_ab1f4736f273_iv -in secrets.tar.enc -out secrets.tar -d
@@ -38,8 +38,8 @@ else
     gem install --no-ri --no-rdoc fpm
     go get github.com/sparrc/gdm
 
-    pip install mkdocs
-    pip install mkdocs-material
+    pyenv global system 3.5
+    pip3 install mkdocs mkdocs-material
 
     # inno setup
     wget -O is.exe http://files.jrsoftware.org/is/5/isetup-5.5.5.exe

@@ -98,6 +98,10 @@ then
   echo "Building PKG..."
   fpm -s dir -t osxpkg -v ${VERSION_NAME} -n mcpr-cli --osxpkg-identifier-prefix com.filiosoft ./bin/darwin/mcpr=/usr/local/bin/mcpr
   ls
+  KEY_CHAIN=travis.keychain
+  security default-keychain -s $KEY_CHAIN
+  security unlock-keychain -p travis $KEY_CHAIN
+  security find-certificate -a $KEY_CHAIN
   productsign --sign '3rd Party Mac Developer Installer: Filiosoft, LLC (U2PJ8B6P8N)' mcpr*.pkg mcpr-cli-signed.pkg
   cp mcpr-cli-signed.pkg bin/darwin/mcpr-cli-latest.pkg
   mv mcpr-cli-signed.pkg bin/darwin/${VERSION_NAME}/mcpr-cli-${VERSION_NAME}.pkg

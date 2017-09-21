@@ -1,13 +1,13 @@
 #!/bin/bash
 
-# Script to install the Filiosoft repo onto a
+# Script to install the MCPR repo onto a
 # Debian or Ubuntu system.
 #
 # Run as root or insert `sudo -E` before `bash`:
 #
-# curl -sL https://apt.filiosoft.com/setup | bash -
+# curl -sL https://get.mcpr.io/debian/setup | bash -
 #   or
-# wget -qO- https://apt.filiosoft.com/setup | bash -
+# wget -qO- https://get.mcpr.io/debian/setup | bash -
 #
 
 export DEBIAN_FRONTEND=noninteractive
@@ -76,10 +76,10 @@ exec_cmd() {
 
 setup() {
 
-print_status "Installing the Filiosoft repo..."
+print_status "Installing the MCPR repo..."
 
 if $(uname -m | grep -Eq ^armv6); then
-    print_status "You appear to be running on ARMv6 hardware. Unfortunately this is not currently supported by the Filiosoft Linux distributions."
+    print_status "You appear to be running on ARMv6 hardware. Unfortunately this is not currently supported by the MCPR Linux distributions."
     exit 1
 fi
 
@@ -113,7 +113,7 @@ fi
 
 IS_PRERELEASE=$(lsb_release -d | grep 'Ubuntu .*development' >& /dev/null; echo $?)
 if [[ $IS_PRERELEASE -eq 0 ]]; then
-    print_status "Your distribution, identified as \"$(lsb_release -d -s)\", is a pre-release version of Ubuntu. Filiosoft does not maintain official support for Ubuntu versions until they are formally released."
+    print_status "Your distribution, identified as \"$(lsb_release -d -s)\", is a pre-release version of Ubuntu. MCPR does not maintain official support for Ubuntu versions until they are formally released."
     exit 1
 fi
 
@@ -162,14 +162,14 @@ fi
 print_status 'Adding the Filiosoft signing key to your keyring...'
 
 if [ -x /usr/bin/curl ]; then
-    exec_cmd 'curl -s https://apt.filiosoft.com/debian/pubkey.gpg | apt-key add -'
+    exec_cmd 'curl -s https://get.mcpr.io/debian/pubkey.gpg | apt-key add -'
 else
-    exec_cmd 'wget -qO- https://apt.filiosoft.com/debian/pubkey.gpg | apt-key add -'
+    exec_cmd 'wget -qO- https://get.mcpr.io/debian/pubkey.gpg | apt-key add -'
 fi
 
-print_status "Creating apt sources list file for the Filiosoft repo..."
+print_status "Creating apt sources list file for the MCPR repo..."
 
-exec_cmd "echo 'deb https://apt.filiosoft.com/debian/ ${DIST} main' > /etc/apt/sources.list.d/filiosoft-${DIST}.list"
+exec_cmd "echo 'deb https://get.mcpr.io/debian/ ${DIST} main' > /etc/apt/sources.list.d/mcpr-${DIST}.list"
 
 print_status 'Running `apt-get update` for you...'
 
