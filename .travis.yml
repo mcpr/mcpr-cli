@@ -18,7 +18,7 @@ script:
 - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then bash scripts/build-docs.sh; fi
 deploy:
   - provider: script
-    script: scripts/deploy.sh
+    script: bash scripts/publish.sh
     skip_cleanup: true
   - provider: pages
     skip_cleanup: true
