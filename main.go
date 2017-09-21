@@ -344,7 +344,7 @@ func config(){
 
 	// create config file if it doesn't already exist
 	if _, err := os.Stat(configFile); os.IsNotExist(err) {
-		var jsonBlob = []byte(`{"base_url":"https://registry.hexagonminecraft.com/api/v1"}`)
+		var jsonBlob = []byte(`{"base_url":"https://mcpr.io/api/v1"}`)
 		config := Config{}
 		err := json.Unmarshal(jsonBlob, &config)
 		if err != nil {

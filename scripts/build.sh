@@ -86,7 +86,7 @@ then
   echo "%_gpg_name F56BD64C" > ~/.rpmmacros
   echo "$GPG_PWD" | fpm -s dir -t rpm -a all -v ${VERSION_NAME} -n mcpr-cli -d java-1.8.0-openjdk \
    --license MIT --vendor "Filiosoft, LLC" -m "Filiosoft Open Source <opensource@filiosoft.com>" \
-   --url "https://mcpr.github.io/mcpr-cli" --description "A CLI for setting up and controlling Minecraft servers." \
+   --url "https://cli.mcpr.io" --description "A CLI for setting up and controlling Minecraft servers." \
    --rpm-summary "The Official MCPR CLI!" ./bin/linux/mcpr=/usr/local/bin/mcpr
   cp mcpr*.rpm bin/linux/mcpr-cli-latest.noarch.rpm
   mv mcpr*.rpm bin/linux/${VERSION_NAME}
@@ -110,7 +110,7 @@ then
   echo "Signing Windows Binary..."
   mv bin/windows/mcpr.exe bin/windows/mcpr-unsigned.exe
   osslsigncode sign -certs authenticode.spc -key authenticode.pvk -pass "$CODESIGN_PWD" \
-  -n "MCPR-CLI" -i https://mcpr.github.io/mcpr-cli/ \
+  -n "MCPR-CLI" -i https://cli.mcpr.io/ \
 	-t http://timestamp.verisign.com/scripts/timstamp.dll \
   -in bin/windows/mcpr-unsigned.exe -out bin/windows/mcpr.exe
 
@@ -119,7 +119,7 @@ then
 
   echo 'Signing Windows Installer...'
   osslsigncode sign -certs authenticode.spc -key authenticode.pvk -pass "$CODESIGN_PWD" \
-  -n "MCPR-CLI" -i https://mcpr.github.io/mcpr-cli/ \
+  -n "MCPR-CLI" -i https://cli.mcpr.io/ \
 	-t http://timestamp.verisign.com/scripts/timstamp.dll \
   -in bin/mcpr-cli-setup.exe -out bin/mcpr-cli-setup-signed.exe
 

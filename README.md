@@ -1,6 +1,6 @@
 # MCPR-CLI [![Build Status](https://travis-ci.org/mcpr/mcpr-cli.svg?branch=master)](https://travis-ci.org/mcpr/mcpr-cli) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/mcpr/mcpr-cli/blob/master/LICENSE) [![GitHub issues](https://img.shields.io/github/issues/mcpr/mcpr-cli.svg)](https://github.com/mcpr/mcpr-cli/issues) [![GitHub (pre-)release](https://img.shields.io/github/release/mcpr/mcpr-cli/all.svg)](https://github.com/mcpr/mcpr-cli)
 
-The Official [MCPR](https://registry.hexagonminecraft.com) Command Line Interface.
+The Official [MCPR](https://mcpr.io) Command Line Interface.
 
 [![asciicast](https://asciinema.org/a/134462.png)](https://asciinema.org/a/134462)
 
