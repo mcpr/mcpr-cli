@@ -10,7 +10,6 @@ if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
 
     # decrypt everything
     openssl aes-256-cbc -K $encrypted_ab1f4736f273_key -iv $encrypted_ab1f4736f273_iv -in secrets.tar.enc -out secrets.tar -d
-    openssl aes-256-cbc -K $encrypted_ab1f4736f273_key -iv $encrypted_ab1f4736f273_iv -in macos-private.p12.enc -out macos-private.p12 -d
     tar xvf secrets.tar
 
     # setup keychain and import the key
