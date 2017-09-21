@@ -27,7 +27,7 @@ else
     tar xvf secrets.tar
 
     # import gpg keys
-    gpg --allow-secret-key-import --import secure/filiosoft-signing-private.key
+    gpg --allow-secret-key-import --import secure/filiosoft-signing-key.asc
 
     # setup aptly & install deps
     sudo dpkg --add-architecture i386
