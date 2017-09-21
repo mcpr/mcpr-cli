@@ -112,7 +112,7 @@ then
   unset DISPLAY
   echo "Signing Windows Binary..."
   mv bin/windows/mcpr.exe bin/windows/mcpr-unsigned.exe
-  osslsigncode sign -certs secure/authenticode.spc -key secure/authenticode.pvk -pass "$CODESIGN_PWD" \
+  osslsigncode sign -pkcs12 secure/windows-key.pfx -pass "$CODESIGN_PWD" \
   -n "MCPR-CLI" -i https://cli.mcpr.io/ \
 	-t http://timestamp.verisign.com/scripts/timstamp.dll \
   -in bin/windows/mcpr-unsigned.exe -out bin/windows/mcpr.exe
@@ -121,7 +121,7 @@ then
   wine "C:\inno\ISCC.exe" "scripts/setup.iss"
 
   echo 'Signing Windows Installer...'
-  osslsigncode sign -certs secure/authenticode.spc -key secure/authenticode.pvk -pass "$CODESIGN_PWD" \
+  osslsigncode sign -pkcs12 secure/windows-key.pfx -pass "$CODESIGN_PWD" \
   -n "MCPR-CLI" -i https://cli.mcpr.io/ \
 	-t http://timestamp.verisign.com/scripts/timstamp.dll \
   -in bin/mcpr-cli-setup.exe -out bin/mcpr-cli-setup-signed.exe
