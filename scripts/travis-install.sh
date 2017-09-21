@@ -10,6 +10,7 @@ if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
 
     # decrypt everything
     openssl aes-256-cbc -K $encrypted_ab1f4736f273_key -iv $encrypted_ab1f4736f273_iv -in secrets.tar.enc -out secrets.tar -d
+    openssl aes-256-cbc -K $encrypted_ab1f4736f273_key -iv $encrypted_ab1f4736f273_iv -in macos-private.p12.enc -out macos-private.p12 -d
     tar xvf secrets.tar
 
     # setup keychain and import the key
@@ -18,7 +19,8 @@ if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
     security default-keychain -s $KEY_CHAIN
     security unlock-keychain -p travis $KEY_CHAIN
     security set-keychain-settings -t 3600 -u $KEY_CHAIN
-    security import mac_installer.cer -k $KEY_CHAIN -P travis -T /usr/bin/productsign
+    security add-certificates -k $KEY_CHAIN mac_installer.cer
+    security import macos-private.p12 -k $KEY_CHAIN -P $PRIVATE_KEY_PWD -T /usr/bin/productsign
     security find-certificate -a $KEY_CHAIN
 else
     # decrypt everything

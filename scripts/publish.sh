@@ -13,7 +13,7 @@ cat <<EOT > ~/.aptly.conf
 }
 EOT
 
-wget https://apt.filiosoft.com/debian/pubkey.gpg
+wget https://get.mcpr.io/debian/pubkey.gpg
 gpg --import archive.key
 gpg --list-secret-keys
 

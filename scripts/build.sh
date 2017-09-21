@@ -97,7 +97,7 @@ if [ -x "$(command -v pkgbuild)" ];
 then
   echo "Building PKG..."
   fpm -s dir -t osxpkg -v ${VERSION_NAME} -n mcpr-cli --osxpkg-identifier-prefix com.filiosoft ./bin/darwin/mcpr=/usr/local/bin/mcpr
-  ls
+  
   KEY_CHAIN=travis.keychain
   security default-keychain -s $KEY_CHAIN
   security unlock-keychain -p travis $KEY_CHAIN
