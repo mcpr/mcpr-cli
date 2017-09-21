@@ -19,6 +19,7 @@ script:
 deploy:
   - provider: script
     script: scripts/deploy.sh
+    skip_cleanup: true
   - provider: pages
     skip_cleanup: true
     local_dir: docs-site

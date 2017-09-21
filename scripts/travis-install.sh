@@ -63,4 +63,4 @@ else
     cp -a app/* ~/".wine/drive_c/inno"
 fi
 
-echo "\nInstall Complete!\n"
+echo -e "\nInstall Complete!\n"
