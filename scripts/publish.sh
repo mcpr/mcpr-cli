@@ -1,5 +1,20 @@
 #!/bin/bash
 
+echo -e "\n=============\nPublish Stage\n=============\n"
+
+VERSION=$(cat version.txt)
+
+if [ -z "$TRAVIS_TAG" ]
+then
+    echo "Not Tag"
+    VERSION_NAME=${VERSION}-${TRAVIS_BUILD_NUMBER}
+    LATEST_PREFIX="nightly"
+else
+    echo "Building Tag"
+    VERSION_NAME=${TRAVIS_TAG}-${TRAVIS_BUILD_NUMBER}
+    LATEST_PREFIX="stable"
+fi
+
 cat <<EOT > ~/.aptly.conf
 {
    "S3PublishEndpoints":{
@@ -14,23 +29,19 @@ cat <<EOT > ~/.aptly.conf
 EOT
 
 wget https://get.mcpr.io/debian/pubkey.gpg
-gpg --import archive.key
-gpg --list-secret-keys
 
 if [ -z "$TRAVIS_TAG" ]
 then
     DISTRIBUTION=nightly
     COMMENT="Nightly builds"
-    LATEST_PREFIX=nightly
-    echo "Nightly build"
+    echo -e "\nNightly build\n"
 else
     DISTRIBUTION=stable
     COMMENT="Stable builds"
-    LATEST_PREFIX=stable
-    echo "Stable build"
+    echo -e "\nStable build\n"
 fi
 
 aptly repo create -distribution=${DISTRIBUTION} -comment="${COMMENT}" -component=main mcpr-cli-release
-aptly repo add mcpr-cli-release bin/${LATEST_PREFIX}/linux/${1}
-aptly snapshot create mcpr-cli-${1} from repo mcpr-cli-release
-aptly publish snapshot -batch=true -gpg-key="F56BD64C" -passphrase="$GPG_PWD" -architectures="i386,amd64,all" mcpr-cli-${1} s3:get.mcpr.io:
+aptly repo add mcpr-cli-release bin/${LATEST_PREFIX}/linux/${VERSION_NAME}
+aptly snapshot create mcpr-cli-${VERSION_NAME} from repo mcpr-cli-release
+aptly publish snapshot -batch=true -gpg-key="F56BD64C" -passphrase="$GPG_PWD" -architectures="i386,amd64,all" mcpr-cli-${VERSION_NAME} s3:get.mcpr.io:

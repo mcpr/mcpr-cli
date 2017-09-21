@@ -14,12 +14,11 @@ matrix:
 install:
 - bash scripts/travis-install.sh
 script: 
-- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then export GOPATH=$(pwd)/go; fi
-- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then export PATH=$PATH:$GOPATH/bin; fi
-- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then cd go/src/github.com/mcpr/mcpr-cli; fi
 - bash scripts/build.sh
 - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then bash scripts/build-docs.sh; fi
 deploy:
+  - provider: script
+    script: scripts/deploy.sh
   - provider: pages
     skip_cleanup: true
     local_dir: docs-site

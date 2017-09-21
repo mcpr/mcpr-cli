@@ -6,11 +6,8 @@ if [ -z "$TRAVIS_TAG" ]
 then
   echo ""
 else
-  echo "Release Version"
-  echo $TRAVIS_TAG > version.txt
+  echo -e "\n===============\nRELEASE VERSION\n===============\n"
 fi
-
-VERSION=$(cat version.txt)
 
 if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
   declare -a OS=(
@@ -23,7 +20,7 @@ else
   )
 fi
 
-LAST_VER=$(cat version.txt)
+VERSION=$(cat version.txt)
 
 if [ -z "$TRAVIS_TAG" ]
 then
@@ -33,20 +30,18 @@ then
     VERSION_NAME=$VERSION
     LATEST_PREFIX="nightly"
   else
-    echo "Not a tag"
+    echo "Not Tag"
     VERSION_NAME=${VERSION}-${TRAVIS_BUILD_NUMBER}
     LATEST_PREFIX="nightly"
   fi
 else
-  echo "Building tag."
+  echo "Building Tag"
   VERSION_NAME=${TRAVIS_TAG}-${TRAVIS_BUILD_NUMBER}
   LATEST_PREFIX="stable"
-  #sed -i -e "s/${LAST_VER}/${TRAVIS_TAG}/g" main.go
-  #echo ${TRAVIS_TAG} > version.txt
 fi
 
-echo "Building $VERSION_NAME"
-
+echo -e "\n=============\nBuild Stage\n=============\n"
+echo -e "Building $VERSION_NAME\n"
 
 for i in "${OS[@]}"
 do
@@ -69,10 +64,12 @@ done
 cp bin/linux/mcpr mcpr
 cp bin/windows/mcpr.exe mcpr.exe
 
+echo -e "\n=============\nPackage Stage\n=============\n"
+
 # build deb
 if [ -x "$(command -v equivs-build)" ];
 then
-  echo "Building DEB..."
+  echo -e "\n==============\nPackaging DEB\n==============\n"
   sed -i 's/^Version:.*$/Version: '"${VERSION_NAME}"'/g' control
   equivs-build --full control
   cp mcpr*.deb bin/linux/mcpr-cli_latest_all.deb
@@ -82,7 +79,7 @@ fi
 # build rpm
 if [ -x "$(command -v rpmbuild)" ] && [ -x "$(command -v fpm)" ];
 then
-  echo "Building RPM..."
+  echo -e "\n==============\nPackaging RPM\n==============\n"
   echo "%_gpg_name F56BD64C" > ~/.rpmmacros
   echo "$GPG_PWD" | fpm -s dir -t rpm -a all -v ${VERSION_NAME} -n mcpr-cli -d java-1.8.0-openjdk \
    --license MIT --vendor "Filiosoft, LLC" -m "Filiosoft Open Source <opensource@filiosoft.com>" \
@@ -95,7 +92,7 @@ fi
 # build pkg
 if [ -x "$(command -v pkgbuild)" ];
 then
-  echo "Building PKG..."
+  echo -e "\n==============\nPackaging PKG\n==============\n"
   fpm -s dir -t osxpkg -v ${VERSION_NAME} -n mcpr-cli --osxpkg-identifier-prefix com.filiosoft ./bin/darwin/mcpr=/usr/local/bin/mcpr
   
   KEY_CHAIN=travis.keychain
@@ -110,6 +107,8 @@ fi
 if [ -x "$(command -v wine)" ];
 then
   unset DISPLAY
+  echo -e "\n=============================\nPackaging and Signing Windows\n=============================\n"
+
   echo "Signing Windows Binary..."
   mv bin/windows/mcpr.exe bin/windows/mcpr-unsigned.exe
   osslsigncode sign -pkcs12 secure/windows-key.pfx -pass "$CODESIGN_PWD" \
@@ -134,11 +133,12 @@ fi
 
 if [ ! -z "$TRAVIS_TAG" ]
 then
+  echo -e "\nPrepping GitHub Release\n"
   mkdir -p github-release
   cp -r bin/linux/${VERSION_NAME}/* github-release || true
   cp -r bin/darwin/${VERSION_NAME}/* github-release || true
   cp -r bin/windows/${VERSION_NAME}/* github-release || true
-  ls github-release
+  ls -la github-release
 fi
 
 # move to latest prefix (e.g. nightly) folder
@@ -146,10 +146,4 @@ mkdir $LATEST_PREFIX
 mv bin/* $LATEST_PREFIX/
 mv $LATEST_PREFIX bin/
 
-if [ ! -z "$TRAVIS_BUILD_NUMBER" ] && [[ $TRAVIS_OS_NAME == 'linux' ]]
-then
-
-  bash scripts/publish.sh $VERSION_NAME
-else
-  echo "No publish"
-fi
+echo -e "\n==============\nBuild Complete\n==============\n"
