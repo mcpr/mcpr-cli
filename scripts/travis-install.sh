@@ -18,8 +18,8 @@ if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
     security default-keychain -s $KEY_CHAIN
     security unlock-keychain -p travis $KEY_CHAIN
     security set-keychain-settings -t 3600 -u $KEY_CHAIN
-    security add-certificates -k $KEY_CHAIN mac_installer.cer
-    security import macos-private.p12 -k $KEY_CHAIN -P $PRIVATE_KEY_PWD -T /usr/bin/productsign
+    security add-certificates -k $KEY_CHAIN secure/mac_installer.cer
+    security import secure/macos-private.p12 -k $KEY_CHAIN -P $PRIVATE_KEY_PWD -T /usr/bin/productsign
     security find-certificate -a $KEY_CHAIN
 else
     # decrypt everything
@@ -27,7 +27,7 @@ else
     tar xvf secrets.tar
 
     # import gpg keys
-    gpg --allow-secret-key-import --import filiosoft-signing-private.key
+    gpg --allow-secret-key-import --import secure/filiosoft-signing-private.key
 
     # setup aptly & install deps
     sudo dpkg --add-architecture i386
