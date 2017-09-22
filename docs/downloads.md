@@ -4,20 +4,20 @@ There are many options for installing `MCPR-CLI` which are listed below.
 ## Stable Builds
 |OS|Distro|Binary|Installer|
 |--|------|------|---------|
-|Linux|Debian-based|[mcpr](https://artifacts.filiosoft.com/mcpr-cli/linux/mcpr-stable)|[DEB](https://artifacts.filiosoft.com/mcpr-cli/linux/mcpr-cli_stable_latest_all.deb)
-|Linux|Fedora-based|[mcpr](https://artifacts.filiosoft.com/mcpr-cli/linux/mcpr-stable)|[RPM](https://artifacts.filiosoft.com/mcpr-cli/linux/mcpr-cli-stable-latest.noarch.rpm)
-|macOS||[mcpr](https://artifacts.filiosoft.com/mcpr-cli/darwin/mcpr-stable)|[PKG](https://artifacts.filiosoft.com/mcpr-cli/darwin/mcpr-cli-stable-latest.pkg)
-|Windows||[mcpr.exe](https://artifacts.filiosoft.com/mcpr-cli/windows/mcpr-stable.exe)|[Setup EXE](https://artifacts.filiosoft.com/mcpr-cli/windows/mcpr-cli-setup-stable-latest.exe)
+|Linux|Debian-based|[mcpr](https://get.mcpr.io/artifacts/linux/mcpr-stable)|[DEB](https://get.mcpr.io/artifacts/linux/mcpr-cli_stable_latest_all.deb)
+|Linux|Fedora-based|[mcpr](https://get.mcpr.io/artifacts/linux/mcpr-stable)|[RPM](https://get.mcpr.io/artifacts/linux/mcpr-cli-stable-latest.noarch.rpm)
+|macOS||[mcpr](https://get.mcpr.io/artifacts/darwin/mcpr-stable)|[PKG](https://get.mcpr.io/artifacts/darwin/mcpr-cli-stable-latest.pkg)
+|Windows||[mcpr.exe](https://get.mcpr.io/artifacts/windows/mcpr-stable.exe)|[Setup EXE](https://get.mcpr.io/artifacts/windows/mcpr-cli-setup-stable-latest.exe)
 
 ## Nightly Builds
 _**WARNING:** Nightly builds are the latest and greatest version but they are not guaranteed to be stable and may have bugs. They are built directly from the `master` branch._
 
 |OS|Distro|Binary|Installer|
 |--|------|------|---------|
-|Linux|Debian-based|[mcpr](https://artifacts.filiosoft.com/mcpr-cli/nightly/linux/mcpr)|[DEB](https://artifacts.filiosoft.com/mcpr-cli/nightly/linux/mcpr-cli_latest_all.deb)
-|Linux|Fedora-based|[mcpr](https://artifacts.filiosoft.com/mcpr-cli/nightly/linux/mcpr)|[RPM](https://artifacts.filiosoft.com/mcpr-cli/nightly/linux/mcpr-cli-latest.noarch.rpm)
-|macOS||[mcpr](https://artifacts.filiosoft.com/mcpr-cli/nightly/darwin/mcpr)|[PKG](https://artifacts.filiosoft.com/mcpr-cli/nightly/darwin/mcpr-cli-latest.pkg)
-|Windows||[mcpr.exe](https://artifacts.filiosoft.com/mcpr-cli/nightly/windows/mcpr.exe)|[Setup EXE](https://artifacts.filiosoft.com/mcpr-cli/nightly/windows/mcpr-cli-setup-signed-latest.exe)
+|Linux|Debian-based|[mcpr](https://get.mcpr.io/artifacts/nightly/linux/mcpr)|[DEB](https://get.mcpr.io/artifacts/nightly/linux/mcpr-cli_latest_all.deb)
+|Linux|Fedora-based|[mcpr](https://get.mcpr.io/artifacts/nightly/linux/mcpr)|[RPM](https://get.mcpr.io/artifacts/nightly/linux/mcpr-cli-latest.noarch.rpm)
+|macOS||[mcpr](https://get.mcpr.io/artifacts/nightly/darwin/mcpr)|[PKG](https://get.mcpr.io/artifacts/nightly/darwin/mcpr-cli-latest.pkg)
+|Windows||[mcpr.exe](https://get.mcpr.io/artifacts/nightly/windows/mcpr.exe)|[Setup EXE](https://get.mcpr.io/artifacts/nightly/windows/mcpr-cli-setup-signed-latest.exe)
 
 ## Signature
 ### Linux
@@ -58,7 +58,7 @@ X26raUW5KbGGNYxJb83Cd7ytPpkIIgbR/fmaUQCo0wyyhufkmyUgx0UK3HU1Yxzu
 -----END PGP PUBLIC KEY BLOCK-----
 ```
 ### Windows
-Both the Windows [Binary](https://artifacts.filiosoft.com/mcpr-cli/stable/windows/mcpr-signed.exe) and [Installer](https://artifacts.filiosoft.com/mcpr-cli/nightly/windows/mcpr-cli-setup-signed-latest.exe) are signed with the following public key.
+Both the Windows [Binary](https://get.mcpr.io/artifacts/stable/windows/mcpr-signed.exe) and [Installer](https://get.mcpr.io/artifacts/nightly/windows/mcpr-cli-setup-signed-latest.exe) are signed with the following public key.
 
 **publickey.cer**
 ```
