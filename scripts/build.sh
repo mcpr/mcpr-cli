@@ -98,6 +98,8 @@ then
   KEY_CHAIN=travis.keychain
   security default-keychain -s $KEY_CHAIN
   security unlock-keychain -p travis $KEY_CHAIN
+
+  echo -e "\nSigning OSX PKG"
   productsign --sign '3rd Party Mac Developer Installer: Filiosoft, LLC (U2PJ8B6P8N)' mcpr*.pkg mcpr-cli-signed.pkg
   cp mcpr-cli-signed.pkg bin/darwin/mcpr-cli-latest.pkg
   mv mcpr-cli-signed.pkg bin/darwin/${VERSION_NAME}/mcpr-cli-${VERSION_NAME}.pkg
