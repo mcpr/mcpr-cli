@@ -54,7 +54,7 @@ do
     OUT_FN=mcpr-${VERSION_NAME}-$i
     LATEST_FN=mcpr
   fi
-  echo 'Building '${i}''
+  echo -e "\nBuilding ${i}"
   mkdir -p bin/${i}/${VERSION_NAME}
   GOOS=${i} go build -o ${FILENAME}
   cp ${FILENAME} bin/${i}/${VERSION_NAME}/${OUT_FN}

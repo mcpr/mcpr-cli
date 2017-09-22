@@ -12,10 +12,9 @@ if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
     mv .go go
     export GOPATH=$(pwd)/go
     export PATH=$PATH:$GOPATH/bin
-    cd go/src/github.com/mcpr/mcpr-cli
 
     echo -e "\n=======================\nInstalling Dependencies\n=======================\n"
-    go get github.com/sparrc/gdm
+    go get -v github.com/sparrc/gdm
     gem install --no-ri --no-rdoc fpm
 
     # setup keychain and import the key
