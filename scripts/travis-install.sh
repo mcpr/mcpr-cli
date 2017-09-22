@@ -30,6 +30,7 @@ if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
     echo "Import Certificates"
     security add-certificates -k $KEY_CHAIN secure/mac_installer.cer
     security import secure/macos-private.p12 -k $KEY_CHAIN -P $PRIVATE_KEY_PWD -A
+	security set-key-partition-list -S apple-tool:,apple: -s -k travis $KEY_CHAIN
 else
     # decrypt everything
     echo -e "\n==========\nDecrypting\n==========\n"
