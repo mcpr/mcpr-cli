@@ -10,6 +10,7 @@ Maintainer: Filiosoft Open Source <opensource@filiosoft.com>
 Recommends: default-jdk,git
 Architecture: all
 Copyright: LICENSE
+License: Expat
 # Changelog: <changelog file; defaults to a generic changelog>
 Readme: README.md
 Files: mcpr /usr/local/bin/
