@@ -70,8 +70,8 @@ echo -e "\n=============\nPackage Stage\n=============\n"
 if [ -x "$(command -v equivs-build)" ];
 then
   echo -e "\n==============\nPackaging DEB\n==============\n"
-  sed -i 's/^Version:.*$/Version: '"${VERSION_NAME}"'/g' control
-  equivs-build --full control
+  sed -i 's/^Version:.*$/Version: '"${VERSION_NAME}"'/g' debian/control
+  equivs-build --full debian/control
   cp mcpr*.deb bin/linux/mcpr-cli_latest_all.deb
   mv mcpr*.deb bin/linux/${VERSION_NAME}
 fi
@@ -84,7 +84,7 @@ then
   echo "$GPG_PWD" | fpm -s dir -t rpm -a all -v ${VERSION_NAME} -n mcpr-cli -d java-1.8.0-openjdk \
    --license MIT --vendor "Filiosoft, LLC" -m "Filiosoft Open Source <opensource@filiosoft.com>" \
    --url "https://cli.mcpr.io" --description "A CLI for setting up and controlling Minecraft servers." \
-   --rpm-summary "The Official MCPR CLI!" ./bin/linux/mcpr=/usr/local/bin/mcpr
+   --rpm-summary "The Official MCPR CLI!" ./bin/nightly/linux/mcpr=/usr/local/bin/mcpr
   cp mcpr*.rpm bin/linux/mcpr-cli-latest.noarch.rpm
   mv mcpr*.rpm bin/linux/${VERSION_NAME}
 fi

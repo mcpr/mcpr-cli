@@ -9,9 +9,9 @@ Version: 0.0.9
 Maintainer: Filiosoft Open Source <opensource@filiosoft.com>
 Recommends: default-jdk,git
 Architecture: all
-Copyright: LICENSE
+Copyright: debian/copyright
 License: Expat
-# Changelog: <changelog file; defaults to a generic changelog>
+# Changelog: debian/changelog
 Readme: README.md
 Files: mcpr /usr/local/bin/
 Description: A CLI for setting up and controlling Minecraft servers.
