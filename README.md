@@ -1,4 +1,5 @@
 # MCPR-CLI [![Build Status](https://travis-ci.org/mcpr/mcpr-cli.svg?branch=master)](https://travis-ci.org/mcpr/mcpr-cli) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/mcpr/mcpr-cli/blob/master/LICENSE) [![GitHub issues](https://img.shields.io/github/issues/mcpr/mcpr-cli.svg)](https://github.com/mcpr/mcpr-cli/issues) [![GitHub (pre-)release](https://img.shields.io/github/release/mcpr/mcpr-cli/all.svg)](https://github.com/mcpr/mcpr-cli)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fmcpr%2Fmcpr-cli.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fmcpr%2Fmcpr-cli?ref=badge_shield)
 
 The Official [MCPR](https://mcpr.io) Command Line Interface.
 
@@ -110,6 +111,9 @@ See also the list of [contributors](https://github.com/mcpr/mcpr-cli/contributor
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](https://github.com/mcpr/mcpr-cli/blob/master/LICENSE) file for details
+
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fmcpr%2Fmcpr-cli.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fmcpr%2Fmcpr-cli?ref=badge_large)
 
 ## Acknowledgments
 
