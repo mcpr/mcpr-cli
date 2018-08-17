@@ -8,7 +8,7 @@
 AppId={{B95FF975-A348-42FE-9399-C4AECFEC80B8}
 AppName=MCPR-CLI
 AppVersion={#AppVer}
-AppPublisher=Filiosoft, LLC
+AppPublisher=Noah Prail
 AppPublisherURL=https://cli.mcpr.io
 AppSupportURL=https://cli.mcpr.io
 AppUpdatesURL=https://cli.mcpr.io

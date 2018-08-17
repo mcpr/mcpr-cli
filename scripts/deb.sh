@@ -159,7 +159,7 @@ if [ "X${DISTRO}" == "Xdebian" ]; then
   fi
 fi
 
-print_status 'Adding the Filiosoft signing key to your keyring...'
+print_status 'Adding the MCPR signing key to your keyring...'
 
 if [ -x /usr/bin/curl ]; then
     exec_cmd 'curl -s https://get.mcpr.io/debian/pubkey.gpg | apt-key add -'

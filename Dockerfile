@@ -1,7 +1,5 @@
 FROM ubuntu:xenial
 
-MAINTAINER Filiosoft Open Source <opensource@filiosoft.com>
-
 RUN apt-get update && \
     apt-get install --no-install-recommends -y curl apt-transport-https default-jdk git && \
     rm -rf /var/lib/apt/lists/*

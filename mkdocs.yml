@@ -1,8 +1,8 @@
 site_name: MCPR CLI
 site_description: MCPR-CLI - The Official MCPR Command Line Interface
 theme: material
-copyright: Copyright &copy; 2017 Filiosoft, LLC
-site_author: Filiosoft, LLC
+copyright: Copyright &copy; 2018 Noah Prail
+site_author: Noah Prail
 repo_url: https://github.com/mcpr/mcpr-cli/
 site_dir: docs-site
 pages:

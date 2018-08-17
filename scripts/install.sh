@@ -68,7 +68,7 @@ do_install (){
 
   if [ -x "$(command -v mcpr)" ];
   then
-    echo "${YELLOW}The command mcpr already exists on your system. If you already have MCPR-CLI installed, please run \"curl -sSL http://fsft.us/mcpr-cli-update | sudo bash\" ${COLOREND}"
+    echo "${YELLOW}The command mcpr already exists on your system.${COLOREND}"
     echo "${RED}Install canceled.${COLOREND}"
     exit
   else
