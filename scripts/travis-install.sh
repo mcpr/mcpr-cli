@@ -44,13 +44,13 @@ else
     echo -e "\n=======================\nInstalling Dependencies\n=======================\n"
     sudo dpkg --add-architecture i386
     sudo sh -c 'echo "deb http://repo.aptly.info/ squeeze main" >> /etc/apt/sources.list'
-    sudo apt-key adv --keyserver keys.gnupg.net --recv-keys 9E3E53F19C7DE460
+    wget -qO - https://www.aptly.info/pubkey.txt | sudo apt-key add -
     sudo add-apt-repository -y ppa:likemartinma/osslsigncode
     sudo apt-get -qq update 
-    sudo apt-get install equivs aptly ruby ruby-dev build-essential rpm innoextract wine python-software-properties osslsigncode debsigs libffi-dev libssl-dev --allow-unauthenticated
+    sudo apt-get install equivs aptly ruby ruby-dev build-essential rpm innoextract wine python-software-properties osslsigncode debsigs
     gem install --no-ri --no-rdoc fpm
 
-    pip install mkdocs mkdocs-material
+    pip install --user mkdocs mkdocs-material
 
     go get github.com/sparrc/gdm
 
