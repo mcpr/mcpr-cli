@@ -46,8 +46,8 @@ else
     sudo sh -c 'echo "deb http://repo.aptly.info/ squeeze main" >> /etc/apt/sources.list'
     sudo apt-key adv --keyserver keys.gnupg.net --recv-keys 9E3E53F19C7DE460
     sudo add-apt-repository -y ppa:likemartinma/osslsigncode
-    sudo apt-get -qq update
-    sudo apt-get install equivs aptly ruby ruby-dev build-essential rpm innoextract wine python-software-properties osslsigncode debsigs
+    sudo apt-get -qq update 
+    sudo apt-get install equivs aptly ruby ruby-dev build-essential rpm innoextract wine python-software-properties osslsigncode debsigs libffi-dev libssl-dev --allow-unauthenticated
     gem install --no-ri --no-rdoc fpm
 
     pip install mkdocs mkdocs-material
