@@ -1,10 +1,10 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: mcpr-cli
-Upstream-Contact: Noah Prail <nprail@filiosoft.com>
+Upstream-Contact: Noah Prail <noah@prail.net>
 Source: https://github.com/mcpr/mcpr-cli
 
 Files: *
-Copyright: 2017 Filiosoft, LLC
+Copyright: 2018 Noah Prail
 License: Explat
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
