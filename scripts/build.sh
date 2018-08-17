@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 gdm restore
 
 if [ -z "$TRAVIS_TAG" ]
@@ -82,7 +84,7 @@ then
   echo -e "\n==============\nPackaging RPM\n==============\n"
   echo "%_gpg_name F56BD64C" > ~/.rpmmacros
   echo "$GPG_PWD" | fpm -s dir -t rpm -a all -v ${VERSION_NAME} -n mcpr-cli -d java-1.8.0-openjdk \
-   --license MIT --vendor "Noah Prail" -m "Filiosoft Open Source <opensource@filiosoft.com>" \
+   --license MIT --vendor "Noah Prail" -m "Noah Prail <noah@prail.net>" \
    --url "https://cli.mcpr.io" --description "A CLI for setting up and controlling Minecraft servers." \
    --rpm-summary "The Official MCPR CLI!" ./bin/nightly/linux/mcpr=/usr/local/bin/mcpr
   cp mcpr*.rpm bin/linux/mcpr-cli-latest.noarch.rpm
