@@ -50,8 +50,7 @@ else
     sudo apt-get install equivs aptly ruby ruby-dev build-essential rpm innoextract wine python-software-properties osslsigncode debsigs
     gem install --no-ri --no-rdoc fpm
 
-    pyenv global system 3.5
-    pip3 install mkdocs==0.16.3 mkdocs-material
+    pip install mkdocs mkdocs-material
 
     go get github.com/sparrc/gdm
 
