@@ -51,7 +51,7 @@ else
     gem install --no-ri --no-rdoc fpm
 
     pyenv global system 3.5
-    pip3 install mkdocs mkdocs-material
+    pip3 install mkdocs==0.16.3 mkdocs-material
 
     go get github.com/sparrc/gdm
 
