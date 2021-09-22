@@ -1,11 +1,12 @@
 # MCPR-CLI [![Build Status](https://travis-ci.org/mcpr/mcpr-cli.svg?branch=master)](https://travis-ci.org/mcpr/mcpr-cli) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/mcpr/mcpr-cli/blob/master/LICENSE) [![GitHub issues](https://img.shields.io/github/issues/mcpr/mcpr-cli.svg)](https://github.com/mcpr/mcpr-cli/issues) [![GitHub (pre-)release](https://img.shields.io/github/release/mcpr/mcpr-cli/all.svg)](https://github.com/mcpr/mcpr-cli)
 
+### WARNING
+**_This project has been shut down and is no longer maintained._**
+
+<br><br>
 The Official [MCPR](https://mcpr.io) Command Line Interface.
 
 [![asciicast](https://asciinema.org/a/136232.png)](https://asciinema.org/a/136232)
-
-## DISCLAIMER
-This project is in alpha! Most features are either non-existent or don't fully work. 
 
 ## Features
 - Setup Minecraft Server (**Testing In Progress** [#1](https://github.com/mcpr/mcpr-cli/issues/1))
